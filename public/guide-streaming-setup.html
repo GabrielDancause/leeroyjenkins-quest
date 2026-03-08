@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streaming Setup Guide | Leeroy Jenkins</title>
+  <meta name="description" content="How to start streaming: OBS setup, mic, camera, lighting, scenes, overlays for Twitch and YouTube. A comprehensive reference guide and cheat sheet.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Streaming Setup Guide: OBS, Audio, Camera, and Lighting",
+    "description": "How to start streaming: OBS setup, mic, camera, lighting, scenes, overlays for Twitch and YouTube. A comprehensive reference guide and cheat sheet.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leeroyjenkins.quest/favicon.ico"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://leeroyjenkins.quest/guide-streaming-setup"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .search-container {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 20px;
+      padding-left: 48px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      width: 20px;
+      height: 20px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .card:target {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-icon {
+      color: var(--accent);
+      width: 24px;
+      height: 24px;
+    }
+
+    .expand-icon {
+      color: var(--text-secondary);
+      transition: transform 0.3s ease;
+    }
+
+    .card.expanded .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .card-content {
+      display: none;
+    }
+
+    .card.expanded .card-content {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.03);
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    td {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .value-cell {
+      font-family: var(--font-mono);
+      color: #fff;
+    }
+
+    .copy-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+
+    .copy-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .copy-value {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: #fff;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+      margin-left: 12px;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      background: rgba(147, 51, 234, 0.1);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(147, 51, 234, 0.2);
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 20px;
+      margin-top: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    .seo-content h3 {
+        font-size: 1.3rem;
+        color: #fff;
+        margin-bottom: 16px;
+        margin-top: 24px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    .seo-content strong {
+        color: var(--text-primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 16px; }
+      h1 { font-size: 2rem; }
+      .card { padding: 24px; }
+      .copy-group { flex-direction: column; align-items: flex-start; gap: 8px; }
+      button.copy-btn { margin-left: 0; align-self: flex-end; }
+      .card-title { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Streaming Setup Guide</h1>
+      <p>The definitive cheat sheet for OBS, audio, camera, and lighting.</p>
+    </header>
+
+    <div class="search-container">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search settings, bitrates, audio filters...">
+    </div>
+
+    <div class="guide-grid" id="guideGrid">
+
+      <!-- Card 1: OBS Settings (Twitch) -->
+      <div class="card expanded" data-tags="obs twitch video bitrate encoder resolution 1080p 720p">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zM11 11V7M16 11V7"/></svg>
+            OBS Settings: Twitch
+          </div>
+          <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="card-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Twitch has a hard cap on ingest bitrate. Pushing past it can cause stream instability.</p>
+
+          <div class="copy-group">
+            <div class="copy-label">Max Video Bitrate (1080p60)</div>
+            <div style="display: flex; align-items: center;">
+              <div class="copy-value" id="twitchMaxBitrate">6000 Kbps</div>
+              <button class="copy-btn" onclick="copyText('twitchMaxBitrate', this)">Copy</button>
+            </div>
+          </div>
+          <div class="copy-group">
+            <div class="copy-label">Recommended (720p60 / Fast Paced)</div>
+            <div style="display: flex; align-items: center;">
+              <div class="copy-value" id="twitchRecBitrate">4500 Kbps</div>
+              <button class="copy-btn" onclick="copyText('twitchRecBitrate', this)">Copy</button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Setting</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Encoder</td>
+                  <td class="value-cell">NVIDIA NVENC H.264 / AMD HW H.264</td>
+                </tr>
+                <tr>
+                  <td>Rate Control</td>
+                  <td class="value-cell">CBR (Constant Bitrate)</td>
+                </tr>
+                <tr>
+                  <td>Keyframe Interval</td>
+                  <td class="value-cell">2 s</td>
+                </tr>
+                <tr>
+                  <td>Preset (NVENC)</td>
+                  <td class="value-cell">P5: Slow (Good Quality)</td>
+                </tr>
+                <tr>
+                  <td>Tuning</td>
+                  <td class="value-cell">High Quality</td>
+                </tr>
+                <tr>
+                  <td>B-Frames</td>
+                  <td class="value-cell">2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tag-list">
+            <span class="tag">OBS</span>
+            <span class="tag">Twitch</span>
+            <span class="tag">Video</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: OBS Settings (YouTube) -->
+      <div class="card" data-tags="obs youtube video bitrate encoder resolution 1440p 4k">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            OBS Settings: YouTube
+          </div>
+          <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="card-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">YouTube allows much higher bitrates. To force the better VP9 codec on YouTube's end, upscale your output to 1440p even if you game at 1080p.</p>
+
+          <div class="copy-group">
+            <div class="copy-label">Bitrate (1080p60)</div>
+            <div style="display: flex; align-items: center;">
+              <div class="copy-value" id="yt1080Bitrate">12000 Kbps</div>
+              <button class="copy-btn" onclick="copyText('yt1080Bitrate', this)">Copy</button>
+            </div>
+          </div>
+          <div class="copy-group">
+            <div class="copy-label">Bitrate (1440p60)</div>
+            <div style="display: flex; align-items: center;">
+              <div class="copy-value" id="yt1440Bitrate">24000 Kbps</div>
+              <button class="copy-btn" onclick="copyText('yt1440Bitrate', this)">Copy</button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Setting</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Encoder</td>
+                  <td class="value-cell">HEVC / H.265 (Recommended if supported)</td>
+                </tr>
+                <tr>
+                  <td>Rate Control</td>
+                  <td class="value-cell">CBR</td>
+                </tr>
+                <tr>
+                  <td>Keyframe Interval</td>
+                  <td class="value-cell">2 s</td>
+                </tr>
+                <tr>
+                  <td>Color Space / Range</td>
+                  <td class="value-cell">Rec. 709 / Limited</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tag-list">
+            <span class="tag">OBS</span>
+            <span class="tag">YouTube</span>
+            <span class="tag">Video</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Audio & Mic Setup -->
+      <div class="card" data-tags="audio mic microphone filters noise gate compressor eq limiter threshold">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+            Audio & Microphone Setup
+          </div>
+          <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="card-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Apply these OBS Audio Filters in this exact order from top to bottom.</p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Filter (Order)</th>
+                  <th>Purpose & Settings</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. Noise Suppression</td>
+                  <td>Use <strong>RNNoise</strong> (AI based) to remove background hum/fans. Requires more CPU but sounds better than Speex.</td>
+                </tr>
+                <tr>
+                  <td>2. Noise Gate</td>
+                  <td>Mutes mic when not speaking.<br>
+                      <span style="font-family: var(--font-mono); font-size: 0.85rem;">Close Threshold: -32 dB | Open Threshold: -26 dB</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3. Compressor</td>
+                  <td>Makes quiet sounds louder and loud sounds quieter.<br>
+                      <span style="font-family: var(--font-mono); font-size: 0.85rem;">Ratio: 3:1 | Threshold: -18 dB | Output Gain: +2 dB</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4. 3-Band EQ</td>
+                  <td>Boost Highs (+2dB) for clarity. Cut Lows (-2dB) if muddy.</td>
+                </tr>
+                <tr>
+                  <td>5. Limiter</td>
+                  <td>Prevents audio clipping when yelling.<br>
+                      <span style="font-family: var(--font-mono); font-size: 0.85rem;">Threshold: -2 dB</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tag-list">
+            <span class="tag">Audio</span>
+            <span class="tag">Microphone</span>
+            <span class="tag">Filters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Lighting & Camera -->
+      <div class="card" data-tags="lighting camera webcam key fill backlight iso shutter speed aperture lens">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            Lighting & Camera
+          </div>
+          <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="card-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Good lighting makes a cheap webcam look better than an expensive camera with bad lighting.</p>
+
+          <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 12px;">3-Point Lighting Basics</h3>
+          <div class="table-container" style="margin-top: 0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Light Source</th>
+                  <th>Position / Intensity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Key Light</td>
+                  <td>45° angle from face, slightly above eye level. 100% intensity. Softbox recommended.</td>
+                </tr>
+                <tr>
+                  <td>Fill Light</td>
+                  <td>Opposite 45° angle. 30-50% intensity. Fills in harsh shadows.</td>
+                </tr>
+                <tr>
+                  <td>Back/Hair Light</td>
+                  <td>Behind you, pointing at shoulders/head. Separates you from the background. (RGB often used here)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="color: #fff; font-size: 1.1rem; margin-top: 24px; margin-bottom: 12px;">Mirrorless/DSLR Camera Settings</h3>
+          <div class="table-container" style="margin-top: 0;">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Shutter Speed</td>
+                  <td class="value-cell">1/120 (For 60fps video) or 1/60 (For 30fps)</td>
+                </tr>
+                <tr>
+                  <td>Aperture (f-stop)</td>
+                  <td class="value-cell">f/1.4 - f/2.8 (For blurry background/bokeh)</td>
+                </tr>
+                <tr>
+                  <td>ISO</td>
+                  <td class="value-cell">Lowest possible (100-400) to reduce grain/noise</td>
+                </tr>
+                <tr>
+                  <td>White Balance</td>
+                  <td class="value-cell">Match your key light (usually 5600K for daylight)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tag-list">
+            <span class="tag">Camera</span>
+            <span class="tag">Lighting</span>
+            <span class="tag">Webcam</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="seo-content">
+      <h2>How to Setup a Successful Stream</h2>
+      <p>Starting your streaming journey on Twitch or YouTube can be overwhelming due to the sheer amount of technical setup required. This guide serves as a comprehensive cheat sheet for optimizing OBS Studio, dialing in your microphone settings, and ensuring your camera and lighting look professional.</p>
+
+      <h3>Why OBS Studio?</h3>
+      <p>While Streamlabs Desktop offers an easier onboarding experience for beginners, <strong>OBS Studio</strong> remains the industry standard. It is open-source, utilizes significantly fewer system resources, and supports an massive library of third-party plugins. Lower CPU/GPU usage in OBS means higher frame rates in your games.</p>
+
+      <h3>Twitch vs YouTube Streaming Bitrates</h3>
+      <p>The platform you choose dictates how you configure your encoder:</p>
+      <ul>
+        <li><strong>Twitch:</strong> Limits non-partner streams to roughly 6,000 Kbps. At this bitrate, 1080p 60fps can look pixelated during fast motion (like FPS games). Often, downscaling to <strong>936p or 720p</strong> yields a crisper image on Twitch.</li>
+        <li><strong>YouTube:</strong> Accepts massive bitrates (up to 51,000 Kbps). YouTube transcodes all video, meaning you want to feed it the highest quality possible. Sending a 1440p signal (even if your game is 1080p) forces YouTube to use the superior VP9 codec for your viewers.</li>
+      </ul>
+
+      <h3>The Importance of Audio</h3>
+      <p>Viewers will tolerate a low-quality webcam or occasional frame drops, but they will leave immediately if your audio is peaking, echoing, or full of static. Utilizing OBS Audio Filters (Noise Gate, Compressor, and Limiter) is non-negotiable for a professional broadcast. A cheap dynamic microphone placed close to your mouth will almost always outperform an expensive condenser microphone placed far away on a desk.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.card');
+
+    searchInput.addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        // Search through text content and data-tags
+        const textContent = card.textContent.toLowerCase();
+        const tags = card.getAttribute('data-tags').toLowerCase();
+
+        if (textContent.includes(searchTerm) || tags.includes(searchTerm)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+
+    // Expand/Collapse cards
+    function toggleCard(headerElement) {
+      const card = headerElement.closest('.card');
+      card.classList.toggle('expanded');
+    }
+
+    // Copy functionality
+    function copyText(elementId, btn) {
+      // Prevent the card from toggling if button is clicked
+      event.stopPropagation();
+
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
