@@ -1,0 +1,23 @@
+{
+  "slug": "",
+  "title": "leeroyjenkins.quest — Gaming sensitivity calculators, esports tools & setup guides",
+  "description": "Gaming sensitivity calculators, esports tools & setup guides",
+  "ogTitle": "leeroyjenkins.quest",
+  "ogDescription": "Gaming sensitivity calculators, esports tools & setup guides",
+  "heroGradient": "linear-gradient(135deg, #6B21A8 0%, #9333EA 100%)",
+  "accentColor": "#6B21A8",
+  "heroLocation": null,
+  "h1": "leeroyjenkins 🚀",
+  "tagline": "Gaming sensitivity calculators, esports tools & setup guides",
+  "backLink": null,
+  "pageType": "guide",
+  "quickFacts": [],
+  "sections": [
+    {
+      "title": "Coming Soon",
+      "paragraphs": ["We're building something useful. Check back soon."]
+    }
+  ],
+  "ctaBanner": null,
+  "footer": "© 2025 leeroyjenkins.quest"
+}
