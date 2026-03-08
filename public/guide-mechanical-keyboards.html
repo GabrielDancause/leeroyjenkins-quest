@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mechanical Keyboards for Gaming Guide | Leeroy Jenkins</title>
+  <meta name="description" content="A comprehensive reference guide on mechanical keyboards for gaming. Learn about switch types, actuation force, form factors, and custom builds.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Mechanical Keyboards for Gaming Reference Guide",
+    "description": "Comprehensive reference guide on mechanical keyboards for gaming, covering switch types, actuation force, form factors, and custom builds.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures"
+    },
+    "url": "https://leeroyjenkins.quest/guide-mechanical-keyboards"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .search-bar {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 40px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .grid-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .specs {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: auto;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      font-size: 0.9rem;
+    }
+
+    .spec-label {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .spec-val {
+      font-family: var(--font-mono);
+      color: #fff;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-linear { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .tag-tactile { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+    .tag-clicky { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+
+    .expandable-section {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .expandable-header {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .expandable-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .expand-icon {
+      transition: transform 0.3s ease;
+      color: var(--accent);
+    }
+
+    .expandable-content {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text-secondary);
+    }
+
+    .expandable-section.open .expandable-content {
+      padding: 0 24px 24px;
+      max-height: 1000px;
+    }
+
+    .expandable-section.open .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      display: block;
+      overflow-x: auto;
+    }
+
+    @media (min-width: 768px) {
+      .data-table {
+        display: table;
+        overflow-x: visible;
+      }
+    }
+
+    .data-table th, .data-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      color: #fff;
+      font-weight: 600;
+      background: var(--bg);
+    }
+
+    .data-table td {
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      position: relative;
+    }
+
+    .code-block code {
+      font-family: var(--font-mono);
+      color: #a855f7;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    h1 { font-size: 2rem; }
+    @media (min-width: 768px) {
+      h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Mechanical Keyboards Reference Guide</h1>
+      <p>The ultimate cheat sheet for switches, form factors, and gaming builds.</p>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search switches, sizes, terms (e.g., 'Linear', 'TKL', 'Actuation')...">
+    </div>
+
+    <div id="contentContainer">
+      <h2 class="section-title">Switch Types</h2>
+      <div class="grid-3">
+        <div class="card filterable-item" data-tags="switch linear red speed silver black">
+          <h3>Linear <span class="tag tag-linear">Smooth</span></h3>
+          <p>Consistent keystroke with no tactile bump or click. Favored by gamers for rapid, uninterrupted keypresses.</p>
+          <div class="specs">
+            <div class="spec-row">
+              <span class="spec-label">Common</span>
+              <span class="spec-val">Cherry MX Red</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Enthusiast</span>
+              <span class="spec-val">Gateron Ink Black</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Speed</span>
+              <span class="spec-val">Cherry MX Silver</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card filterable-item" data-tags="switch tactile brown clear panda">
+          <h3>Tactile <span class="tag tag-tactile">Bump</span></h3>
+          <p>Features a noticeable physical bump mid-press to confirm actuation without a loud click. Great for hybrid typing/gaming.</p>
+          <div class="specs">
+            <div class="spec-row">
+              <span class="spec-label">Common</span>
+              <span class="spec-val">Cherry MX Brown</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Enthusiast</span>
+              <span class="spec-val">Holy Panda</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Heavy</span>
+              <span class="spec-val">Cherry MX Clear</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card filterable-item" data-tags="switch clicky blue green jade">
+          <h3>Clicky <span class="tag tag-clicky">Loud</span></h3>
+          <p>Provides both a tactile bump and a distinct audible click sound. Excellent for typing feedback, but often too loud for open comms.</p>
+          <div class="specs">
+            <div class="spec-row">
+              <span class="spec-label">Common</span>
+              <span class="spec-val">Cherry MX Blue</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Enthusiast</span>
+              <span class="spec-val">Kailh Box Jade</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Heavy</span>
+              <span class="spec-val">Cherry MX Green</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Actuation & Key Specs</h2>
+
+      <div class="expandable-section filterable-item" data-tags="actuation force travel distance bottom out cN g">
+        <div class="expandable-header" onclick="toggleSection(this)">
+          <span>Understanding Actuation Force & Distance</span>
+          <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="expandable-content">
+          <p style="margin-top: 16px;">Key terms you need to know when evaluating switches:</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Term</th>
+                <th>Definition</th>
+                <th>Typical Range</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Actuation Force</td>
+                <td>Force required to register the keypress (measured in cN or grams).</td>
+                <td>35g (light) - 80g (heavy)</td>
+              </tr>
+              <tr>
+                <td>Actuation Point</td>
+                <td>Distance the key travels before registering.</td>
+                <td>1.0mm (speed) - 2.0mm (standard)</td>
+              </tr>
+              <tr>
+                <td>Total Travel</td>
+                <td>Distance to push the key all the way down.</td>
+                <td>3.0mm (low-pro) - 4.0mm (standard)</td>
+              </tr>
+              <tr>
+                <td>Bottom Out Force</td>
+                <td>Force required to press the key completely to the floor.</td>
+                <td>Usually 10g-20g heavier than actuation.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="margin-top: 16px; margin-bottom: 16px;">Gamers typically prefer lighter actuation force (45g) for speed, while typists might prefer heavier force (60g+) to prevent accidental presses.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Form Factors & Sizes</h2>
+      <div class="grid-2">
+        <div class="card filterable-item" data-tags="size full 100% 104 tenkey numpad">
+          <h3>Full-Size (100%)</h3>
+          <p>Includes all keys: alphanumeric, nav cluster, arrow keys, and a numpad (approx 104 keys). Best for productivity and games heavily reliant on macros/numpads.</p>
+          <div class="specs" style="margin-top: 16px;">
+            <div class="spec-row">
+              <span class="spec-label">Footprint</span>
+              <span class="spec-val">Large (~44cm)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Mouse Space</span>
+              <span class="spec-val">Minimal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card filterable-item" data-tags="size tkl tenkeyless 80% 87">
+          <h3>TKL (Tenkeyless / 80%)</h3>
+          <p>Chops off the numpad but keeps dedicated arrow and navigation keys (approx 87 keys). The classic standard for gaming, offering a great balance of function and mouse space.</p>
+          <div class="specs" style="margin-top: 16px;">
+            <div class="spec-row">
+              <span class="spec-label">Footprint</span>
+              <span class="spec-val">Medium (~36cm)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Mouse Space</span>
+              <span class="spec-val">Good</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card filterable-item" data-tags="size 75% compact">
+          <h3>75% Layout</h3>
+          <p>Compresses the TKL layout by squishing the arrow and nav keys right next to the enter/shift cluster. Popular in modern custom builds.</p>
+          <div class="specs" style="margin-top: 16px;">
+            <div class="spec-row">
+              <span class="spec-label">Footprint</span>
+              <span class="spec-val">Compact (~32cm)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Mouse Space</span>
+              <span class="spec-val">Excellent</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card filterable-item" data-tags="size 60% poker compact mini">
+          <h3>60% Layout</h3>
+          <p>Removes the numpad, nav cluster, arrow keys, and F-row (approx 61 keys). Everything missing is accessed via a Function (Fn) layer. Ultimate mouse space for low-sens FPS players.</p>
+          <div class="specs" style="margin-top: 16px;">
+            <div class="spec-row">
+              <span class="spec-label">Footprint</span>
+              <span class="spec-val">Tiny (~29cm)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Mouse Space</span>
+              <span class="spec-val">Maximum</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Best Choices by Genre</h2>
+      <div class="expandable-section filterable-item" data-tags="fps moba rts typing typing best recommendations switches">
+        <div class="expandable-header" onclick="toggleSection(this)">
+          <span>Recommended Setups</span>
+          <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div class="expandable-content">
+          <table class="data-table" style="margin-top: 16px; margin-bottom: 16px;">
+            <thead>
+              <tr>
+                <th>Use Case</th>
+                <th>Ideal Switch</th>
+                <th>Ideal Size</th>
+                <th>Why?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:#fff; font-weight:600;">FPS (CS2, Valorant)</td>
+                <td>Light Linear (Red/Silver)</td>
+                <td>60% or TKL</td>
+                <td>Need max mouse space for low sens aiming; rapid double-tapping for movement (counter-strafing).</td>
+              </tr>
+              <tr>
+                <td style="color:#fff; font-weight:600;">MOBA / RTS (LoL, SC2)</td>
+                <td>Tactile or Linear</td>
+                <td>TKL or Full</td>
+                <td>Need access to F-keys and macro keys; tactical feedback helps confirm spell casts.</td>
+              </tr>
+              <tr>
+                <td style="color:#fff; font-weight:600;">Heavy Typing / Coding</td>
+                <td>Tactile or Clicky</td>
+                <td>75% or TKL</td>
+                <td>Physical bump reduces bottoming-out fatigue and typos; arrow keys remain essential.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2 class="section-title">Custom Builds & Modding</h2>
+      <div class="grid-2">
+        <div class="card filterable-item" data-tags="custom modding lube film hot-swap hotswap pcb">
+          <h3>Hot-Swappable PCBs</h3>
+          <p>Allows you to plug and unplug switches without soldering. The ultimate gateway into custom keyboards, letting you test different switches easily.</p>
+        </div>
+        <div class="card filterable-item" data-tags="custom modding lube lubrication krytox tribosys">
+          <h3>Lubricating Switches</h3>
+          <p>Applying specialized grease (like Krytox 205g0) to switch stems and housings to remove scratchiness and deepen the sound profile ("thock").</p>
+        </div>
+      </div>
+
+      <div class="code-block filterable-item" data-tags="qmk via firmware macro code program">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <code>// Example QMK Firmware snippet for assigning a macro
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MY_MACRO:
+            if (record->event.pressed) {
+                // Send string when key is pressed
+                SEND_STRING("GLHF\n");
+            }
+            return false;
+        default:
+            return true;
+    }
+}</code>
+      </div>
+
+    </div>
+
+    <div class="seo-content">
+      <h2>Why use a mechanical keyboard for gaming?</h2>
+      <p>Mechanical keyboards are vastly superior to standard membrane or "rubber dome" keyboards for several reasons. Primarily, they offer <strong>N-Key Rollover (NKRO)</strong> and anti-ghosting, ensuring that no matter how many keys you press simultaneously during intense gaming sessions, every single input is registered accurately by your PC.</p>
+      <p>Furthermore, mechanical switches actuate (register the keypress) halfway down the keystroke, rather than requiring you to press the key entirely to the bottom. This allows for faster reactions, rapid double-tapping, and less finger fatigue over long sessions.</p>
+
+      <h2>What is polling rate and does it matter?</h2>
+      <p>Polling rate, measured in Hertz (Hz), represents how many times per second the keyboard reports its status to the computer. A standard office keyboard might have a 125Hz polling rate (reporting every 8 milliseconds), while modern gaming keyboards feature 1000Hz (1ms) or even 8000Hz (0.125ms) polling rates.</p>
+      <ul>
+        <li><strong>1000Hz:</strong> The current gold standard. Excellent for all competitive gaming.</li>
+        <li><strong>4000Hz - 8000Hz:</strong> Enthusiast-tier polling. While the raw latency reduction is technically measurable, the human perception of the difference between 1ms and 0.125ms is negligible. However, in rhythm games like osu! or for extreme high-level competitive play, minimizing input delay chain can be beneficial.</li>
+      </ul>
+
+      <h2>Optical vs. Mechanical Switches</h2>
+      <p>Traditional mechanical switches use physical metal contacts that touch to register a keystroke. Over time, these can degrade or suffer from "chatter" (registering multiple inputs for one press) due to oxidation, which requires debounce delay algorithms in the firmware.</p>
+      <p><strong>Optical switches</strong>, however, use an infrared light beam. When you press the key, the stem blocks or unblocks the light, instantly registering the keystroke. Because there is no physical metal contact, optical switches have near-zero debounce delay, theoretically resulting in slightly faster response times and a longer overall lifespan.</p>
+
+      <h2>Hall Effect / Magnetic Switches (Rapid Trigger)</h2>
+      <p>The newest innovation in gaming keyboards is the Hall Effect switch (found in Wooting and Razer keyboards). Instead of a binary on/off contact, they use magnets to measure the exact depth of the keypress analogically. This enables <strong>Rapid Trigger</strong> technology, where the actuation point is dynamic: the moment you start lifting your finger, the key deactivates, and the moment you press down again, it reactivates. This allows for impossibly fast counter-strafing in games like CS2 and Valorant, bypassing physical switch reset points entirely.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // Expandable Sections
+    function toggleSection(element) {
+      const parent = element.parentElement;
+      parent.classList.toggle('open');
+    }
+
+    // Copy Code functionality
+    function copyCode(btn) {
+      const codeBlock = btn.nextElementSibling;
+      const text = codeBlock.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.style.background = 'var(--accent)';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = 'var(--card-bg)';
+          btn.style.color = 'var(--text-primary)';
+        }, 2000);
+      });
+    }
+
+    // Search / Filter Functionality
+    const searchInput = document.getElementById('searchInput');
+    const filterableItems = document.querySelectorAll('.filterable-item');
+
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+
+      if (searchTerm === '') {
+        // Show everything
+        filterableItems.forEach(item => {
+          item.classList.remove('hidden');
+          // If it's an expandable section, close it when clearing search
+          if(item.classList.contains('expandable-section')) {
+            item.classList.remove('open');
+          }
+        });
+        return;
+      }
+
+      filterableItems.forEach(item => {
+        const textContent = item.textContent.toLowerCase();
+        const tags = item.getAttribute('data-tags') ? item.getAttribute('data-tags').toLowerCase() : '';
+
+        if (textContent.includes(searchTerm) || tags.includes(searchTerm)) {
+          item.classList.remove('hidden');
+          // Automatically open expandable sections that match search
+          if(item.classList.contains('expandable-section')) {
+            item.classList.add('open');
+          }
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
