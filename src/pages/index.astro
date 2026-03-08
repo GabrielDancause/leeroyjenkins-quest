@@ -1,0 +1,62 @@
+---
+import BaseHead from '../layouts/BaseHead.astro';
+
+const tools = [
+  { emoji: "🖱️", name: "DPI & Sensitivity Matcher", desc: "Switching mice? Match your exact sensitivity across any DPI. Supports cm/360 and in/360.", soon: true },
+  { emoji: "👁️", name: "FOV Calculator", desc: "Find your ideal field of view based on monitor size, distance, and aspect ratio. Horizontal and vertical.", soon: true },
+  { emoji: "⌨️", name: "Polling Rate vs Input Lag", desc: "1000Hz vs 4000Hz — does it matter? Visualize the actual input lag difference in milliseconds.", soon: true },
+  { emoji: "🖥️", name: "Monitor Response Time Tester", desc: "Estimate motion blur based on your monitor's response time, refresh rate, and pixel persistence.", soon: true },
+  { emoji: "🎯", name: "eDPI Calculator", desc: "Calculate your effective DPI across any game. Compare your sens to pro players.", soon: true },
+  { emoji: "📐", name: "Crosshair Generator", desc: "Design your crosshair visually. Export settings for Valorant, CS2, Overwatch, and more.", soon: true },
+];
+---
+<html lang="en">
+<head>
+  <BaseHead
+    title="Leeroy Jenkins — Gaming Sensitivity Calculators, Esports Tools & Setup Guides"
+    description="Free gaming tools: DPI sensitivity matcher, FOV calculator, eDPI calculator, polling rate comparison, crosshair generator, and esports setup guides. No signup."
+    ogTitle="Leeroy Jenkins — At Least I Have Chicken"
+    ogDescription="Gaming sensitivity calculators, FOV tools, eDPI calculators, and esports setup guides. Free forever."
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #08060e; color: #d8d0e8; }
+    .hero { text-align: center; padding: 100px 24px 80px; background: linear-gradient(180deg, #120e1e 0%, #08060e 100%); position: relative; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(107,33,168,0.1) 0%, transparent 60%); }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3rem; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 12px; background: linear-gradient(135deg, #fff 0%, #9333EA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero .sub { color: #555; font-size: 0.85rem; font-style: italic; margin-bottom: 12px; }
+    .hero p { color: #666; font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
+    .grid { max-width: 900px; margin: 0 auto; padding: 0 24px 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: #100e18; border: 2px solid #221e30; border-radius: 16px; padding: 28px 24px; position: relative; }
+    .card .emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .card h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .card p { font-size: 0.85rem; color: #888; line-height: 1.6; }
+    .badge { position: absolute; top: 14px; right: 14px; background: #221e30; color: #9333EA; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .footer { text-align: center; padding: 40px 24px; font-size: 0.78rem; color: #333; border-top: 1px solid #151020; }
+    .footer a { color: #9333EA; text-decoration: none; }
+    @media (max-width: 600px) { .hero h1 { font-size: 2.2rem; } .hero { padding: 70px 20px 50px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-content">
+    <h1>Leeroy Jenkins 🎮</h1>
+    <div class="sub">"At least I have chicken."</div>
+    <p>Gaming tools that don't suck. Sensitivity calculators, FOV tools, and esports utilities.</p>
+  </div>
+</div>
+<div class="grid">
+  {tools.map(t => (
+    <div class="card">
+      {t.soon && <span class="badge">COMING SOON</span>}
+      <span class="emoji">{t.emoji}</span>
+      <h2>{t.name}</h2>
+      <p>{t.desc}</p>
+    </div>
+  ))}
+</div>
+<div class="footer">© 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property</div>
+</body>
+</html>
