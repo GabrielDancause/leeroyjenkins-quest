@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Grip Styles Guide | Leeroy Jenkins</title>
+  <meta name="description" content="A comprehensive guide to mouse grip styles (Palm, Claw, Fingertip), hand size measurement, and the best mouse shapes for each grip.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Mouse Grip Styles Guide",
+    "description": "A comprehensive guide to mouse grip styles (Palm, Claw, Fingertip), hand size measurement, and the best mouse shapes for each grip.",
+    "url": "https://leeroyjenkins.quest/guide-mouse-grip",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leeroyjenkins.quest/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .search-container {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .badge {
+      background: rgba(147, 51, 234, 0.1);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(147, 51, 234, 0.3);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .pros-cons h4 {
+      color: #fff;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .pros-list, .cons-list {
+      list-style: none;
+    }
+
+    .pros-list li, .cons-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    .pros-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .cons-list li::before {
+      content: '×';
+      position: absolute;
+      left: 0;
+      color: #ef4444;
+      font-weight: bold;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .recommendations {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .recommendations h4 {
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .mouse-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mouse-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+
+    .measurement-guide {
+      background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .measurement-step {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .step-number {
+      background: var(--accent);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.02);
+      color: #fff;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+      font-style: italic;
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Mouse Grip Styles Guide</h1>
+      <p>The ultimate reference for Palm, Claw, and Fingertip grips, hand measurements, and mouse shapes.</p>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search grips, mouse models, or features (e.g., 'Claw', 'Superlight', 'Ergo')...">
+      <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </div>
+
+    <div id="handMeasurementSection">
+      <h2 class="section-title">Hand Size Measurement</h2>
+      <div class="measurement-guide">
+        <p style="margin-bottom: 24px; color: var(--text-secondary);">Measuring your hand is crucial for finding the right mouse size. A mouse that is too large or too small for your hand size and grip style will cause fatigue and hinder aim.</p>
+
+        <div class="grid-2">
+          <div>
+            <div class="measurement-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Length</h4>
+                <p>Measure from the tip of your middle finger to the first crease at the base of your palm (your wrist line).</p>
+              </div>
+            </div>
+            <div class="measurement-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Width</h4>
+                <p>Measure across your hand including your thumb. Keep your hand flat and thumb resting naturally against your hand.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-container" style="margin-top: 0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Size Category</th>
+                  <th>Length (cm)</th>
+                  <th>Width (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Small</td>
+                  <td>Under 17 cm</td>
+                  <td>Under 8.5 cm</td>
+                </tr>
+                <tr>
+                  <td>Medium</td>
+                  <td>17 - 19.5 cm</td>
+                  <td>8.5 - 10 cm</td>
+                </tr>
+                <tr>
+                  <td>Large</td>
+                  <td>Over 19.5 cm</td>
+                  <td>Over 10 cm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Grip Styles</h2>
+
+    <div id="noResults" class="no-results hidden">
+      No grips or mice found matching your search. Try different keywords.
+    </div>
+
+    <div id="gripCards">
+      <!-- Palm Grip -->
+      <div class="card grip-card" data-search="palm ergonomic relaxed full contact zowie ec deathadder">
+        <div class="card-header">
+          <h3 class="card-title">Palm Grip</h3>
+          <span class="badge">Max Comfort</span>
+        </div>
+        <p style="margin-bottom: 24px; color: var(--text-secondary);">
+          The most common and relaxed grip. The entire palm and fingers rest flat on the mouse. Movement comes primarily from the arm and wrist rather than the fingers.
+        </p>
+
+        <div class="grid-2">
+          <div class="pros-cons">
+            <h4>Pros</h4>
+            <ul class="pros-list">
+              <li>Maximum comfort for long sessions</li>
+              <li>Very stable and smooth tracking</li>
+              <li>Less strain on hand and fingers</li>
+            </ul>
+          </div>
+          <div class="pros-cons">
+            <h4>Cons</h4>
+            <ul class="cons-list">
+              <li>Least precise for micro-adjustments</li>
+              <li>Slower vertical movements</li>
+              <li>Relies heavily on arm aiming</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommendations">
+          <h4>Best Mouse Shapes</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">Large, ergonomic (asymmetrical) shapes with a high profile to support the arch of the hand.</p>
+          <div class="mouse-tags">
+            <span class="mouse-tag">Zowie EC Series</span>
+            <span class="mouse-tag">Razer DeathAdder V3</span>
+            <span class="mouse-tag">Logitech G502</span>
+            <span class="mouse-tag">Pulsar Xlite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Claw Grip -->
+      <div class="card grip-card" data-search="claw aggressive arched hybrid superlight xm1r sora atlantis">
+        <div class="card-header">
+          <h3 class="card-title">Claw Grip</h3>
+          <span class="badge">Balanced</span>
+        </div>
+        <p style="margin-bottom: 24px; color: var(--text-secondary);">
+          The base of the palm rests on the back of the mouse, while the fingers are arched (like a claw) to click the buttons. Offers a blend of stability and agility.
+        </p>
+
+        <div class="grid-2">
+          <div class="pros-cons">
+            <h4>Pros</h4>
+            <ul class="pros-list">
+              <li>Excellent blend of speed and stability</li>
+              <li>Fast clicking due to finger arch</li>
+              <li>Good for both tracking and flicking</li>
+            </ul>
+          </div>
+          <div class="pros-cons">
+            <h4>Cons</h4>
+            <ul class="cons-list">
+              <li>Can cause fatigue in fingers faster than palm</li>
+              <li>Requires specific hump placement on mouse</li>
+              <li>Steeper learning curve for new players</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommendations">
+          <h4>Best Mouse Shapes</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">Symmetrical shapes with a pronounced back hump for palm support, and a lower front for finger placement.</p>
+          <div class="mouse-tags">
+            <span class="mouse-tag">Logitech G Pro X Superlight</span>
+            <span class="mouse-tag">Endgame Gear XM2we</span>
+            <span class="mouse-tag">Lamzu Atlantis</span>
+            <span class="mouse-tag">Ninjutso Sora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fingertip Grip -->
+      <div class="card grip-card" data-search="fingertip ftip micro-adjustments aim speed starlight viper htx">
+        <div class="card-header">
+          <h3 class="card-title">Fingertip Grip</h3>
+          <span class="badge">Max Agility</span>
+        </div>
+        <p style="margin-bottom: 24px; color: var(--text-secondary);">
+          Only the tips of the fingers touch the mouse. There is zero contact between the palm and the mouse body. Relies heavily on finger and wrist movements.
+        </p>
+
+        <div class="grid-2">
+          <div class="pros-cons">
+            <h4>Pros</h4>
+            <ul class="pros-list">
+              <li>Maximum speed and agility</li>
+              <li>Incredible vertical precision (micro-adjustments)</li>
+              <li>Fastest reaction times</li>
+            </ul>
+          </div>
+          <div class="pros-cons">
+            <h4>Cons</h4>
+            <ul class="cons-list">
+              <li>Hardest grip to master and maintain stability</li>
+              <li>Highest fatigue rate for fingers and wrist</li>
+              <li>Tracking smoothly can be difficult</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommendations">
+          <h4>Best Mouse Shapes</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">Small, extremely lightweight, low-profile symmetrical mice. Flat backs are preferred to avoid palm contact.</p>
+          <div class="mouse-tags">
+            <span class="mouse-tag">Razer Viper Mini (SE)</span>
+            <span class="mouse-tag">Finalmouse UltralightX</span>
+            <span class="mouse-tag">G-Wolves HSK / HTX</span>
+            <span class="mouse-tag">Pulsar X2V2 Mini</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why Does Your Mouse Grip Matter?</h2>
+      <p>Your mouse grip fundamentally changes how you interact with your peripheral and, by extension, the game. The way you hold your mouse dictates which muscles are engaged—arm, wrist, or fingers. This translates directly into your aiming style. For example, a Palm grip relies on larger arm movements, making it incredibly stable for tracking targets in games like Overwatch or Apex Legends, but it sacrifices the micro-adjustments needed for precise flick shots in tactical shooters like CS2 or Valorant.</p>
+
+      <h2>Finding the Perfect Mouse Shape</h2>
+      <p>There is no universally "best" gaming mouse; there is only the best mouse for your specific hand size and grip style. Manufacturers design mice with specific grips in mind:</p>
+      <ul>
+        <li><strong>Ergonomic (Ergo) Mice:</strong> These are asymmetrical, usually sloping downwards to the right (for right-handed users). They are designed to fill the hand, making them the top choice for Palm grip users who prioritize comfort and stability.</li>
+        <li><strong>Symmetrical (Ambi) Mice:</strong> These have the same shape on both the left and right sides. They often feature a pronounced hump towards the back or middle to support Claw grip users, allowing the base of the palm to anchor while fingers arch over the clicks.</li>
+        <li><strong>Fingertip Mice:</strong> Often extreme in their design, these mice are ultra-lightweight, very small, and feature a low profile or cut-off back to ensure the mouse never touches the palm, maximizing vertical finger movement.</li>
+      </ul>
+
+      <h2>Should You Change Your Grip Style?</h2>
+      <p>Generally, it is recommended to stick with the grip style that feels most natural to you and buy a mouse that supports it. Forcing a new grip style can lead to frustration, temporary drops in performance, and even repetitive strain injuries (RSI) if done incorrectly. However, if you feel your current grip is limiting your mechanical potential (e.g., using a palm grip but struggling with vertical recoil control), a gradual transition to a hybrid or claw grip might be beneficial. Always prioritize comfort to ensure longevity in gaming.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      const gripCards = document.querySelectorAll('.grip-card');
+      const noResults = document.getElementById('noResults');
+
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        gripCards.forEach(card => {
+          const searchData = card.getAttribute('data-search').toLowerCase();
+          const title = card.querySelector('.card-title').textContent.toLowerCase();
+          const textContent = card.textContent.toLowerCase();
+
+          if (searchData.includes(searchTerm) || title.includes(searchTerm) || textContent.includes(searchTerm)) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
