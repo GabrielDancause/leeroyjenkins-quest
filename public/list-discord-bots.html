@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Discord Bots Guide | Leeroy Jenkins</title>
+  <meta name="description" content="A curated list and comparison of the best Discord bots for moderation, music, leveling, welcome messages, and server utility. Setup guides and commands included.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Discord Bots Reference Guide",
+    "description": "A curated list and comparison of the best Discord bots for moderation, music, leveling, welcome messages, and server utility. Setup guides and commands included.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures"
+    },
+    "url": "https://leeroyjenkins.quest/list-discord-bots.html"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --success: #10b981;
+      --error: #ef4444;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 2.5rem; }
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .controls-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
+    }
+
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-ui);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--text-secondary);
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .sort-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      align-self: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .controls-container {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .search-bar { flex: 1; min-width: 250px; }
+      .sort-control { margin-left: auto; }
+    }
+
+    .sort-select {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .grid-1 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 0;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .rating svg {
+      width: 14px;
+      height: 14px;
+      fill: #f59e0b;
+    }
+
+    .bot-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-mod { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .tag-util { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .tag-music { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+    .tag-level { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 600px) {
+      .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .metric-list {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .metric-list h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric-list.pros h4 { color: var(--success); }
+    .metric-list.cons h4 { color: var(--error); }
+
+    .metric-list ul {
+      list-style: none;
+    }
+
+    .metric-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .metric-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .metric-list.pros li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    .metric-list.cons li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: var(--error);
+      font-weight: 800;
+      font-size: 0.8rem;
+      top: 2px;
+    }
+
+    .expandable-section {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .expandable-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .expandable-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .expand-icon {
+      transition: transform 0.3s ease;
+      color: var(--text-secondary);
+    }
+
+    .expandable-content {
+      padding: 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .expandable-section.open .expandable-content {
+      padding: 0 16px 16px;
+      max-height: 500px;
+    }
+
+    .expandable-section.open .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .code-block {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+      position: relative;
+    }
+
+    .code-block code {
+      font-family: var(--font-mono);
+      color: #a855f7;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .seo-content {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Best Discord Bots Guide</h1>
+      <p>Curated comparisons for moderation, leveling, utility, and music bots.</p>
+    </header>
+
+    <div class="controls-container">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search bots, commands, or tags...">
+      </div>
+
+      <div class="filter-tags">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="moderation">Moderation</button>
+        <button class="filter-btn" data-filter="utility">Utility</button>
+        <button class="filter-btn" data-filter="leveling">Leveling</button>
+        <button class="filter-btn" data-filter="music">Music</button>
+      </div>
+
+      <div class="sort-control">
+        <label for="sortSelect">Sort:</label>
+        <select id="sortSelect" class="sort-select">
+          <option value="rating">Rating (Highest)</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid-1" id="botList">
+
+      <!-- Bot 1 -->
+      <div class="card bot-item" data-categories="moderation utility" data-name="dyno" data-rating="4.8">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Dyno</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-mod">Moderation</span>
+            <span class="tag tag-util">Utility</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">A fully customizable moderation bot featuring a powerful web dashboard, automod, custom commands, and extensive logging capabilities. The standard for community management.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Intuitive web dashboard</li>
+              <li>Highly configurable automod</li>
+              <li>Reliable uptime and performance</li>
+              <li>Excellent moderation logs</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Some advanced features locked behind Premium</li>
+              <li>Can be overwhelming for small servers</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Invite Dyno, then visit dyno.gg to access the dashboard. Set up your log channel and configure Automod filters first.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>/ban [user] [reason]
+/mute [user] [time] [reason]
+/purge [amount]
+/slowmode [time]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 2 -->
+      <div class="card bot-item" data-categories="moderation utility" data-name="carl-bot" data-rating="4.9">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Carl-bot</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.9
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-mod">Moderation</span>
+            <span class="tag tag-util">Reaction Roles</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">The undisputed king of Reaction Roles. Carl-bot also offers incredibly deep permission management, advanced logging, and a robust tag/custom command system using its own scripting language.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Best-in-class reaction roles (up to 250)</li>
+              <li>Powerful custom tag engine</li>
+              <li>In-depth audit logging</li>
+              <li>Extremely granular permissions</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Steep learning curve for custom tags</li>
+              <li>Dashboard can be clunky</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Best used for reaction roles. Use the dashboard to create a message, then attach roles to emojis.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>!rr make
+!tag add [name] [content]
+!log channel #logs
+!warn [user] [reason]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 3 -->
+      <div class="card bot-item" data-categories="leveling moderation utility" data-name="mee6" data-rating="3.5">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>MEE6</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              3.5
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-level">Leveling</span>
+            <span class="tag tag-util">Welcome</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">A highly popular, all-in-one bot famous for its leveling system and welcome messages. While easy to use, it has become increasingly monetized over the years, frustrating power users.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Very beginner-friendly dashboard</li>
+              <li>Classic leveling system with rank cards</li>
+              <li>Easy Twitch/YouTube alerts</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Heavy paywalls on basic features</li>
+              <li>Aggressive premium marketing</li>
+              <li>Support can be slow</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Almost entirely managed via the web dashboard at mee6.xyz. Enable the Levels plugin to start tracking XP.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>/rank
+/levels
+/clear [amount]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 4 -->
+      <div class="card bot-item" data-categories="leveling moderation music" data-name="probot" data-rating="4.6">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>ProBot</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.6
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-mod">Moderation</span>
+            <span class="tag tag-level">Leveling</span>
+            <span class="tag tag-music">Music</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">An excellent, modern alternative to MEE6. ProBot offers anti-raid protection, welcome images, leveling, and high-quality music streaming with a much fairer free tier.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Clean, multi-language dashboard</li>
+              <li>Generous free tier for leveling</li>
+              <li>Customizable welcome images</li>
+              <li>Built-in music player</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Music quality can occasionally stutter</li>
+              <li>Automod is less granular than Dyno</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Configure welcome images in the dashboard. Use prefix commands for quick actions in-server.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>#profile
+#rank
+#play [song]
+#autorole set [role]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 5 -->
+      <div class="card bot-item" data-categories="leveling utility" data-name="arcane" data-rating="4.4">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Arcane</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.4
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-level">Leveling</span>
+            <span class="tag tag-util">Voice XP</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">A specialized leveling bot focused on replacing MEE6. Arcane's standout feature is Voice XP, allowing users to gain levels simply by being active in voice channels—for free.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Free Voice channel XP tracking</li>
+              <li>Role rewards for leveling up</li>
+              <li>Leaderboards with custom multipliers</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Strictly a leveling bot (limited mod features)</li>
+              <li>Dashboard design is a bit dated</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Ensure Arcane has permission to view your voice channels to track Voice XP accurately.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>/level
+/leaderboard
+/userinfo [user]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 6 -->
+      <div class="card bot-item" data-categories="music utility" data-name="pancake" data-rating="4.3">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Pancake</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.3
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-music">Music</span>
+            <span class="tag tag-util">Fun</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">A multi-purpose bot known for stable, high-quality music playback and fun image manipulation commands. Great for casual community servers looking to add entertainment.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Stable music playback (SoundCloud, Spotify, etc.)</li>
+              <li>Fun economy and image generation commands</li>
+              <li>Easy to use without a dashboard</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Lacks serious moderation tools</li>
+              <li>YouTube playback often restricted due to TOS</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Join a voice channel and use the play command. No complex setup required.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>p!play [song]
+p!skip
+p!akinator
+p!meme</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 7 -->
+      <div class="card bot-item" data-categories="moderation utility" data-name="yagpdb" data-rating="4.7">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>YAGPDB</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.7
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-mod">Moderation</span>
+            <span class="tag tag-util">Advanced Custom</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">"Yet Another General Purpose Discord Bot" is anything but standard. It is arguably the most powerful bot for advanced users, featuring a Turing-complete custom command system (Go templates).</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Insanely powerful custom commands (Go Templates)</li>
+              <li>Fast, lightweight Reddit/Twitter feeds</li>
+              <li>Everything is free</li>
+              <li>Self-assignable role groups</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Very steep learning curve</li>
+              <li>Dashboard is utilitarian and complex</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Best configured via the dashboard. Excellent for setting up automated Reddit feeds to specific channels.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>-role [role]
+-mute [user] [duration]
+-clean [count]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot 8 -->
+      <div class="card bot-item" data-categories="utility" data-name="ticket-tool" data-rating="4.8">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Ticket Tool</h3>
+            <div class="rating">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+          </div>
+          <div class="tag-container" style="margin-bottom: 0;">
+            <span class="tag tag-util">Support</span>
+            <span class="tag tag-mod">Management</span>
+          </div>
+        </div>
+
+        <p class="bot-desc">The industry standard for handling server support. Creates private channels (tickets) between staff and users, complete with transcripts and automated claiming systems.</p>
+
+        <div class="metrics-grid">
+          <div class="metric-list pros">
+            <h4>Pros</h4>
+            <ul>
+              <li>Flawless private ticket creation</li>
+              <li>HTML transcripts of resolved tickets</li>
+              <li>Customizable embed panels</li>
+              <li>Highly organized category management</li>
+            </ul>
+          </div>
+          <div class="metric-list cons">
+            <h4>Cons</h4>
+            <ul>
+              <li>Claiming/statistics locked behind premium</li>
+              <li>Single-purpose (requires pairing with other bots)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="expandable-section">
+          <div class="expandable-header" onclick="toggleSection(this)">
+            <span>Key Commands & Setup</span>
+            <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="expandable-content">
+            <p style="margin-top: 12px;"><strong>Quick Start:</strong> Use the dashboard to create a "Panel" in a public channel. Users click a button on the panel to open a private ticket.</p>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              <code>/add [user] (adds to ticket)
+/remove [user]
+/close
+/transcript</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="seo-content">
+      <h2>Choosing the Right Discord Bot</h2>
+      <p>When setting up a Discord server, it's tempting to invite a dozen bots to handle every possible feature. However, this often leads to cluttered command prefixes, overlapping permissions, and security risks. We recommend a "core" setup approach:</p>
+      <ul>
+        <li><strong>The Moderator:</strong> Choose one robust bot for your automod, logging, and mod commands (e.g., Dyno or Carl-bot).</li>
+        <li><strong>The Utility/Specialist:</strong> Add bots specifically for unique needs, such as Ticket Tool for support or ProBot for leveling.</li>
+        <li><strong>The Entertainer:</strong> Keep music and fun commands restricted to specific channels to prevent spam.</li>
+      </ul>
+
+      <h2>Security and Permissions</h2>
+      <p>Always audit the permissions you grant to Discord bots. A compromised bot with Administrator permissions can instantly nuke a server by deleting channels and banning users.</p>
+      <ul>
+        <li>Never give a bot the `Administrator` permission unless absolutely necessary.</li>
+        <li>Instead, create a specific "Bot" role and grant it only the permissions it needs (e.g., `Manage Messages`, `Kick Members`, `View Channels`).</li>
+        <li>Keep your bots' roles below your highest staff roles in the server hierarchy to prevent bots from modifying staff accounts.</li>
+      </ul>
+
+      <h2>The Shift to Slash Commands</h2>
+      <p>Discord has heavily pushed developers away from traditional prefix commands (like `!ban`) towards Slash Commands (`/ban`). Slash commands are superior because they offer auto-completion, parameter descriptions, and strict permission controls natively within the Discord client. When evaluating modern bots, prioritize those that have fully adopted slash command integration.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // Expandable Sections
+    function toggleSection(element) {
+      const parent = element.parentElement;
+      parent.classList.toggle('open');
+    }
+
+    // Copy Code functionality
+    function copyCode(btn) {
+      const codeBlock = btn.nextElementSibling;
+      const text = codeBlock.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.style.background = 'var(--accent)';
+        btn.style.color = '#fff';
+        btn.style.borderColor = 'var(--accent)';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = 'var(--card-bg)';
+          btn.style.color = 'var(--text-primary)';
+          btn.style.borderColor = 'var(--border)';
+        }, 2000);
+      });
+    }
+
+    // Filtering and Sorting Logic
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const sortSelect = document.getElementById('sortSelect');
+    const botList = document.getElementById('botList');
+    const bots = Array.from(document.querySelectorAll('.bot-item'));
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+    let currentSort = 'rating';
+
+    function updateView() {
+      // Filter
+      bots.forEach(bot => {
+        const categories = bot.getAttribute('data-categories');
+        const textContent = bot.textContent.toLowerCase();
+
+        const matchesFilter = currentFilter === 'all' || categories.includes(currentFilter);
+        const matchesSearch = currentSearch === '' || textContent.includes(currentSearch);
+
+        if (matchesFilter && matchesSearch) {
+          bot.classList.remove('hidden');
+        } else {
+          bot.classList.add('hidden');
+        }
+      });
+
+      // Sort
+      const visibleBots = bots.filter(bot => !bot.classList.contains('hidden'));
+
+      visibleBots.sort((a, b) => {
+        if (currentSort === 'rating') {
+          const ratingA = parseFloat(a.getAttribute('data-rating'));
+          const ratingB = parseFloat(b.getAttribute('data-rating'));
+          return ratingB - ratingA; // Descending
+        } else if (currentSort === 'name') {
+          const nameA = a.getAttribute('data-name');
+          const nameB = b.getAttribute('data-name');
+          return nameA.localeCompare(nameB); // Ascending
+        }
+      });
+
+      // Re-append to DOM in new order
+      visibleBots.forEach(bot => botList.appendChild(bot));
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.toLowerCase().trim();
+      updateView();
+    });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentFilter = e.target.getAttribute('data-filter');
+        updateView();
+      });
+    });
+
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = e.target.value;
+      updateView();
+    });
+
+    // Initial sort
+    updateView();
+  </script>
+</body>
+</html>
