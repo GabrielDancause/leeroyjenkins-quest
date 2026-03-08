@@ -2,8 +2,8 @@
 import BaseHead from '../layouts/BaseHead.astro';
 
 const tools = [
-  { emoji: "🖱️", name: "DPI & Sensitivity Matcher", desc: "Switching mice? Match your exact sensitivity across any DPI. Supports cm/360 and in/360.", soon: true },
-  { emoji: "👁️", name: "FOV Calculator", desc: "Find your ideal field of view based on monitor size, distance, and aspect ratio. Horizontal and vertical.", soon: true },
+  { emoji: "🖱️", name: "DPI & Sensitivity Matcher", slug: "/dpi-calculator", desc: "Switching mice? Match your exact sensitivity across any DPI. Supports cm/360 and in/360." },
+  { emoji: "👁️", name: "FOV Calculator", slug: "/fov-calculator", desc: "Find your ideal field of view based on monitor size, distance, and aspect ratio. Horizontal and vertical." },
   { emoji: "⌨️", name: "Polling Rate vs Input Lag", desc: "1000Hz vs 4000Hz — does it matter? Visualize the actual input lag difference in milliseconds.", soon: true },
   { emoji: "🖥️", name: "Monitor Response Time Tester", desc: "Estimate motion blur based on your monitor's response time, refresh rate, and pixel persistence.", soon: true },
   { emoji: "🎯", name: "eDPI Calculator", desc: "Calculate your effective DPI across any game. Compare your sens to pro players.", soon: true },
@@ -33,7 +33,11 @@ const tools = [
     .card .emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
     .card h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .card p { font-size: 0.85rem; color: #888; line-height: 1.6; }
+    a.card { text-decoration: none; color: inherit; cursor: pointer; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    a.card:hover { border-color: #9333EA; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(147,51,234,0.1); }
+    .arrow { color: #9333EA; font-size: 0.85rem; margin-top: 14px; display: inline-block; font-weight: 600; }
     .badge { position: absolute; top: 14px; right: 14px; background: #221e30; color: #9333EA; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .live-badge { background: #1a2a1a; color: #4ade80; }
     .footer { text-align: center; padding: 40px 24px; font-size: 0.78rem; color: #333; border-top: 1px solid #151020; }
     .footer a { color: #9333EA; text-decoration: none; }
     @media (max-width: 600px) { .hero h1 { font-size: 2.2rem; } .hero { padding: 70px 20px 50px; } .grid { grid-template-columns: 1fr; } }
@@ -48,9 +52,17 @@ const tools = [
   </div>
 </div>
 <div class="grid">
-  {tools.map(t => (
+  {tools.map(t => t.slug ? (
+    <a class="card live" href={t.slug}>
+      <span class="badge live-badge">LIVE</span>
+      <span class="emoji">{t.emoji}</span>
+      <h2>{t.name}</h2>
+      <p>{t.desc}</p>
+      <span class="arrow">Try it →</span>
+    </a>
+  ) : (
     <div class="card">
-      {t.soon && <span class="badge">COMING SOON</span>}
+      <span class="badge">COMING SOON</span>
       <span class="emoji">{t.emoji}</span>
       <h2>{t.name}</h2>
       <p>{t.desc}</p>
