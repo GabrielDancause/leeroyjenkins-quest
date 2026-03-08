@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Gaming Headsets Comparison | Leeroy Jenkins</title>
+  <meta name="description" content="Compare the best gaming headsets. Filter by sound quality, mic quality, comfort, and wireless. Find your perfect budget or premium pick.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Gaming Headsets Comparison",
+    "description": "Compare the best gaming headsets based on sound quality, mic quality, comfort, and wireless features.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures"
+    },
+    "url": "https://leeroyjenkins.quest/list-gaming-headsets"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gaming Headsets Comparison Tool",
+    "description": "Interactive tool to filter, sort, and compare the best gaming headsets.",
+    "url": "https://leeroyjenkins.quest/list-gaming-headsets",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2rem;
+    }
+    @media (min-width: 768px) {
+      h1 { font-size: 2.5rem; }
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (min-width: 768px) {
+      .controls {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .search-bar {
+      position: relative;
+      flex-grow: 1;
+    }
+
+    .search-bar input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
+    }
+
+    .sort-select {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .sort-select:focus {
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .card p.desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .score-badge {
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-align: center;
+      min-width: 60px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 600px) {
+      .metrics {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+
+    .metric {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .metric-label {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .metric-val {
+      display: block;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-wireless { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .tag-wired { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+    .tag-budget { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .tag-premium { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+    .tag-esports { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    @media (min-width: 600px) {
+      .pros-cons {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pros h4 { color: #22c55e; margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase; }
+    .cons h4 { color: #ef4444; margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase; }
+
+    .pros-cons ul {
+      list-style-type: none;
+    }
+
+    .pros-cons li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .pros li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-weight: bold;
+    }
+
+    .cons li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: #ef4444;
+      font-weight: bold;
+    }
+
+    .seo-content {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Best Gaming Headsets</h1>
+      <p>Compare the top headsets for sound quality, mic clarity, and comfort.</p>
+    </header>
+
+    <div class="controls">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search headsets, features, brands...">
+      </div>
+      <select id="sortSelect" class="sort-select">
+        <option value="score">Sort by Overall Score</option>
+        <option value="price_asc">Sort by Price (Low to High)</option>
+        <option value="price_desc">Sort by Price (High to Low)</option>
+      </select>
+    </div>
+
+    <div class="grid" id="headsetList">
+      <!-- Cards will be populated here -->
+    </div>
+
+    <div class="seo-content">
+      <h2>Wired vs Wireless Gaming Headsets</h2>
+      <p>The debate between wired and wireless gaming headsets often comes down to convenience versus absolute audio fidelity. Modern wireless headsets have bridged the latency gap, utilizing 2.4GHz connections that are virtually lag-free and suitable for even the most competitive esports environments.</p>
+      <p>However, wired headsets generally provide better microphone quality out of the box because they don't have to compress the audio signal to transmit it wirelessly. They also eliminate battery anxiety, ensuring your headset is always ready to go without needing a charge.</p>
+
+      <h2>Open-back vs Closed-back Design</h2>
+      <p>Most gaming headsets feature a <strong>closed-back</strong> design. This isolates you from outside noise and prevents your game audio from leaking into your microphone. It's ideal for noisy environments, tournaments, and deep immersion.</p>
+      <p><strong>Open-back</strong> headsets, on the other hand, allow air and sound to pass freely through the ear cups. This creates a wider, more natural "soundstage," making it easier to pinpoint directional audio like footsteps in games such as Valorant or CS2. The tradeoff is that you will hear ambient noise around you, and people nearby will hear what you're listening to.</p>
+
+      <h2>Does Virtual Surround Sound Matter?</h2>
+      <p>Features like 7.1 Virtual Surround Sound, Windows Sonic, and Dolby Atmos aim to simulate a multi-speaker setup within a stereo headset. While they can enhance immersion in cinematic single-player games, many competitive players prefer to leave these features off.</p>
+      <p>In highly competitive shooters, standard stereo sound combined with the game's built-in audio engine (which is optimized for headphones) often provides more accurate directional cues than third-party surround sound processing, which can sometimes muddy the audio mix.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const headsets = [
+      {
+        name: "SteelSeries Arctis Nova Pro Wireless",
+        brand: "SteelSeries",
+        price: 349,
+        score: 9.2,
+        sound: "9.5/10",
+        mic: "8.0/10",
+        comfort: "9.0/10",
+        battery: "Infinity",
+        tags: ["Wireless", "Premium"],
+        desc: "The ultimate premium wireless headset featuring hot-swappable batteries and active noise cancellation. Excellent sound stage and versatility.",
+        pros: ["Hot-swappable batteries", "Active Noise Cancellation", "Incredible sound profile"],
+        cons: ["Very expensive", "Mic could be better for the price"]
+      },
+      {
+        name: "HyperX Cloud III Wireless",
+        brand: "HyperX",
+        price: 169,
+        score: 8.8,
+        sound: "8.5/10",
+        mic: "9.0/10",
+        comfort: "10/10",
+        battery: "120 Hrs",
+        tags: ["Wireless", "Comfort", "Esports"],
+        desc: "Continuing the legacy of the Cloud series with unmatched comfort, a massively upgraded microphone, and an unbelievable 120-hour battery life.",
+        pros: ["Class-leading comfort", "120-hour battery life", "Excellent clear microphone"],
+        cons: ["Sound is safe but not exciting", "No Bluetooth fallback"]
+      },
+      {
+        name: "Sennheiser / Drop PC38X",
+        brand: "Sennheiser",
+        price: 149,
+        score: 9.0,
+        sound: "9.8/10",
+        mic: "8.5/10",
+        comfort: "8.5/10",
+        battery: "Wired",
+        tags: ["Wired", "Open-Back", "Premium"],
+        desc: "An audiophile-grade open-back headset. Delivers arguably the best positional audio and soundstage for competitive gaming.",
+        pros: ["Incredible directional audio", "Natural open-back soundstage", "Lightweight design"],
+        cons: ["Open-back leaks sound", "Wired only", "Yellow accents aren't for everyone"]
+      },
+      {
+        name: "Razer BlackShark V2 Pro",
+        brand: "Razer",
+        price: 199,
+        score: 8.7,
+        sound: "8.5/10",
+        mic: "9.5/10",
+        comfort: "9.0/10",
+        battery: "70 Hrs",
+        tags: ["Wireless", "Esports"],
+        desc: "A staple in esports. Features a remarkably clear broadcast-quality microphone and excellent passive noise isolation.",
+        pros: ["Broadcast-quality microphone", "Great passive isolation", "Comfortable for large heads"],
+        cons: ["Micro-USB on older models", "Software is bloated"]
+      },
+      {
+        name: "Logitech G Pro X 2 Lightspeed",
+        brand: "Logitech",
+        price: 249,
+        score: 8.6,
+        sound: "8.8/10",
+        mic: "7.5/10",
+        comfort: "8.5/10",
+        battery: "50 Hrs",
+        tags: ["Wireless", "Esports", "Premium"],
+        desc: "Built with graphene drivers for detailed, distortion-free audio. Favored by many professional gamers for its rugged build and clean sound.",
+        pros: ["Graphene audio drivers", "Rugged premium build", "Bluetooth connectivity added"],
+        cons: ["Microphone quality is average", "Pricey for the feature set"]
+      },
+      {
+        name: "Corsair HS80 RGB Wireless",
+        brand: "Corsair",
+        price: 149,
+        score: 8.5,
+        sound: "8.5/10",
+        mic: "9.5/10",
+        comfort: "8.5/10",
+        battery: "20 Hrs",
+        tags: ["Wireless", "Budget"],
+        desc: "Offers one of the best microphones on a wireless headset at this price point, combined with a comfortable ski-goggle headband design.",
+        pros: ["Top-tier wireless microphone", "Very comfortable headband", "Dolby Atmos support"],
+        cons: ["Sub-par battery life", "Earcups can feel shallow"]
+      }
+    ];
+
+    const listContainer = document.getElementById('headsetList');
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+
+    function getTagClass(tag) {
+      if(tag === 'Wireless') return 'tag-wireless';
+      if(tag === 'Wired') return 'tag-wired';
+      if(tag === 'Budget') return 'tag-budget';
+      if(tag === 'Premium') return 'tag-premium';
+      if(tag === 'Esports') return 'tag-esports';
+      if(tag === 'Comfort') return 'tag-budget'; // generic fallback green
+      if(tag === 'Open-Back') return 'tag-wired'; // generic fallback purple
+      return 'tag-wireless'; // default
+    }
+
+    function renderHeadsets(data) {
+      listContainer.innerHTML = '';
+
+      data.forEach(item => {
+        const tagsHtml = item.tags.map(tag => `<span class="tag ${getTagClass(tag)}">${tag}</span>`).join('');
+        const prosHtml = item.pros.map(pro => `<li>${pro}</li>`).join('');
+        const consHtml = item.cons.map(con => `<li>${con}</li>`).join('');
+
+        const card = document.createElement('div');
+        card.className = 'card filterable-item';
+        card.setAttribute('data-search', `${item.name} ${item.brand} ${item.tags.join(' ')}`.toLowerCase());
+
+        card.innerHTML = `
+          <div class="card-header">
+            <div>
+              <h3>${item.name}</h3>
+              <div class="tags">${tagsHtml}</div>
+              <div style="font-family: var(--font-mono); color: var(--text-secondary); font-size: 0.9rem; margin-top: 4px;">$${item.price}</div>
+            </div>
+            <div class="score-badge">${item.score}</div>
+          </div>
+          <p class="desc">${item.desc}</p>
+
+          <div class="metrics">
+            <div class="metric">
+              <span class="metric-label">Sound</span>
+              <span class="metric-val">${item.sound}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Mic</span>
+              <span class="metric-val">${item.mic}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Comfort</span>
+              <span class="metric-val">${item.comfort}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Battery</span>
+              <span class="metric-val">${item.battery}</span>
+            </div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>Pros</h4>
+              <ul>${prosHtml}</ul>
+            </div>
+            <div class="cons">
+              <h4>Cons</h4>
+              <ul>${consHtml}</ul>
+            </div>
+          </div>
+        `;
+        listContainer.appendChild(card);
+      });
+    }
+
+    function filterAndSort() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const sortVal = sortSelect.value;
+
+      let filtered = headsets.filter(item => {
+        const searchString = `${item.name} ${item.brand} ${item.tags.join(' ')}`.toLowerCase();
+        return searchString.includes(searchTerm);
+      });
+
+      if (sortVal === 'score') {
+        filtered.sort((a, b) => b.score - a.score);
+      } else if (sortVal === 'price_asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortVal === 'price_desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      renderHeadsets(filtered);
+    }
+
+    searchInput.addEventListener('input', filterAndSort);
+    sortSelect.addEventListener('change', filterAndSort);
+
+    // Initial render
+    filterAndSort();
+
+  </script>
+</body>
+</html>
