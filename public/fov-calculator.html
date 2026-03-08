@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOV Calculator & Converter | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate your optimal field of view (FOV) based on monitor size, aspect ratio, and viewing distance. Convert between horizontal and vertical FOV for any game.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "FOV Calculator & Converter",
+      "url": "https://leeroyjenkins.quest/fov-calculator.html",
+      "description": "Calculate optimal field of view based on monitor size, aspect ratio, and viewing distance. Convert between horizontal and vertical FOV.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any"
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .header-nav {
+      padding: 20px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .header-nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #120e1e 0%, var(--bg) 100%);
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(107,33,168,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+    .input-row > div {
+      flex: 1;
+    }
+    .input-row .unit-select {
+      flex: 0 0 100px;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: var(--accent);
+    }
+    select {
+      font-family: 'Inter', sans-serif;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .result-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .result-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      position: relative;
+    }
+    .result-box.full {
+      grid-column: 1 / -1;
+    }
+    .result-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .result-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .copy-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .copy-btn:hover {
+      background: var(--border);
+      color: #fff;
+    }
+    .copy-btn.copied {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    .seo-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 0 60px;
+    }
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 40px 0 16px;
+      font-weight: 700;
+    }
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      padding-left: 24px;
+      font-size: 1.05rem;
+    }
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+    .seo-content strong {
+      color: var(--text-primary);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 40px 20px 30px; }
+      .result-group { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="header-nav">
+  <a href="/">← Leeroy Jenkins</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>FOV Calculator 👁️</h1>
+    <p>Find your true optimal field of view for any game, or convert easily between horizontal and vertical FOV types.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="grid-container">
+
+    <!-- Optimal FOV Calculator -->
+    <div class="card">
+      <h2>📐 Optimal FOV Finder</h2>
+
+      <div class="form-group">
+        <label for="monitor-size">Monitor Diagonal Size</label>
+        <div class="input-row">
+          <input type="number" id="monitor-size" value="27" step="0.5" min="10" placeholder="e.g. 24">
+          <select id="size-unit" class="unit-select">
+            <option value="in">inch</option>
+            <option value="cm">cm</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="monitor-aspect">Aspect Ratio</label>
+        <select id="monitor-aspect">
+          <option value="16:9">16:9 (Standard)</option>
+          <option value="16:10">16:10</option>
+          <option value="21:9">21:9 (Ultrawide)</option>
+          <option value="32:9">32:9 (Super Ultrawide)</option>
+          <option value="4:3">4:3 (Classic)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="view-dist">Distance from Eyes to Monitor</label>
+        <div class="input-row">
+          <input type="number" id="view-dist" value="24" step="1" min="1" placeholder="Distance">
+          <select id="dist-unit" class="unit-select">
+            <option value="in">inch</option>
+            <option value="cm">cm</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="result-group">
+        <div class="result-box">
+          <button class="copy-btn" onclick="copyValue('opt-hfov', this)">Copy</button>
+          <div class="result-label">Optimal Horizontal</div>
+          <div class="result-value" id="opt-hfov">0.00°</div>
+        </div>
+        <div class="result-box">
+          <button class="copy-btn" onclick="copyValue('opt-vfov', this)">Copy</button>
+          <div class="result-label">Optimal Vertical</div>
+          <div class="result-value" id="opt-vfov">0.00°</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOV Converter -->
+    <div class="card">
+      <h2>🔄 FOV Converter</h2>
+
+      <div class="form-group">
+        <label for="conv-from">Convert From</label>
+        <select id="conv-from">
+          <option value="h">Horizontal FOV (HFOV)</option>
+          <option value="v">Vertical FOV (VFOV)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="conv-val">FOV Value (Degrees)</label>
+        <input type="number" id="conv-val" value="90" step="1" min="1" placeholder="e.g. 90">
+      </div>
+
+      <div class="form-group">
+        <label for="conv-aspect">Aspect Ratio</label>
+        <select id="conv-aspect">
+          <option value="16:9">16:9 (Standard)</option>
+          <option value="16:10">16:10</option>
+          <option value="21:9">21:9 (Ultrawide)</option>
+          <option value="32:9">32:9 (Super Ultrawide)</option>
+          <option value="4:3">4:3 (Classic)</option>
+        </select>
+      </div>
+
+      <div class="result-group">
+        <div class="result-box full">
+          <button class="copy-btn" onclick="copyValue('conv-result', this)">Copy</button>
+          <div class="result-label" id="conv-result-label">Vertical FOV</div>
+          <div class="result-value" id="conv-result">0.00°</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="seo-content">
+    <h2>What is Field of View (FOV)?</h2>
+    <p>Field of View (FOV) represents the extent of the observable game world that is seen on the display at any given moment. It is typically measured in degrees. A higher FOV allows you to see more of your peripherals, which is crucial in fast-paced competitive shooters. A lower FOV makes objects in the center of the screen appear larger, making targets easier to spot at a distance.</p>
+
+    <h2>How to Find Your Optimal FOV</h2>
+    <p>True geometric FOV is calculated based on how much physical space your monitor occupies in your real-life vision. Playing at this exact "optimal" FOV essentially turns your monitor into a perfect window into the game world, creating 1:1 realism and reducing motion sickness.</p>
+    <ul>
+      <li><strong>Monitor Size:</strong> Larger monitors take up more of your real-world vision, allowing for a naturally higher in-game FOV without distortion.</li>
+      <li><strong>Viewing Distance:</strong> The closer you sit to your monitor, the more of your vision it occupies. Sitting closer means you can comfortably use a wider FOV.</li>
+      <li><strong>Aspect Ratio:</strong> Ultrawide monitors physically expand your horizontal vision, meaning their optimal horizontal FOV is significantly higher than a standard 16:9 monitor.</li>
+    </ul>
+
+    <h2>Horizontal vs Vertical FOV in Games</h2>
+    <p>Different game engines calculate and define FOV in different ways. Understanding the difference is crucial when trying to match sensitivity and feel across different games.</p>
+    <ul>
+      <li><strong>Horizontal FOV (HFOV):</strong> Used by games like <em>CS2</em>, <em>Apex Legends</em>, and <em>Overwatch</em>. It defines how wide the view is from the left edge of the screen to the right.</li>
+      <li><strong>Vertical FOV (VFOV):</strong> Used by games like <em>Valorant</em>, <em>Rainbow Six Siege</em>, and most Unreal Engine games. It defines how tall the view is from the top to the bottom edge.</li>
+    </ul>
+    <p>Because these are linked by your monitor's aspect ratio, an FOV of 90 in a VFOV game is drastically wider than an FOV of 90 in an HFOV game. Use the converter above to ensure your settings remain consistent across titles.</p>
+  </div>
+</div>
+
+<div class="footer">
+  © 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> · A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+</div>
+
+<script>
+  // Optimal FOV Logic
+  function calculateOptimalFOV() {
+    const size = parseFloat(document.getElementById('monitor-size').value);
+    const sizeUnit = document.getElementById('size-unit').value;
+    const dist = parseFloat(document.getElementById('view-dist').value);
+    const distUnit = document.getElementById('dist-unit').value;
+    const aspect = document.getElementById('monitor-aspect').value;
+
+    const hFovEl = document.getElementById('opt-hfov');
+    const vFovEl = document.getElementById('opt-vfov');
+
+    if (isNaN(size) || isNaN(dist) || size <= 0 || dist <= 0) {
+      hFovEl.textContent = '---°';
+      vFovEl.textContent = '---°';
+      return;
+    }
+
+    // Convert to inches for unified calculation
+    const sizeInches = sizeUnit === 'cm' ? size / 2.54 : size;
+    const distInches = distUnit === 'cm' ? dist / 2.54 : dist;
+
+    const [wRatio, hRatio] = aspect.split(':').map(Number);
+    const aspectFloat = wRatio / hRatio;
+
+    // Calculate physical monitor dimensions
+    const diag = sizeInches;
+    const width = diag / Math.sqrt(1 + 1 / (aspectFloat * aspectFloat));
+    const height = width / aspectFloat;
+
+    // Geometric FOV formula: 2 * arctan(dimension / (2 * distance))
+    const hFovRad = 2 * Math.atan(width / (2 * distInches));
+    const vFovRad = 2 * Math.atan(height / (2 * distInches));
+
+    const hFovDeg = hFovRad * (180 / Math.PI);
+    const vFovDeg = vFovRad * (180 / Math.PI);
+
+    hFovEl.textContent = hFovDeg.toFixed(2) + '°';
+    vFovEl.textContent = vFovDeg.toFixed(2) + '°';
+  }
+
+  // Converter Logic
+  function calculateConverter() {
+    const fromType = document.getElementById('conv-from').value;
+    const val = parseFloat(document.getElementById('conv-val').value);
+    const aspect = document.getElementById('conv-aspect').value;
+
+    const resultLabelEl = document.getElementById('conv-result-label');
+    const resultEl = document.getElementById('conv-result');
+
+    if (isNaN(val) || val <= 0) {
+      resultEl.textContent = '---°';
+      return;
+    }
+
+    const [wRatio, hRatio] = aspect.split(':').map(Number);
+
+    let result = 0;
+    if (fromType === 'h') {
+      // HFOV to VFOV
+      const hFovRad = val * (Math.PI / 180);
+      const vFovRad = 2 * Math.atan(Math.tan(hFovRad / 2) * (hRatio / wRatio));
+      result = vFovRad * (180 / Math.PI);
+      resultLabelEl.textContent = 'Vertical FOV';
+    } else {
+      // VFOV to HFOV
+      const vFovRad = val * (Math.PI / 180);
+      const hFovRad = 2 * Math.atan(Math.tan(vFovRad / 2) * (wRatio / hRatio));
+      result = hFovRad * (180 / Math.PI);
+      resultLabelEl.textContent = 'Horizontal FOV';
+    }
+
+    resultEl.textContent = result.toFixed(2) + '°';
+  }
+
+  function copyValue(elementId, btnElement) {
+    const val = document.getElementById(elementId).textContent.replace('°', '');
+    if (val === '---') return;
+
+    navigator.clipboard.writeText(val).then(() => {
+      const originalText = btnElement.textContent;
+      btnElement.textContent = 'Copied!';
+      btnElement.classList.add('copied');
+
+      setTimeout(() => {
+        btnElement.textContent = originalText;
+        btnElement.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Event Listeners
+  const optInputs = ['monitor-size', 'size-unit', 'monitor-aspect', 'view-dist', 'dist-unit'];
+  optInputs.forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateOptimalFOV);
+    document.getElementById(id).addEventListener('change', calculateOptimalFOV);
+  });
+
+  const convInputs = ['conv-from', 'conv-val', 'conv-aspect'];
+  convInputs.forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateConverter);
+    document.getElementById(id).addEventListener('change', calculateConverter);
+  });
+
+  // Initial Calculation
+  calculateOptimalFOV();
+  calculateConverter();
+</script>
+</body>
+</html>
