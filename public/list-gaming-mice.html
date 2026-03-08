@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Gaming Mice List | Leeroy Jenkins</title>
+  <meta name="description" content="Top gaming mice by grip style. Compare weight, sensor, polling rate, DPI range, from budget to premium options.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Gaming Mice List",
+    "description": "Top gaming mice by grip style. Compare weight, sensor, polling rate, DPI range, from budget to premium options.",
+    "url": "https://leeroyjenkins.quest/list-gaming-mice",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leeroyjenkins.quest/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --star-color: #fbbf24;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .controls-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .control-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    select, input[type="text"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    select:focus, input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+
+    .grid-mice {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .mouse-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .mouse-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .mouse-header {
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .mouse-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .mouse-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(147, 51, 234, 0.1);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(147, 51, 234, 0.3);
+    }
+
+    .badge.price {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .rating-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .stars {
+      color: var(--star-color);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .rating-score {
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-mono);
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .spec-item {
+      background: var(--bg);
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .spec-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .spec-value {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .pros-cons {
+      margin-top: auto;
+    }
+
+    .pros-cons h4 {
+      font-size: 0.9rem;
+      color: #fff;
+      margin-bottom: 8px;
+      margin-top: 12px;
+    }
+
+    .pros-list, .cons-list {
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .pros-list li, .cons-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 4px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .pros-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .cons-list li::before {
+      content: '×';
+      position: absolute;
+      left: 0;
+      color: #ef4444;
+      font-weight: bold;
+      font-size: 1.1rem;
+      line-height: 1.1;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--card-bg);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .controls-container { flex-direction: column; align-items: stretch; }
+      .grid-mice { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Best Gaming Mice</h1>
+      <p>A curated list of top-tier gaming mice categorized by shape, weight, and specs. Find the perfect peripheral to elevate your aim.</p>
+    </header>
+
+    <div class="controls-container">
+      <div class="control-group">
+        <label for="searchInput">Search Models</label>
+        <input type="text" id="searchInput" placeholder="e.g. Superlight, Razer, Ergonomic...">
+      </div>
+      <div class="control-group">
+        <label for="gripFilter">Grip Style</label>
+        <select id="gripFilter">
+          <option value="all">All Grips</option>
+          <option value="palm">Palm</option>
+          <option value="claw">Claw</option>
+          <option value="fingertip">Fingertip</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="tierFilter">Budget Tier</label>
+        <select id="tierFilter">
+          <option value="all">All Tiers</option>
+          <option value="budget">Budget</option>
+          <option value="mid-range">Mid-Range</option>
+          <option value="premium">Premium</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="sortSelect">Sort By</label>
+        <select id="sortSelect">
+          <option value="rating-desc">Rating (Highest to Lowest)</option>
+          <option value="weight-asc">Weight (Lightest to Heaviest)</option>
+          <option value="weight-desc">Weight (Heaviest to Lightest)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="miceContainer" class="grid-mice">
+      <!-- Mice cards will be injected here by JS -->
+    </div>
+
+    <div id="noResults" class="no-results hidden">
+      No gaming mice found matching your criteria. Try adjusting your filters.
+    </div>
+
+    <div class="seo-content">
+      <h2>How to Choose the Right Gaming Mouse</h2>
+      <p>Selecting the best gaming mouse isn't just about picking the most expensive option; it's about finding the perfect match for your hand size, grip style, and preferred games. A mouse that is too heavy might fatigue your wrist in fast-paced shooters, while a shape that doesn't fit your grip can lead to inconsistent aim and discomfort.</p>
+      <p>When evaluating mice, pay close attention to the shape. Symmetrical (ambidextrous) shapes are incredibly versatile and favored by claw and fingertip users, while ergonomic designs offer unparalleled support for palm grip players.</p>
+
+      <h2>Key Specifications Explained</h2>
+      <ul>
+        <li><strong>Weight:</strong> The current meta favors lightweight mice (under 65g). Lower weight reduces inertia, allowing for faster flicks and easier micro-adjustments with less physical exertion.</li>
+        <li><strong>Sensor:</strong> Modern flawless sensors (like the PixArt PAW3395 or Razer Focus Pro) ensure pixel-perfect tracking without hardware acceleration or angle snapping.</li>
+        <li><strong>Polling Rate:</strong> The standard is 1000Hz (1ms delay), but premium models now push 4000Hz or even 8000Hz, providing smoother cursor movement on high refresh rate monitors (240Hz+).</li>
+        <li><strong>DPI Range:</strong> While massive maximum DPI numbers (like 30,000+) are largely a marketing tool, a wide range indicates an advanced sensor capable of handling extreme speeds without spinning out.</li>
+      </ul>
+
+      <h2>Budget vs. Premium Mice</h2>
+      <p>The gap between budget and premium gaming mice has closed significantly. Today, many budget and mid-range mice use the exact same top-tier sensors as flagship models. Premium prices often reflect better build quality, specialized optical switches, higher polling rate capabilities, and extensive R&D in shape design. However, an excellent shape is the most important factor—an affordable mouse with a shape that fits your hand perfectly will always outperform an expensive mouse that causes you discomfort.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const miceData = [
+      {
+        id: 1,
+        name: "Logitech G Pro X Superlight 2",
+        gripStyles: ["claw", "palm", "fingertip"],
+        gripLabel: "Ambidextrous / Safe Shape",
+        tier: "premium",
+        tierLabel: "Premium",
+        weight: 60,
+        sensor: "HERO 2",
+        polling: "Up to 4000Hz",
+        dpi: "32,000",
+        rating: 9.5,
+        pros: ["Universally safe, comfortable shape", "Flawless wireless performance", "Optical switches"],
+        cons: ["Premium price tag", "Shape might be too 'safe' for some"]
+      },
+      {
+        id: 2,
+        name: "Razer Viper V3 Pro",
+        gripStyles: ["claw", "fingertip"],
+        gripLabel: "Symmetrical",
+        tier: "premium",
+        tierLabel: "Premium",
+        weight: 54,
+        sensor: "Focus Pro 35K Gen-2",
+        polling: "Up to 8000Hz",
+        dpi: "35,000",
+        rating: 9.6,
+        pros: ["Incredibly balanced weight", "Top-tier sensor and 8KHz dongle included", "Excellent build quality"],
+        cons: ["Very expensive", "Synapse software can be bloated"]
+      },
+      {
+        id: 3,
+        name: "Razer DeathAdder V3 Pro",
+        gripStyles: ["palm", "claw"],
+        gripLabel: "Ergonomic",
+        tier: "premium",
+        tierLabel: "Premium",
+        weight: 63,
+        sensor: "Focus Pro 30K",
+        polling: "Up to 8000Hz",
+        dpi: "30,000",
+        rating: 9.4,
+        pros: ["Best-in-class ergonomic shape", "Excellent optical switches", "Flawless sensor"],
+        cons: ["Requires separate dongle for 8KHz", "Large size not ideal for small hands"]
+      },
+      {
+        id: 4,
+        name: "Ninjutso Sora V2",
+        gripStyles: ["claw", "fingertip"],
+        gripLabel: "Symmetrical",
+        tier: "premium",
+        tierLabel: "Premium",
+        weight: 39,
+        sensor: "PAW3395",
+        polling: "Up to 8000Hz",
+        dpi: "26,000",
+        rating: 9.3,
+        pros: ["Ultra-lightweight without holes", "Fantastic shape for claw grip", "Crisp optical clicks"],
+        cons: ["8KHz dongle sold separately", "Web-based software needs refinement"]
+      },
+      {
+        id: 5,
+        name: "Lamzu Atlantis OG V2",
+        gripStyles: ["claw"],
+        gripLabel: "Symmetrical",
+        tier: "mid-range",
+        tierLabel: "Mid-Range",
+        weight: 55,
+        sensor: "PAW3395",
+        polling: "Up to 4000Hz",
+        dpi: "26,000",
+        rating: 9.2,
+        pros: ["Aggressive shape perfect for claw", "Great unboxing experience & accessories", "Excellent value"],
+        cons: ["Wide back might not suit everyone", "Open bottom design"]
+      },
+      {
+        id: 6,
+        name: "Pulsar Xlite V3",
+        gripStyles: ["palm", "claw"],
+        gripLabel: "Ergonomic",
+        tier: "mid-range",
+        tierLabel: "Mid-Range",
+        weight: 55,
+        sensor: "PAW3395",
+        polling: "Up to 4000Hz",
+        dpi: "26,000",
+        rating: 9.1,
+        pros: ["Superb ergonomic design in multiple sizes", "Solid shell without holes", "Optical switches"],
+        cons: ["4KHz dongle sold separately", "Coating could be grippier"]
+      },
+      {
+        id: 7,
+        name: "Endgame Gear XM2we",
+        gripStyles: ["claw"],
+        gripLabel: "Symmetrical",
+        tier: "mid-range",
+        tierLabel: "Mid-Range",
+        weight: 63,
+        sensor: "PAW3370",
+        polling: "1000Hz",
+        dpi: "19,000",
+        rating: 9.0,
+        pros: ["Legendary shape for claw grippers", "Exceptional build quality and coating", "Great price point"],
+        cons: ["Older PAW3370 sensor", "Heavy optical clicks"]
+      },
+      {
+        id: 8,
+        name: "VXE Dragonfly R1 Pro",
+        gripStyles: ["claw", "fingertip"],
+        gripLabel: "Symmetrical",
+        tier: "budget",
+        tierLabel: "Budget",
+        weight: 48,
+        sensor: "PAW3395",
+        polling: "Up to 4000Hz",
+        dpi: "26,000",
+        rating: 8.8,
+        pros: ["Unbeatable price-to-performance ratio", "Top-tier sensor on a budget", "Very lightweight"],
+        cons: ["Build quality can be hit or miss", "Availability issues in some regions"]
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('miceContainer');
+      const noResults = document.getElementById('noResults');
+
+      const searchInput = document.getElementById('searchInput');
+      const gripFilter = document.getElementById('gripFilter');
+      const tierFilter = document.getElementById('tierFilter');
+      const sortSelect = document.getElementById('sortSelect');
+
+      function generateStars(rating) {
+        const fullStars = Math.floor(rating / 2);
+        const hasHalf = (rating / 2) - fullStars >= 0.5;
+        let starsHTML = '';
+
+        for (let i = 0; i < 5; i++) {
+          if (i < fullStars) {
+            starsHTML += '★';
+          } else if (i === fullStars && hasHalf) {
+            starsHTML += '★'; // Simplified for monospace display
+          } else {
+            starsHTML += '☆';
+          }
+        }
+        return starsHTML;
+      }
+
+      function renderMice() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const gripValue = gripFilter.value;
+        const tierValue = tierFilter.value;
+        const sortValue = sortSelect.value;
+
+        // Filter
+        let filtered = miceData.filter(mouse => {
+          const matchesSearch = mouse.name.toLowerCase().includes(searchTerm) ||
+                                mouse.gripLabel.toLowerCase().includes(searchTerm);
+          const matchesGrip = gripValue === 'all' || mouse.gripStyles.includes(gripValue);
+          const matchesTier = tierValue === 'all' || mouse.tier === tierValue;
+
+          return matchesSearch && matchesGrip && matchesTier;
+        });
+
+        // Sort
+        filtered.sort((a, b) => {
+          if (sortValue === 'rating-desc') return b.rating - a.rating;
+          if (sortValue === 'weight-asc') return a.weight - b.weight;
+          if (sortValue === 'weight-desc') return b.weight - a.weight;
+          return 0;
+        });
+
+        // Render
+        container.innerHTML = '';
+
+        if (filtered.length === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+
+          filtered.forEach(mouse => {
+            const card = document.createElement('div');
+            card.className = 'mouse-card';
+
+            card.innerHTML = `
+              <div class="mouse-header">
+                <h3 class="mouse-title">${mouse.name}</h3>
+                <div class="mouse-badges">
+                  <span class="badge">${mouse.gripLabel}</span>
+                  <span class="badge price">${mouse.tierLabel}</span>
+                </div>
+                <div class="rating-container">
+                  <span class="stars">${generateStars(mouse.rating)}</span>
+                  <span class="rating-score">${mouse.rating}/10</span>
+                </div>
+              </div>
+
+              <div class="specs-grid">
+                <div class="spec-item">
+                  <div class="spec-label">Weight</div>
+                  <div class="spec-value">${mouse.weight}g</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-label">Sensor</div>
+                  <div class="spec-value">${mouse.sensor}</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-label">Polling Rate</div>
+                  <div class="spec-value">${mouse.polling}</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-label">Max DPI</div>
+                  <div class="spec-value">${mouse.dpi}</div>
+                </div>
+              </div>
+
+              <div class="pros-cons">
+                <h4>Pros</h4>
+                <ul class="pros-list">
+                  ${mouse.pros.map(pro => "<li>" + pro + "</li>").join('')}
+                </ul>
+                <h4>Cons</h4>
+                <ul class="cons-list">
+                  ${mouse.cons.map(con => "<li>" + con + "</li>").join('')}
+                </ul>
+              </div>
+            `;
+
+            container.appendChild(card);
+          });
+        }
+      }
+
+      // Event Listeners
+      searchInput.addEventListener('input', renderMice);
+      gripFilter.addEventListener('change', renderMice);
+      tierFilter.addEventListener('change', renderMice);
+      sortSelect.addEventListener('change', renderMice);
+
+      // Initial Render
+      renderMice();
+    });
+  </script>
+</body>
+</html>
