@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPG Damage Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate your RPG damage per second (DPS) with weapon stats, buffs, debuffs, critical hits, and elemental damage. Compare two loadouts easily.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RPG Damage Calculator",
+    "description": "Calculate your RPG damage per second (DPS) with weapon stats, buffs, debuffs, critical hits, and elemental damage. Compare two loadouts easily.",
+    "url": "https://leeroyjenkins.quest/damage-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+
+    .loadout-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .loadout-header {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    input {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .result-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .comparison-summary {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    .comparison-summary span {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .results-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: row; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>RPG Damage Calculator</h1>
+      <p>Compare loadouts, calculate your DPS, and optimize your build.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="grid-2">
+        <!-- Loadout A -->
+        <div class="loadout-col">
+          <div class="loadout-header">Loadout A</div>
+          <div class="form-group">
+            <label for="baseDamageA">Base Damage</label>
+            <input type="number" id="baseDamageA" value="100" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="attackSpeedA">Attack Speed (Attacks per Second)</label>
+            <input type="number" id="attackSpeedA" value="1.5" min="0.1" step="any">
+          </div>
+          <div class="form-group">
+            <label for="critChanceA">Critical Hit Chance (%)</label>
+            <input type="number" id="critChanceA" value="20" min="0" max="100" step="any">
+          </div>
+          <div class="form-group">
+            <label for="critDamageA">Critical Damage Multiplier (%)</label>
+            <input type="number" id="critDamageA" value="150" min="100" step="any">
+          </div>
+          <div class="form-group">
+            <label for="elementalA">Elemental Damage Bonus (%)</label>
+            <input type="number" id="elementalA" value="10" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="buffsA">All Damage Buffs (%)</label>
+            <input type="number" id="buffsA" value="5" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="reductionA">Target Damage Reduction (%)</label>
+            <input type="number" id="reductionA" value="25" min="0" max="100" step="any">
+          </div>
+        </div>
+
+        <!-- Loadout B -->
+        <div class="loadout-col">
+          <div class="loadout-header">Loadout B</div>
+          <div class="form-group">
+            <label for="baseDamageB">Base Damage</label>
+            <input type="number" id="baseDamageB" value="120" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="attackSpeedB">Attack Speed (Attacks per Second)</label>
+            <input type="number" id="attackSpeedB" value="1.2" min="0.1" step="any">
+          </div>
+          <div class="form-group">
+            <label for="critChanceB">Critical Hit Chance (%)</label>
+            <input type="number" id="critChanceB" value="15" min="0" max="100" step="any">
+          </div>
+          <div class="form-group">
+            <label for="critDamageB">Critical Damage Multiplier (%)</label>
+            <input type="number" id="critDamageB" value="180" min="100" step="any">
+          </div>
+          <div class="form-group">
+            <label for="elementalB">Elemental Damage Bonus (%)</label>
+            <input type="number" id="elementalB" value="0" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="buffsB">All Damage Buffs (%)</label>
+            <input type="number" id="buffsB" value="15" min="0" step="any">
+          </div>
+          <div class="form-group">
+            <label for="reductionB">Target Damage Reduction (%)</label>
+            <input type="number" id="reductionB" value="25" min="0" max="100" step="any">
+          </div>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="results-grid">
+          <!-- Loadout A Results -->
+          <div class="result-col">
+            <div class="result-item">
+              <div class="result-label">Normal Hit</div>
+              <div class="result-value" id="normalHitA">0</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Critical Hit</div>
+              <div class="result-value" id="critHitA">0</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Average Hit</div>
+              <div class="result-value" id="avgHitA">0</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label" style="color:#fff;">DPS (A)</div>
+              <div class="result-value-group">
+                <div class="result-value highlight" id="dpsA">0</div>
+                <button class="copy-btn" onclick="copyValue('dpsA', this)">Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loadout B Results -->
+          <div class="result-col">
+            <div class="result-item">
+              <div class="result-label">Normal Hit</div>
+              <div class="result-value" id="normalHitB">0</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Critical Hit</div>
+              <div class="result-value" id="critHitB">0</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Average Hit</div>
+              <div class="result-value" id="avgHitB">0</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label" style="color:#fff;">DPS (B)</div>
+              <div class="result-value-group">
+                <div class="result-value highlight" id="dpsB">0</div>
+                <button class="copy-btn" onclick="copyValue('dpsB', this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-summary" id="comparisonSummary">
+          Calculating...
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>How is RPG Damage Calculated?</h2>
+      <p>Damage calculation in RPGs can be complex, involving many different multiplicative and additive layers. Generally, your base damage is multiplied by your elemental bonuses, generic buffs, and critical hit modifiers. Finally, the target's damage reduction (from armor or resistance) is applied to find the actual damage dealt per hit.</p>
+
+      <h2>Understanding Critical Hits and DPS</h2>
+      <p>Your Damage Per Second (DPS) is arguably the most important metric for comparing loadouts. To calculate DPS, you must first find your "Average Hit." This is done by taking your normal non-critical hit damage, and mathematically factoring in your critical chance and critical damage multiplier. Once you have the average hit, you simply multiply it by your attack speed (attacks per second) to get your overall DPS.</p>
+
+      <h2>Comparing Different Loadouts</h2>
+      <p>Often, players must choose between a fast-attacking weapon with low base damage, or a slow weapon that hits like a truck. Furthermore, deciding whether to invest in Critical Hit Chance vs. raw Elemental Damage can be confusing. By plugging both loadouts into this calculator, you can instantly see which setup provides the highest average DPS against a target with specific damage reduction.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    function getVal(id) {
+      return parseFloat(document.getElementById(id).value) || 0;
+    }
+
+    function calculateStats(suffix) {
+      const baseDamage = getVal('baseDamage' + suffix);
+      const attackSpeed = getVal('attackSpeed' + suffix);
+      const critChance = getVal('critChance' + suffix) / 100;
+      const critDamage = getVal('critDamage' + suffix) / 100;
+      const elemental = getVal('elemental' + suffix) / 100;
+      const buffs = getVal('buffs' + suffix) / 100;
+      const reduction = getVal('reduction' + suffix) / 100;
+
+      // Calculate raw hit
+      // Assuming additive bonuses for simplicity in this general tool: Base * (1 + Elemental + Buffs)
+      const multiplier = 1 + elemental + buffs;
+      const rawHit = baseDamage * multiplier;
+
+      // Apply defense reduction
+      const defenseMultiplier = 1 - reduction;
+      const normalHit = rawHit * defenseMultiplier;
+
+      // Calculate Crit Hit
+      const critHit = normalHit * critDamage;
+
+      // Calculate Average Hit
+      // averageHit = normalHit * (1 - critChance) + critHit * critChance
+      // or simply: normalHit * (1 + critChance * (critDamage - 1))
+      const averageHit = normalHit * (1 - critChance) + critHit * critChance;
+
+      // Calculate DPS
+      const dps = averageHit * attackSpeed;
+
+      // Update UI
+      document.getElementById('normalHit' + suffix).textContent = Math.round(normalHit);
+      document.getElementById('critHit' + suffix).textContent = Math.round(critHit);
+      document.getElementById('avgHit' + suffix).textContent = Math.round(averageHit);
+      document.getElementById('dps' + suffix).textContent = dps.toFixed(1);
+
+      return dps;
+    }
+
+    function updateCalculations() {
+      const dpsA = calculateStats('A');
+      const dpsB = calculateStats('B');
+
+      const summary = document.getElementById('comparisonSummary');
+
+      if (dpsA === 0 && dpsB === 0) {
+        summary.innerHTML = "Enter stats to calculate DPS.";
+      } else if (Math.abs(dpsA - dpsB) < 0.1) {
+        summary.innerHTML = "Both loadouts have the <span>same DPS</span>.";
+      } else if (dpsA > dpsB) {
+        const diff = ((dpsA / dpsB) - 1) * 100;
+        summary.innerHTML = `Loadout A deals <span>${diff.toFixed(1)}% more</span> DPS than Loadout B.`;
+      } else {
+        const diff = ((dpsB / dpsA) - 1) * 100;
+        summary.innerHTML = `Loadout B deals <span>${diff.toFixed(1)}% more</span> DPS than Loadout A.`;
+      }
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    // Attach event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('input', updateCalculations);
+      });
+
+      // Initial calculation
+      updateCalculations();
+    });
+  </script>
+</body>
+</html>
