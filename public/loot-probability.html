@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loot Drop Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate your true chances of getting that rare drop. Factor in bad luck protection and figure out how many attempts you realistically need.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Loot Drop Calculator",
+      "url": "https://leeroyjenkins.quest/loot-probability.html",
+      "description": "Calculate loot drop probabilities across multiple attempts, including cumulative chance and bad luck protection mechanics.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any"
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .header-nav {
+      padding: 20px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .header-nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #120e1e 0%, var(--bg) 100%);
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(147, 51, 234, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .form-group .sub-label {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        font-weight: normal;
+        margin-top: 2px;
+        margin-bottom: 6px;
+        display: block;
+    }
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+    .input-row > div {
+      flex: 1;
+    }
+    .input-row .unit-select {
+      flex: 0 0 100px;
+    }
+
+    input[type="number"], input[type="text"], select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="number"]:focus, input[type="text"]:focus, select:focus {
+      border-color: var(--accent);
+    }
+    select {
+      font-family: 'Inter', sans-serif;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .result-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .result-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      position: relative;
+    }
+    .result-box.full {
+      grid-column: 1 / -1;
+    }
+    .result-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .result-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .copy-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .copy-btn:hover {
+      background: var(--border);
+      color: #fff;
+    }
+    .copy-btn.copied {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    .seo-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 0 60px;
+    }
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 40px 0 16px;
+      font-weight: 700;
+    }
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      padding-left: 24px;
+      font-size: 1.05rem;
+    }
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+    .seo-content strong {
+      color: var(--text-primary);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 40px 20px 30px; }
+      .result-group { grid-template-columns: 1fr; }
+      .input-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<nav class="header-nav">
+  <a href="/">← Leeroy Jenkins</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Loot Drop Calculator 🎲</h1>
+    <p>Find out your actual chances of getting that rare drop. Stop guessing, start calculating.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="grid-container">
+
+    <!-- Calculator -->
+    <div class="card">
+      <h2>📊 Drop Probability Calculator</h2>
+
+      <div class="form-group">
+        <label for="drop-chance">Drop Chance (%)</label>
+        <span class="sub-label">The base probability of the item dropping (e.g., 5 for 5%, 0.1 for 0.1%)</span>
+        <input type="number" id="drop-chance" value="1" step="0.01" min="0" max="100" placeholder="e.g. 5">
+      </div>
+
+      <div class="form-group">
+        <label for="num-attempts">Number of Attempts</label>
+        <span class="sub-label">How many times you plan to farm/roll for it</span>
+        <input type="number" id="num-attempts" value="100" step="1" min="1" placeholder="e.g. 100">
+      </div>
+
+      <div class="form-group">
+        <label for="pity-system">Bad Luck Protection (Pity System)</label>
+        <span class="sub-label">Does the game guarantee the drop after X attempts?</span>
+        <select id="pity-system">
+          <option value="none">No Pity System (Pure RNG)</option>
+          <option value="guaranteed">Guaranteed Drop After X Attempts</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="pity-attempts-group" style="display: none;">
+        <label for="pity-attempts">Guaranteed Drop Attempt #</label>
+        <input type="number" id="pity-attempts" value="90" step="1" min="1">
+      </div>
+
+      <div class="result-group">
+        <div class="result-box">
+          <button class="copy-btn" onclick="copyValue('prob-at-least-one', this)">Copy</button>
+          <div class="result-label">Chance to get at least 1</div>
+          <div class="result-value" id="prob-at-least-one">0.00%</div>
+        </div>
+        <div class="result-box">
+          <button class="copy-btn" onclick="copyValue('prob-none', this)">Copy</button>
+          <div class="result-label">Chance of getting nothing (Unlucky)</div>
+          <div class="result-value" id="prob-none" style="color: #EF4444;">0.00%</div>
+        </div>
+        <div class="result-box full">
+          <button class="copy-btn" onclick="copyValue('attempts-for-target', this)">Copy</button>
+          <div class="result-label">Attempts needed for a 99% cumulative chance</div>
+          <div class="result-value" id="attempts-for-target">0</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="seo-content">
+    <h2>Understanding Drop Rates and Probability</h2>
+    <p>In most games, when an item has a 1% drop rate, it means you have a 1 in 100 chance of getting it <strong>every single time</strong> you complete the activity. This is known as independent probability. Getting unlucky on your 99th attempt does not increase your chances on the 100th attempt. The base drop rate remains 1%.</p>
+
+    <h2>Cumulative Probability (Why 1% x 100 ≠ 100%)</h2>
+    <p>A common misconception in gaming is that if you do an activity with a 1% drop rate 100 times, you are guaranteed the drop. This is mathematically incorrect. Instead, we use cumulative probability to figure out the chances of getting the item <em>at least once</em> over multiple attempts.</p>
+    <ul>
+      <li>To find this, we actually calculate the chance of you getting absolutely nothing.</li>
+      <li>If a drop rate is 1%, the chance of failing is 99%.</li>
+      <li>Failing 100 times in a row is calculated as: <code>0.99 ^ 100 = 0.366 (or 36.6%)</code></li>
+      <li>Therefore, your chance of getting the drop at least once in 100 attempts is <strong>63.4%</strong>.</li>
+    </ul>
+
+    <h2>What is Bad Luck Protection (Pity System)?</h2>
+    <p>Because pure RNG (Random Number Generation) can lead to extremely frustrating streaks of bad luck, many modern games implement "pity systems." These systems artificially increase your chances the longer you go without a drop, or simply guarantee the item after a set number of attempts (e.g., getting a guaranteed legendary character on your 90th pull in Genshin Impact). Use the toggle in the calculator to see how pity systems completely change the math.</p>
+  </div>
+</div>
+
+<div class="footer">
+  © 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> · A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+</div>
+
+<script>
+  function formatPercent(value) {
+    if (value >= 99.99 && value < 100) return '>99.99%';
+    if (value <= 0.01 && value > 0) return '<0.01%';
+    return value.toFixed(2) + '%';
+  }
+
+  function calculateProbability() {
+    const dropChanceInput = parseFloat(document.getElementById('drop-chance').value);
+    const numAttempts = parseInt(document.getElementById('num-attempts').value, 10);
+    const pitySystem = document.getElementById('pity-system').value;
+    const pityAttempts = parseInt(document.getElementById('pity-attempts').value, 10);
+
+    const probAtLeastOneEl = document.getElementById('prob-at-least-one');
+    const probNoneEl = document.getElementById('prob-none');
+    const attemptsForTargetEl = document.getElementById('attempts-for-target');
+
+    if (isNaN(dropChanceInput) || isNaN(numAttempts) || dropChanceInput <= 0 || numAttempts <= 0) {
+      probAtLeastOneEl.textContent = '---';
+      probNoneEl.textContent = '---';
+      attemptsForTargetEl.textContent = '---';
+      return;
+    }
+
+    const p = dropChanceInput / 100;
+
+    // Calculate chance of getting at least 1 and getting none
+    let probNone = Math.pow(1 - p, numAttempts);
+    let probAtLeastOne = 1 - probNone;
+
+    // Apply bad luck protection if applicable
+    if (pitySystem === 'guaranteed' && !isNaN(pityAttempts) && pityAttempts > 0) {
+      if (numAttempts >= pityAttempts) {
+        probAtLeastOne = 1.0;
+        probNone = 0.0;
+      }
+    }
+
+    probAtLeastOneEl.textContent = formatPercent(probAtLeastOne * 100);
+    probNoneEl.textContent = formatPercent(probNone * 100);
+
+    // Change color of "none" based on probability
+    if (probNone < 0.1) {
+      probNoneEl.style.color = '#10B981'; // Green (Unlikely to fail)
+    } else if (probNone < 0.5) {
+      probNoneEl.style.color = '#F59E0B'; // Yellow/Orange
+    } else {
+      probNoneEl.style.color = '#EF4444'; // Red (Likely to fail)
+    }
+
+    // Calculate attempts needed for 99% cumulative chance
+    if (pitySystem === 'guaranteed' && !isNaN(pityAttempts) && pityAttempts > 0) {
+       // If pity exists, worst case is just the pity attempts
+       const pureAttemptsFor99 = Math.ceil(Math.log(0.01) / Math.log(1 - p));
+       attemptsForTargetEl.textContent = Math.min(pureAttemptsFor99, pityAttempts);
+    } else {
+       if (p === 1) {
+         attemptsForTargetEl.textContent = '1';
+       } else {
+         const targetAttempts = Math.ceil(Math.log(0.01) / Math.log(1 - p));
+         attemptsForTargetEl.textContent = targetAttempts.toLocaleString();
+       }
+    }
+  }
+
+  function handlePityChange() {
+    const pitySystem = document.getElementById('pity-system').value;
+    const pityGroup = document.getElementById('pity-attempts-group');
+    if (pitySystem === 'guaranteed') {
+      pityGroup.style.display = 'block';
+    } else {
+      pityGroup.style.display = 'none';
+    }
+    calculateProbability();
+  }
+
+  function copyValue(elementId, btnElement) {
+    const val = document.getElementById(elementId).textContent;
+    if (val === '---') return;
+
+    navigator.clipboard.writeText(val).then(() => {
+      const originalText = btnElement.textContent;
+      btnElement.textContent = 'Copied!';
+      btnElement.classList.add('copied');
+
+      setTimeout(() => {
+        btnElement.textContent = originalText;
+        btnElement.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Event Listeners
+  const inputs = ['drop-chance', 'num-attempts', 'pity-attempts'];
+  inputs.forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateProbability);
+    document.getElementById(id).addEventListener('change', calculateProbability);
+  });
+
+  document.getElementById('pity-system').addEventListener('change', handlePityChange);
+
+  // Initial Calculation
+  calculateProbability();
+</script>
+</body>
+</html>
