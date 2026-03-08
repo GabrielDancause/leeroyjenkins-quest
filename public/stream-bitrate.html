@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream Bitrate Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Find the optimal stream bitrate for Twitch, YouTube, and Kick based on your resolution and FPS. Calculate required upload speed.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Stream Bitrate Calculator",
+    "description": "Find the optimal stream bitrate for Twitch, YouTube, and Kick based on your resolution and FPS. Calculate required upload speed.",
+    "url": "https://leeroyjenkins.quest/stream-bitrate",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .result-value.error-text {
+      color: #ef4444;
+      font-size: 1rem;
+      font-family: var(--font-ui);
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .note span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+      .note { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Stream Bitrate Calculator</h1>
+      <p>Find the optimal video and audio bitrate for your stream.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label for="platformSelect">Streaming Platform</label>
+        <select id="platformSelect">
+          <option value="twitch">Twitch</option>
+          <option value="youtube">YouTube Live</option>
+          <option value="kick">Kick</option>
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="resolutionSelect">Resolution</label>
+          <select id="resolutionSelect">
+            <option value="720p">720p (HD)</option>
+            <option value="936p">936p (Sweet Spot)</option>
+            <option value="1080p" selected>1080p (Full HD)</option>
+            <option value="1440p">1440p (2K)</option>
+            <option value="4k">2160p (4K)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fpsSelect">Framerate (FPS)</label>
+          <select id="fpsSelect">
+            <option value="30">30 FPS</option>
+            <option value="60" selected>60 FPS</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Recommended Video Bitrate</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="videoBitrateOut">6000 kbps</div>
+            <button class="copy-btn" onclick="copyValue('videoBitrateOut', this, true)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Recommended Audio Bitrate</div>
+          <div class="result-value-group">
+            <div class="result-value" id="audioBitrateOut">160 kbps</div>
+            <button class="copy-btn" onclick="copyValue('audioBitrateOut', this, true)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Min. Upload Speed Needed</div>
+          <div class="result-value-group">
+            <div class="result-value" id="uploadSpeedOut">8.01 Mbps</div>
+            <button class="copy-btn" onclick="copyValue('uploadSpeedOut', this, true)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" id="platformNote">
+        Note: <span>Twitch</span> caps unpartnered streams around 6000 kbps.
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why Does Stream Bitrate Matter?</h2>
+      <p>Bitrate is the amount of data you send to a streaming platform per second. It directly affects the visual quality of your stream. If your bitrate is too low for your chosen resolution and frame rate, your stream will look pixelated or blocky during fast-paced movement. If it is too high, viewers with slower internet connections will experience constant buffering.</p>
+
+      <h2>Finding the Sweet Spot</h2>
+      <p>A common mistake is trying to push 1080p 60FPS on a lower bitrate. It is generally better to stream at a lower resolution (like 936p or 720p) with a sufficient bitrate than to stream at 1080p with an inadequate bitrate. 936p (1664x936) is a popular "sweet spot" resolution for Twitch as it looks very close to 1080p but handles 6000 kbps much better during fast gameplay.</p>
+
+      <h2>Upload Speed Requirements</h2>
+      <p>To maintain a stable stream, you should never max out your internet's upload speed. Our calculator factors in a 30% overhead margin to account for game data, voice chat, and internet fluctuations. For example, if your total bitrate (video + audio) is roughly 6 Mbps, you will ideally want an upload speed of at least ~8 Mbps dedicated to streaming.</p>
+
+      <h2>Platform Differences</h2>
+      <ul>
+        <li><strong>Twitch:</strong> Has a soft cap of 6000 kbps for non-partners. Pushing above this (up to ~8000 kbps) is sometimes possible, but risks viewers not receiving transcoding options (quality options like 720p, 480p), forcing them to watch at source quality which may cause buffering.</li>
+        <li><strong>YouTube:</strong> Allows for significantly higher bitrates and supports 1440p and 4K streaming. YouTube will automatically transcode your stream, so you can push as high a bitrate as your internet allows to get the best quality.</li>
+        <li><strong>Kick:</strong> Generally supports up to 8000 kbps for standard streamers. Like Twitch, sticking to 6000-8000 kbps is recommended for 1080p 60FPS content.</li>
+      </ul>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const platformSelect = document.getElementById('platformSelect');
+    const resolutionSelect = document.getElementById('resolutionSelect');
+    const fpsSelect = document.getElementById('fpsSelect');
+
+    const videoBitrateOut = document.getElementById('videoBitrateOut');
+    const audioBitrateOut = document.getElementById('audioBitrateOut');
+    const uploadSpeedOut = document.getElementById('uploadSpeedOut');
+    const platformNote = document.getElementById('platformNote');
+
+    // Bitrate data in kbps
+    const bitrateData = {
+      twitch: {
+        '720p': { '30': { v: 3000, a: 160 }, '60': { v: 4500, a: 160 } },
+        '936p': { '30': { v: 4500, a: 160 }, '60': { v: 6000, a: 160 } },
+        '1080p': { '30': { v: 4500, a: 160 }, '60': { v: 6000, a: 160 } },
+        '1440p': { '30': { v: 6000, a: 160 }, '60': { v: 8000, a: 160 } }, // Twitch unofficial max
+        '4k': null // Not supported
+      },
+      youtube: {
+        '720p': { '30': { v: 2500, a: 128 }, '60': { v: 4000, a: 128 } },
+        '936p': { '30': { v: 4000, a: 128 }, '60': { v: 6000, a: 128 } },
+        '1080p': { '30': { v: 5000, a: 128 }, '60': { v: 9000, a: 128 } },
+        '1440p': { '30': { v: 10000, a: 256 }, '60': { v: 18000, a: 256 } },
+        '4k': { '30': { v: 35000, a: 256 }, '60': { v: 51000, a: 256 } }
+      },
+      kick: {
+        '720p': { '30': { v: 4000, a: 160 }, '60': { v: 6000, a: 160 } },
+        '936p': { '30': { v: 6000, a: 160 }, '60': { v: 8000, a: 160 } },
+        '1080p': { '30': { v: 6000, a: 160 }, '60': { v: 8000, a: 160 } },
+        '1440p': { '30': { v: 8000, a: 160 }, '60': { v: 8000, a: 160 } },
+        '4k': null
+      }
+    };
+
+    const notes = {
+      twitch: 'Note: <span>Twitch</span> officially recommends 6000 kbps max, though 8000 kbps works for some.',
+      youtube: 'Note: <span>YouTube</span> transcodes everything, so higher bitrates yield much better quality.',
+      kick: 'Note: <span>Kick</span> generally supports up to 8000 kbps for unpartnered streamers.'
+    };
+
+    function calculate() {
+      const platform = platformSelect.value;
+      const res = resolutionSelect.value;
+      const fps = fpsSelect.value;
+
+      const data = bitrateData[platform][res];
+      const copyBtns = document.querySelectorAll('.copy-btn');
+
+      if (!data) {
+        // Unsupported combo (like 4K on Twitch)
+        videoBitrateOut.textContent = 'Not Supported';
+        audioBitrateOut.textContent = 'N/A';
+        uploadSpeedOut.textContent = 'N/A';
+        videoBitrateOut.classList.add('error-text');
+
+        copyBtns.forEach(btn => btn.style.display = 'none');
+      } else {
+        const config = data[fps];
+        videoBitrateOut.textContent = config.v + ' kbps';
+        audioBitrateOut.textContent = config.a + ' kbps';
+
+        // Upload speed calculation: (Video + Audio) * 1.3 overhead / 1000 for Mbps
+        const totalKbps = config.v + config.a;
+        const uploadMbps = (totalKbps * 1.3) / 1000;
+        uploadSpeedOut.textContent = uploadMbps.toFixed(2) + ' Mbps';
+
+        videoBitrateOut.classList.remove('error-text');
+        copyBtns.forEach(btn => btn.style.display = 'block');
+      }
+
+      platformNote.innerHTML = notes[platform];
+    }
+
+    function copyValue(elementId, btn, isNumberWithUnit) {
+      let text = document.getElementById(elementId).textContent;
+      if (isNumberWithUnit) {
+        // Extract just the number if they want to copy the raw value
+        // or we can just copy the whole string. Usually copying the raw number is better for OBS.
+        text = text.replace(/[^0-9.]/g, '');
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [platformSelect, resolutionSelect, fpsSelect].forEach(el => {
+      el.addEventListener('change', calculate);
+    });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
