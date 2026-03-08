@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aim Stats Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate aim training metrics: accuracy, time-to-kill, clicks per second, and improvement rate. Track progress over sessions and set goals.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Aim Stats Calculator",
+    "description": "Calculate aim training metrics: accuracy, time-to-kill, clicks per second, and improvement rate. Track progress over sessions and set goals.",
+    "url": "https://leeroyjenkins.quest/aim-trainer-stats",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .result-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .unit {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-family: var(--font-ui);
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2, .results {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-value { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Aim Stats Calculator</h1>
+      <p>Calculate your aim training metrics, track progress, and evaluate your mechanics.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="totalTargets">Total Targets</label>
+          <input type="number" id="totalTargets" value="100" min="1" step="1">
+        </div>
+        <div class="form-group">
+          <label for="hits">Targets Hit</label>
+          <input type="number" id="hits" value="85" min="0" step="1">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="duration">Session Duration (Seconds)</label>
+          <input type="number" id="duration" value="60" min="1" step="1">
+        </div>
+        <div class="form-group">
+          <label for="prevScore">Previous Score / Hits (Optional)</label>
+          <input type="number" id="prevScore" placeholder="e.g. 75" min="0" step="1">
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Accuracy</div>
+          <div class="result-value-group">
+            <div class="result-value" id="accuracyOut">0</div>
+            <div class="unit">%</div>
+          </div>
+          <button class="copy-btn" onclick="copyValue('accuracyOut', '%', this)">Copy Result</button>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Avg. Time-to-Kill (TTK)</div>
+          <div class="result-value-group">
+            <div class="result-value" id="ttkOut">0</div>
+            <div class="unit">ms</div>
+          </div>
+          <button class="copy-btn" onclick="copyValue('ttkOut', 'ms', this)">Copy Result</button>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Kills Per Second (KPS)</div>
+          <div class="result-value-group">
+            <div class="result-value" id="kpsOut">0</div>
+            <div class="unit">KPS</div>
+          </div>
+          <button class="copy-btn" onclick="copyValue('kpsOut', 'KPS', this)">Copy Result</button>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Improvement Rate</div>
+          <div class="result-value-group">
+            <div class="result-value" id="improvementOut">0</div>
+            <div class="unit">%</div>
+          </div>
+          <button class="copy-btn" onclick="copyValue('improvementOut', '%', this)">Copy Result</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>How to Measure Your Aim Training Progress</h2>
+      <p>Whether you're grinding KovaaK's, Aim Lab, or warming up in-game, tracking your mechanical statistics is crucial to breaking plateaus. Our aim stats calculator helps you understand your baseline performance and measure incremental growth.</p>
+      <ul>
+        <li><strong>Accuracy (%):</strong> Your total hits divided by the number of targets presented. High accuracy (90%+) indicates you have good mouse control but may need to push your speed. Lower accuracy (under 80%) means you should slow down and focus on precision.</li>
+        <li><strong>Time-to-Kill (TTK):</strong> The average time it takes you to transition to a target and successfully click it. Measured in milliseconds (ms), a lower TTK means faster target acquisition and better flick aim.</li>
+        <li><strong>Kills Per Second (KPS):</strong> The raw speed output of your aim session. It tells you exactly how many targets you are destroying every second on average.</li>
+        <li><strong>Improvement Rate (%):</strong> By inputting your previous high score or average hits, you can see exactly how much you've improved in your current session compared to the past.</li>
+      </ul>
+
+      <h2>Why Time-to-Kill (TTK) Matters in Aiming</h2>
+      <p>While accuracy is easy to understand, Time-to-Kill (TTK) is often the separating factor between good players and pro-level aimers. In tactical shooters like CS2 and Valorant, fights are decided in milliseconds.</p>
+      <p>A lower average TTK in your aim trainer translates directly to winning more 1v1 duels in-game. To lower your TTK, focus on eliminating "micro-corrections"—the small adjustments you make after an initial flick lands slightly off-target. Practicing straight, smooth lines from your crosshair directly to the target is the fastest way to drop your TTK.</p>
+
+      <h2>Setting Goals for Mouse Control</h2>
+      <p>Different scenarios require different goals. For clicking (static dots), push for 95%+ accuracy before trying to go faster. For tracking scenarios (smoothness and reactivity), a good benchmark is 60-70% accuracy depending on the difficulty of the bot's movement profile.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const totalTargetsInput = document.getElementById('totalTargets');
+    const hitsInput = document.getElementById('hits');
+    const durationInput = document.getElementById('duration');
+    const prevScoreInput = document.getElementById('prevScore');
+
+    const accuracyOut = document.getElementById('accuracyOut');
+    const ttkOut = document.getElementById('ttkOut');
+    const kpsOut = document.getElementById('kpsOut');
+    const improvementOut = document.getElementById('improvementOut');
+
+    function calculateStats() {
+      const totalTargets = parseFloat(totalTargetsInput.value) || 0;
+      const hits = parseFloat(hitsInput.value) || 0;
+      const duration = parseFloat(durationInput.value) || 0;
+      const prevScore = parseFloat(prevScoreInput.value);
+
+      // Accuracy
+      let accuracy = 0;
+      if (totalTargets > 0) {
+        accuracy = (hits / totalTargets) * 100;
+        // Cap at 100% just in case hits > total
+        accuracy = Math.min(accuracy, 100);
+      }
+      accuracyOut.textContent = accuracy.toFixed(2);
+
+      // Average Time-to-Kill (ms)
+      let ttk = 0;
+      if (hits > 0 && duration > 0) {
+        // duration in seconds / hits = seconds per kill -> * 1000 for ms
+        ttk = (duration / hits) * 1000;
+      }
+      ttkOut.textContent = Math.round(ttk);
+
+      // Kills per Second (KPS)
+      let kps = 0;
+      if (hits > 0 && duration > 0) {
+        kps = hits / duration;
+      }
+      kpsOut.textContent = kps.toFixed(2);
+
+      // Improvement Rate (%)
+      let improvement = 0;
+      if (!isNaN(prevScore) && prevScore > 0) {
+        improvement = ((hits - prevScore) / prevScore) * 100;
+        if (improvement > 0) {
+          improvementOut.textContent = '+' + improvement.toFixed(2);
+          improvementOut.style.color = '#4ade80'; // Green for positive
+        } else if (improvement < 0) {
+          improvementOut.textContent = improvement.toFixed(2);
+          improvementOut.style.color = '#f87171'; // Red for negative
+        } else {
+          improvementOut.textContent = '0.00';
+          improvementOut.style.color = 'var(--accent)';
+        }
+      } else {
+        improvementOut.textContent = '0.00';
+        improvementOut.style.color = 'var(--accent)';
+      }
+    }
+
+    function copyValue(elementId, unit, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text + (unit ? " " + unit : "")).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [totalTargetsInput, hitsInput, durationInput, prevScoreInput].forEach(el => {
+      el.addEventListener('input', calculateStats);
+    });
+
+    // Initial calculation
+    calculateStats();
+  </script>
+</body>
+</html>
