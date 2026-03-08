@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor Refresh Rate Test | Leeroy Jenkins</title>
+  <meta name="description" content="Test and verify your monitor's true refresh rate (Hz). Detect frame skipping, check smoothness with moving bars, and confirm your display settings.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Monitor Refresh Rate Test",
+    "description": "Test and verify your monitor's true refresh rate (Hz). Detect frame skipping, check smoothness with moving bars, and confirm your display settings.",
+    "url": "https://leeroyjenkins.quest/refresh-rate-test",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Understanding Monitor Refresh Rates and Frame Skipping",
+    "description": "A guide on why refresh rates matter for gaming, how to verify them, and what frame skipping is.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leeroyjenkins.quest/favicon.ico"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://leeroyjenkins.quest/refresh-rate-test"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .hz-display-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .hz-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .hz-value-group {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .hz-value {
+      font-family: var(--font-mono);
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .hz-unit {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-family: var(--font-ui);
+    }
+
+    .status-text {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .test-area {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .ufo-bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      transform: translateX(0);
+      will-change: transform;
+    }
+
+    .ufo-bar::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    select, input[type="range"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    button {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    button.primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .disclaimer {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: center;
+      font-style: italic;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .calculator-card { padding: 24px 16px; }
+      .hz-value { font-size: 3rem; }
+      .controls { flex-direction: column; align-items: flex-start; }
+      .control-group { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Refresh Rate Test</h1>
+      <p>Verify your monitor's true refresh rate and check for frame skipping.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="hz-display-container">
+        <div class="hz-label">Detected Refresh Rate</div>
+        <div class="hz-value-group">
+          <div class="hz-value" id="hzOut">--</div>
+          <div class="hz-unit">Hz</div>
+        </div>
+        <div class="status-text" id="statusText">Calculating refresh rate... Make sure this window is in focus.</div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="speedSelect">Movement Speed:</label>
+          <select id="speedSelect">
+            <option value="200">Slow (200px/s)</option>
+            <option value="480" selected>Normal (480px/s)</option>
+            <option value="960">Fast (960px/s)</option>
+            <option value="1920">Very Fast (1920px/s)</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="colorSelect">Bar Color:</label>
+          <select id="colorSelect">
+            <option value="default">Default (White/Purple)</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="test-area" id="testArea">
+        <div class="ufo-bar" id="movingBar"></div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="toggleMotionBtn" class="primary">Pause Motion</button>
+        <button id="copyBtn" onclick="copyResult()">Copy Result</button>
+      </div>
+
+      <div class="disclaimer">
+        *For accurate results, close other tabs, disable background video playback, and ensure your browser supports hardware acceleration. Do not move your mouse while testing.
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>What is Monitor Refresh Rate (Hz)?</h2>
+      <p>Refresh rate, measured in Hertz (Hz), represents how many times per second your monitor updates with new images. For example, a 60Hz monitor updates 60 times per second, while a 144Hz monitor updates 144 times per second. A higher refresh rate results in a noticeably smoother visual experience, reducing motion blur and making fast-moving objects easier to track.</p>
+
+      <h2>Why does Refresh Rate matter for gaming?</h2>
+      <p>In competitive gaming (like CS2, Valorant, or Overwatch), every millisecond counts. High refresh rates offer several crucial advantages:</p>
+      <ul>
+        <li><strong>Reduced Input Lag:</strong> A higher refresh rate decreases the time it takes for your actions (like a mouse click) to appear on screen.</li>
+        <li><strong>Smoother Motion:</strong> Enemies moving across your screen appear clearer and less blurry, making it significantly easier to aim and track targets.</li>
+        <li><strong>More Up-to-Date Information:</strong> At 240Hz or 360Hz, you literally see frames slightly earlier than an opponent playing on a 60Hz display, granting a tangible competitive edge in reaction times.</li>
+      </ul>
+
+      <h2>What is Frame Skipping?</h2>
+      <p>Frame skipping occurs when a monitor fails to display every single frame it is instructed to show by the graphics card. Instead of a smooth sequence (1, 2, 3, 4, 5), it might drop frames (1, 2, 4, 5). This often happens when users attempt to "overclock" their monitor beyond its factory-supported refresh rate. Our moving bar test helps visually identify frame skipping—if the bar appears to stutter, jump, or ghost heavily instead of gliding smoothly, your monitor may be skipping frames.</p>
+
+      <h2>How to enable your monitor's highest refresh rate</h2>
+      <p>Many users buy a 144Hz or 240Hz monitor but leave it running at 60Hz out of the box. To fix this:</p>
+      <ul>
+        <li><strong>Windows 11:</strong> Settings > System > Display > Advanced display > Choose a refresh rate.</li>
+        <li><strong>Windows 10:</strong> Settings > System > Display > Advanced display settings > Display adapter properties > Monitor tab > Screen refresh rate.</li>
+        <li><strong>Cable Matters:</strong> Ensure you are using DisplayPort or a high-bandwidth HDMI cable (HDMI 2.0 or 2.1) connected directly to your dedicated GPU, not the motherboard.</li>
+      </ul>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // Elements
+    const hzOut = document.getElementById('hzOut');
+    const statusText = document.getElementById('statusText');
+    const movingBar = document.getElementById('movingBar');
+    const testArea = document.getElementById('testArea');
+    const speedSelect = document.getElementById('speedSelect');
+    const colorSelect = document.getElementById('colorSelect');
+    const toggleMotionBtn = document.getElementById('toggleMotionBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
+    // State
+    let isMoving = true;
+    let speed = parseInt(speedSelect.value); // pixels per second
+    let currentX = 0;
+
+    // FPS Calculation State
+    let lastTime = performance.now();
+    let frameCount = 0;
+    let fpsSamples = [];
+    let detectedHz = 0;
+    let calculationPhase = 0; // 0: measuring, 1: stable
+
+    // Track time between frames for precise smooth movement
+    let lastFrameTime = performance.now();
+
+    // Start calculation loop
+    requestAnimationFrame(calculateRefreshRate);
+
+    // Dedicated loop for measuring Hz accurately
+    function calculateRefreshRate(currentTime) {
+      if (!lastTime) lastTime = currentTime;
+      const deltaTime = currentTime - lastTime;
+
+      frameCount++;
+
+      // Update measurement every 1000ms
+      if (deltaTime >= 1000) {
+        const currentFps = Math.round((frameCount * 1000) / deltaTime);
+        fpsSamples.push(currentFps);
+
+        // Keep last 10 samples for better smoothing
+        if (fpsSamples.length > 10) {
+          fpsSamples.shift();
+        }
+
+        // Average the samples if we have enough
+        if (fpsSamples.length >= 3) {
+          // Sort and remove outliers (highest and lowest)
+          const sorted = [...fpsSamples].sort((a,b) => a - b);
+          let avgArray = sorted;
+          if (sorted.length >= 5) {
+             avgArray = sorted.slice(1, -1);
+          }
+          const avg = Math.round(avgArray.reduce((a, b) => a + b, 0) / avgArray.length);
+
+          detectedHz = snapToCommonRefreshRate(avg);
+
+          if (detectedHz !== parseInt(hzOut.textContent) || hzOut.textContent === '--') {
+             hzOut.textContent = detectedHz;
+          }
+
+          if (calculationPhase === 0 && fpsSamples.length >= 4) {
+             calculationPhase = 1;
+             statusText.textContent = "Refresh rate stabilized. Watch the bar below for smoothness.";
+             statusText.style.color = "var(--accent)";
+          }
+        } else {
+          hzOut.textContent = currentFps;
+        }
+
+        lastTime = currentTime;
+        frameCount = 0;
+      }
+
+      requestAnimationFrame(calculateRefreshRate);
+    }
+
+    // Dedicated loop for rendering the smooth motion
+    function renderMotion(currentTime) {
+      if (isMoving) {
+         const frameDeltaTimeMs = currentTime - lastFrameTime;
+         // Convert speed from pixels/sec to pixels/ms
+         const pixelsPerMs = speed / 1000;
+
+         currentX += pixelsPerMs * frameDeltaTimeMs;
+
+         const areaWidth = testArea.clientWidth;
+         const barWidth = movingBar.offsetWidth;
+
+         if (currentX > areaWidth) {
+            currentX = -barWidth;
+         }
+
+         movingBar.style.transform = `translateX(${currentX}px)`;
+      }
+
+      lastFrameTime = currentTime;
+      requestAnimationFrame(renderMotion);
+    }
+
+    // Start motion loop
+    requestAnimationFrame(renderMotion);
+
+
+    function snapToCommonRefreshRate(measured) {
+      const commonRates = [60, 75, 100, 120, 144, 165, 240, 360, 480, 540];
+      const tolerance = 4; // Allow +/- 4Hz deviation to snap
+
+      for (let rate of commonRates) {
+        if (Math.abs(measured - rate) <= tolerance) {
+          return rate;
+        }
+      }
+      return measured;
+    }
+
+    // Event Listeners
+    speedSelect.addEventListener('change', (e) => {
+      speed = parseInt(e.target.value);
+    });
+
+    colorSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === 'default') {
+        movingBar.style.background = 'var(--text-primary)';
+      } else if (val === 'red') {
+        movingBar.style.background = '#ef4444';
+      } else if (val === 'green') {
+        movingBar.style.background = '#22c55e';
+      } else if (val === 'blue') {
+        movingBar.style.background = '#3b82f6';
+      }
+    });
+
+    toggleMotionBtn.addEventListener('click', () => {
+      isMoving = !isMoving;
+      if (isMoving) {
+        toggleMotionBtn.textContent = 'Pause Motion';
+        toggleMotionBtn.classList.add('primary');
+        lastFrameTime = performance.now(); // reset frame time to avoid jump
+      } else {
+        toggleMotionBtn.textContent = 'Resume Motion';
+        toggleMotionBtn.classList.remove('primary');
+      }
+    });
+
+    function copyResult() {
+      if (detectedHz > 0) {
+        const text = `My monitor is running at ${detectedHz}Hz!`;
+        navigator.clipboard.writeText(text).then(() => {
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
+          }, 2000);
+        });
+      } else {
+        alert("Please wait for the refresh rate to be calculated.");
+      }
+    }
+
+    // Handle tab visibility to pause calculations when hidden
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        // Reset calculation when returning to tab
+        fpsSamples = [];
+        calculationPhase = 0;
+        hzOut.textContent = "--";
+        statusText.textContent = "Recalculating... Make sure this window is in focus.";
+        statusText.style.color = "var(--text-secondary)";
+      } else {
+        lastTime = performance.now();
+        lastFrameTime = performance.now();
+        frameCount = 0;
+      }
+    });
+  </script>
+</body>
+</html>
