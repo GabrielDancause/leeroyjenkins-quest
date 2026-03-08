@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XP & Leveling Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate the XP, time, and sessions required to reach your target level in any game. Supports flat, linear, quadratic, and cubic leveling curves.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "XP & Leveling Calculator",
+    "description": "Calculate the XP, time, and sessions required to reach your target level in any game. Supports flat, linear, quadratic, and cubic leveling curves.",
+    "url": "https://leeroyjenkins.quest/xp-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>XP & Leveling Calculator</h1>
+      <p>Calculate the XP, time, and sessions needed to reach your target level.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="curveType">Level Curve Type</label>
+          <select id="curveType">
+            <option value="flat">Flat (Constant XP per level)</option>
+            <option value="linear" selected>Linear (Constant increase per level)</option>
+            <option value="quadratic">Quadratic (Accelerating increase)</option>
+            <option value="cubic">Cubic (Steep exponential increase)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="baseXp">Base XP Multiplier</label>
+          <input type="number" id="baseXp" value="1000" min="1" step="1">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="currentLevel">Current Level</label>
+          <input type="number" id="currentLevel" value="1" min="1" step="1">
+        </div>
+        <div class="form-group">
+          <label for="targetLevel">Target Level</label>
+          <input type="number" id="targetLevel" value="50" min="2" step="1">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="xpPerHour">Average XP/Hour</label>
+          <input type="number" id="xpPerHour" value="5000" min="1" step="100">
+        </div>
+        <div class="form-group">
+          <label for="hoursPerSession">Hours per Session</label>
+          <input type="number" id="hoursPerSession" value="3" min="0.5" step="0.5">
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Total XP Required</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="xpRequiredOut">0</div>
+            <button class="copy-btn" onclick="copyValue('xpRequiredOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Total Hours Required</div>
+          <div class="result-value-group">
+            <div class="result-value" id="hoursRequiredOut">0</div>
+            <button class="copy-btn" onclick="copyValue('hoursRequiredOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Sessions Needed</div>
+          <div class="result-value-group">
+            <div class="result-value" id="sessionsNeededOut">0</div>
+            <button class="copy-btn" onclick="copyValue('sessionsNeededOut', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>How do Leveling Curves work?</h2>
+      <p>Different games use different mathematical formulas to determine how much experience is needed for each level. Our calculator supports the most common curves:</p>
+      <ul>
+        <li><strong>Flat:</strong> Every level requires the exact same amount of XP. (e.g., Battle Pass systems)</li>
+        <li><strong>Linear:</strong> The XP required increases by a set amount each level. (e.g., classic RPGs)</li>
+        <li><strong>Quadratic:</strong> The XP required increases faster as you level up, making higher levels take significantly longer. (e.g., RuneScape, World of Warcraft)</li>
+        <li><strong>Cubic:</strong> The XP required scales exponentially. The final few levels take as much time as the rest of the levels combined. (e.g., extreme grind Korean MMOs)</li>
+      </ul>
+
+      <h2>Why calculate XP per hour?</h2>
+      <p>Knowing your average XP per hour allows you to optimize your playtime and set realistic goals. By tracking your progress during a typical session, you can determine if a specific grinding method is worth the effort or if you need to find a more efficient strategy to reach your target level before an event ends or a new season begins.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const curveType = document.getElementById('curveType');
+    const baseXp = document.getElementById('baseXp');
+    const currentLevel = document.getElementById('currentLevel');
+    const targetLevel = document.getElementById('targetLevel');
+    const xpPerHour = document.getElementById('xpPerHour');
+    const hoursPerSession = document.getElementById('hoursPerSession');
+
+    const xpRequiredOut = document.getElementById('xpRequiredOut');
+    const hoursRequiredOut = document.getElementById('hoursRequiredOut');
+    const sessionsNeededOut = document.getElementById('sessionsNeededOut');
+
+    function getCumulativeXp(level, type, base) {
+      if (level <= 1) return 0;
+      let totalXp = 0;
+      for (let i = 1; i < level; i++) {
+        switch (type) {
+          case 'flat':
+            totalXp += base;
+            break;
+          case 'linear':
+            totalXp += base * i;
+            break;
+          case 'quadratic':
+            totalXp += base * Math.pow(i, 2);
+            break;
+          case 'cubic':
+            totalXp += base * Math.pow(i, 3);
+            break;
+        }
+      }
+      return totalXp;
+    }
+
+    function calculate() {
+      const type = curveType.value;
+      const base = parseFloat(baseXp.value) || 0;
+      let cLevel = parseInt(currentLevel.value) || 1;
+      let tLevel = parseInt(targetLevel.value) || 2;
+      const xpRate = parseFloat(xpPerHour.value) || 1;
+      const hoursSession = parseFloat(hoursPerSession.value) || 1;
+
+      // Ensure target level is greater than current level for calculation to make sense
+      if (tLevel <= cLevel) {
+        xpRequiredOut.textContent = '0';
+        hoursRequiredOut.textContent = '0';
+        sessionsNeededOut.textContent = '0';
+        return;
+      }
+
+      const currentTotalXp = getCumulativeXp(cLevel, type, base);
+      const targetTotalXp = getCumulativeXp(tLevel, type, base);
+      const xpNeeded = targetTotalXp - currentTotalXp;
+
+      const hoursNeeded = xpNeeded / xpRate;
+      const sessionsNeeded = hoursNeeded / hoursSession;
+
+      // Format output with commas for large numbers
+      xpRequiredOut.textContent = Math.round(xpNeeded).toLocaleString();
+      hoursRequiredOut.textContent = parseFloat(hoursNeeded.toFixed(2)).toString();
+      sessionsNeededOut.textContent = Math.ceil(sessionsNeeded).toString();
+    }
+
+    function copyValue(elementId, btn) {
+      // Remove commas for copying pure numbers if needed
+      const text = document.getElementById(elementId).textContent.replace(/,/g, '');
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [curveType, baseXp, currentLevel, targetLevel, xpPerHour, hoursPerSession].forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+
+    // Handle min constraints logic dynamically
+    currentLevel.addEventListener('change', () => {
+      if (parseInt(targetLevel.value) <= parseInt(currentLevel.value)) {
+        targetLevel.value = parseInt(currentLevel.value) + 1;
+      }
+      calculate();
+    });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
