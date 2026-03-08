@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keybind Layout Planner | Leeroy Jenkins</title>
+  <meta name="description" content="Visual keyboard layout planner for gamers. Assign actions, color-code keys, and load FPS, MOBA, and MMO templates entirely in your browser.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Keybind Layout Planner",
+    "description": "Visual keyboard layout planner for gamers. Assign actions, color-code keys, and load FPS, MOBA, and MMO templates.",
+    "url": "https://leeroyjenkins.quest/keybind-planner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --key-bg: #1a1625;
+      --key-border: #2d2640;
+      --key-hover: #251f35;
+      --key-active: #9333ea;
+      --key-text: #fff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: flex-end;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select, textarea {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+    }
+
+    button.secondary {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    button.secondary:hover {
+      border-color: var(--accent);
+      background: var(--border);
+    }
+
+    button.danger {
+      background: var(--bg);
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+
+    button.danger:hover {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    /* Keyboard Layout */
+    .keyboard-container {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 800px; /* Force minimum width to prevent awkward wrapping */
+    }
+
+    .key-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .key {
+      background: var(--key-bg);
+      border: 1px solid var(--key-border);
+      border-radius: 6px;
+      height: 48px;
+      min-width: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.1s;
+      user-select: none;
+      position: relative;
+      padding: 4px;
+    }
+
+    .key:hover {
+      background: var(--key-hover);
+      border-color: var(--accent);
+    }
+
+    .key.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.3);
+    }
+
+    .key-label {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--key-text);
+      z-index: 2;
+    }
+
+    .key-action {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      margin-top: 2px;
+      z-index: 2;
+    }
+
+    .key-bg-color {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 5px;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    /* Key Sizes */
+    .key.w-1-5 { min-width: 72px; }
+    .key.w-1-75 { min-width: 84px; }
+    .key.w-2 { min-width: 96px; }
+    .key.w-2-25 { min-width: 108px; }
+    .key.w-2-75 { min-width: 132px; }
+    .key.w-6 { min-width: 288px; }
+
+    /* Editor Panel */
+    .editor-panel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .editor-empty {
+      color: var(--text-secondary);
+      font-style: italic;
+      width: 100%;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .editor-content {
+      display: none;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-end;
+    }
+
+    .editor-content.active {
+      display: flex;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 8px;
+    }
+
+    .color-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .color-btn.active {
+      border-color: #fff;
+    }
+
+    /* Import/Export */
+    .io-section {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .io-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .io-header h3 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+
+    .io-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .app-card { padding: 16px; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .editor-panel, .io-section { padding: 16px; }
+      .editor-content { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Keybind Layout Planner</h1>
+      <p>Design, color-code, and export your optimal gaming keyboard layout.</p>
+    </header>
+
+    <div class="app-card">
+      <div class="toolbar">
+        <div class="form-group" style="flex: 1; min-width: 200px;">
+          <label for="templateSelect">Templates</label>
+          <select id="templateSelect">
+            <option value="">-- Select a Template --</option>
+            <option value="fps">FPS (e.g., CS2, Valorant)</option>
+            <option value="moba">MOBA (e.g., League of Legends, Dota 2)</option>
+            <option value="mmo">MMO (e.g., World of Warcraft)</option>
+          </select>
+        </div>
+        <button id="loadTemplateBtn" class="secondary">Load Template</button>
+        <button id="clearAllBtn" class="danger">Clear All</button>
+      </div>
+
+      <div class="keyboard-container">
+        <div class="keyboard" id="keyboard">
+          <!-- Keyboard rows will be generated by JS -->
+        </div>
+      </div>
+
+      <div class="editor-panel">
+        <div class="editor-empty" id="editorEmpty">
+          Select a key on the keyboard to assign an action and color.
+        </div>
+        <div class="editor-content" id="editorContent">
+          <div class="form-group">
+            <label>Selected Key</label>
+            <input type="text" id="selectedKeyDisplay" readonly style="width: 100px; text-align: center; font-weight: bold; background: var(--card-bg);">
+          </div>
+
+          <div class="form-group" style="flex: 1; min-width: 200px;">
+            <label for="actionInput">Action Label</label>
+            <input type="text" id="actionInput" placeholder="e.g., Move Forward, Ultimate, Reload">
+          </div>
+
+          <div class="form-group">
+            <label>Color Group</label>
+            <div class="color-options" id="colorOptions">
+              <!-- Colors added via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="io-section">
+        <div class="io-header">
+          <h3>Import / Export JSON</h3>
+        </div>
+        <textarea id="jsonIO" placeholder="Paste JSON here to import, or copy this to share your layout."></textarea>
+        <div class="io-buttons">
+          <button id="exportBtn" class="secondary">Generate JSON</button>
+          <button id="copyBtn" class="secondary">Copy to Clipboard</button>
+          <button id="importBtn">Import JSON</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why use a Keybind Layout Planner?</h2>
+      <p>A structured keybind layout is the foundation of mechanical skill in PC gaming. Whether you are learning a new complex MMO or trying to optimize your mechanics for competitive shooters, visualizing your keybinds helps build muscle memory faster. This tool allows you to visually group abilities by color—such as placing all movement abilities on blue keys and defensive cooldowns on green keys—ensuring your hand placement is logical and efficient.</p>
+
+      <h2>Popular Gaming Keybind Templates</h2>
+      <ul>
+        <li><strong>FPS (First-Person Shooter):</strong> Centralized around WASD for movement. Key actions like reload (R), use (E), and crouch (Ctrl/C) are kept immediately adjacent to the movement cluster to minimize the time your fingers spend away from strafe keys.</li>
+        <li><strong>MOBA (Multiplayer Online Battle Arena):</strong> Anchored on QWER for champion abilities. Summoner spells (D/F) and active items (1-6) are positioned for quick access with the index and middle fingers, prioritizing reaction speed over complex movement combinations.</li>
+        <li><strong>MMO (Massively Multiplayer Online):</strong> Highly complex layouts that utilize modifier keys (Shift, Ctrl, Alt) combined with numbers (1-0) and surrounding letters (Q, E, R, F, C, V) to map dozens of spells and macros within easy reach of the left hand.</li>
+      </ul>
+
+      <h2>How to export and share your layout</h2>
+      <p>Once you have perfected your custom keybind layout, you can easily save it. Click the <strong>Generate JSON</strong> button to create a text representation of your setup. You can copy this text and save it to a document for safekeeping, or share it with friends. To load a layout later, simply paste the JSON text back into the box and click <strong>Import JSON</strong>.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // State management
+    const state = {
+      selectedKey: null,
+      keybinds: {} // { 'KeyW': { action: 'Move Forward', color: 'blue' } }
+    };
+
+    // Color definitions
+    const colors = {
+      none: 'transparent',
+      red: '#ef4444',
+      orange: '#f97316',
+      yellow: '#eab308',
+      green: '#22c55e',
+      blue: '#3b82f6',
+      purple: '#a855f7',
+      pink: '#ec4899',
+      gray: '#6b7280'
+    };
+
+    // Keyboard layout definition (simplified standard PC layout)
+    const keyboardLayout = [
+      [
+        { id: 'Escape', label: 'Esc', class: '' },
+        { id: 'F1', label: 'F1', class: '' },
+        { id: 'F2', label: 'F2', class: '' },
+        { id: 'F3', label: 'F3', class: '' },
+        { id: 'F4', label: 'F4', class: '' },
+        { id: 'F5', label: 'F5', class: '' },
+        { id: 'F6', label: 'F6', class: '' },
+        { id: 'F7', label: 'F7', class: '' },
+        { id: 'F8', label: 'F8', class: '' },
+        { id: 'F9', label: 'F9', class: '' },
+        { id: 'F10', label: 'F10', class: '' },
+        { id: 'F11', label: 'F11', class: '' },
+        { id: 'F12', label: 'F12', class: '' }
+      ],
+      [
+        { id: 'Backquote', label: '`', class: '' },
+        { id: 'Digit1', label: '1', class: '' },
+        { id: 'Digit2', label: '2', class: '' },
+        { id: 'Digit3', label: '3', class: '' },
+        { id: 'Digit4', label: '4', class: '' },
+        { id: 'Digit5', label: '5', class: '' },
+        { id: 'Digit6', label: '6', class: '' },
+        { id: 'Digit7', label: '7', class: '' },
+        { id: 'Digit8', label: '8', class: '' },
+        { id: 'Digit9', label: '9', class: '' },
+        { id: 'Digit0', label: '0', class: '' },
+        { id: 'Minus', label: '-', class: '' },
+        { id: 'Equal', label: '=', class: '' },
+        { id: 'Backspace', label: 'Backspace', class: 'w-2' }
+      ],
+      [
+        { id: 'Tab', label: 'Tab', class: 'w-1-5' },
+        { id: 'KeyQ', label: 'Q', class: '' },
+        { id: 'KeyW', label: 'W', class: '' },
+        { id: 'KeyE', label: 'E', class: '' },
+        { id: 'KeyR', label: 'R', class: '' },
+        { id: 'KeyT', label: 'T', class: '' },
+        { id: 'KeyY', label: 'Y', class: '' },
+        { id: 'KeyU', label: 'U', class: '' },
+        { id: 'KeyI', label: 'I', class: '' },
+        { id: 'KeyO', label: 'O', class: '' },
+        { id: 'KeyP', label: 'P', class: '' },
+        { id: 'BracketLeft', label: '[', class: '' },
+        { id: 'BracketRight', label: ']', class: '' },
+        { id: 'Backslash', label: '\\', class: 'w-1-5' }
+      ],
+      [
+        { id: 'CapsLock', label: 'Caps', class: 'w-1-75' },
+        { id: 'KeyA', label: 'A', class: '' },
+        { id: 'KeyS', label: 'S', class: '' },
+        { id: 'KeyD', label: 'D', class: '' },
+        { id: 'KeyF', label: 'F', class: '' },
+        { id: 'KeyG', label: 'G', class: '' },
+        { id: 'KeyH', label: 'H', class: '' },
+        { id: 'KeyJ', label: 'J', class: '' },
+        { id: 'KeyK', label: 'K', class: '' },
+        { id: 'KeyL', label: 'L', class: '' },
+        { id: 'Semicolon', label: ';', class: '' },
+        { id: 'Quote', label: "'", class: '' },
+        { id: 'Enter', label: 'Enter', class: 'w-2-25' }
+      ],
+      [
+        { id: 'ShiftLeft', label: 'Shift', class: 'w-2-25' },
+        { id: 'KeyZ', label: 'Z', class: '' },
+        { id: 'KeyX', label: 'X', class: '' },
+        { id: 'KeyC', label: 'C', class: '' },
+        { id: 'KeyV', label: 'V', class: '' },
+        { id: 'KeyB', label: 'B', class: '' },
+        { id: 'KeyN', label: 'N', class: '' },
+        { id: 'KeyM', label: 'M', class: '' },
+        { id: 'Comma', label: ',', class: '' },
+        { id: 'Period', label: '.', class: '' },
+        { id: 'Slash', label: '/', class: '' },
+        { id: 'ShiftRight', label: 'Shift', class: 'w-2-75' }
+      ],
+      [
+        { id: 'ControlLeft', label: 'Ctrl', class: 'w-1-5' },
+        { id: 'MetaLeft', label: 'Win', class: 'w-1-5' },
+        { id: 'AltLeft', label: 'Alt', class: 'w-1-5' },
+        { id: 'Space', label: 'Space', class: 'w-6' },
+        { id: 'AltRight', label: 'Alt', class: 'w-1-5' },
+        { id: 'Fn', label: 'Fn', class: 'w-1-5' },
+        { id: 'ControlRight', label: 'Ctrl', class: 'w-1-5' }
+      ]
+    ];
+
+    // Templates
+    const templates = {
+      fps: {
+        'KeyW': { action: 'Forward', color: 'blue' },
+        'KeyA': { action: 'Left', color: 'blue' },
+        'KeyS': { action: 'Back', color: 'blue' },
+        'KeyD': { action: 'Right', color: 'blue' },
+        'Space': { action: 'Jump', color: 'green' },
+        'ControlLeft': { action: 'Crouch', color: 'orange' },
+        'ShiftLeft': { action: 'Walk', color: 'yellow' },
+        'KeyR': { action: 'Reload', color: 'red' },
+        'KeyE': { action: 'Use', color: 'purple' },
+        'KeyF': { action: 'Inspect', color: 'gray' },
+        'KeyQ': { action: 'Last Wpn', color: 'pink' },
+        'Digit1': { action: 'Primary', color: 'gray' },
+        'Digit2': { action: 'Secondary', color: 'gray' },
+        'Digit3': { action: 'Melee', color: 'gray' },
+        'Digit4': { action: 'Grenade', color: 'gray' },
+        'Tab': { action: 'Scoreboard', color: 'gray' },
+        'Escape': { action: 'Menu', color: 'gray' }
+      },
+      moba: {
+        'KeyQ': { action: 'Ability 1', color: 'blue' },
+        'KeyW': { action: 'Ability 2', color: 'blue' },
+        'KeyE': { action: 'Ability 3', color: 'blue' },
+        'KeyR': { action: 'Ultimate', color: 'purple' },
+        'KeyD': { action: 'Spell 1', color: 'yellow' },
+        'KeyF': { action: 'Spell 2', color: 'orange' },
+        'Digit1': { action: 'Item 1', color: 'green' },
+        'Digit2': { action: 'Item 2', color: 'green' },
+        'Digit3': { action: 'Item 3', color: 'green' },
+        'Digit4': { action: 'Item 4', color: 'green' },
+        'Digit5': { action: 'Item 5', color: 'green' },
+        'Digit6': { action: 'Item 6', color: 'green' },
+        'Digit7': { action: 'Trinket', color: 'pink' },
+        'KeyB': { action: 'Recall', color: 'gray' },
+        'Space': { action: 'Center Cam', color: 'gray' },
+        'KeyS': { action: 'Stop', color: 'red' },
+        'Tab': { action: 'Scoreboard', color: 'gray' },
+        'KeyA': { action: 'Attack Move', color: 'red' }
+      },
+      mmo: {
+        'KeyW': { action: 'Forward', color: 'blue' },
+        'KeyA': { action: 'Turn L', color: 'blue' },
+        'KeyS': { action: 'Back', color: 'blue' },
+        'KeyD': { action: 'Turn R', color: 'blue' },
+        'KeyQ': { action: 'Strafe L', color: 'blue' },
+        'KeyE': { action: 'Strafe R', color: 'blue' },
+        'Space': { action: 'Jump', color: 'green' },
+        'Digit1': { action: 'Action 1', color: 'orange' },
+        'Digit2': { action: 'Action 2', color: 'orange' },
+        'Digit3': { action: 'Action 3', color: 'orange' },
+        'Digit4': { action: 'Action 4', color: 'orange' },
+        'Digit5': { action: 'Action 5', color: 'orange' },
+        'Digit6': { action: 'Action 6', color: 'yellow' },
+        'Digit7': { action: 'Action 7', color: 'yellow' },
+        'Digit8': { action: 'Action 8', color: 'yellow' },
+        'Digit9': { action: 'Action 9', color: 'yellow' },
+        'Digit0': { action: 'Action 10', color: 'yellow' },
+        'Minus': { action: 'Action 11', color: 'yellow' },
+        'Equal': { action: 'Action 12', color: 'yellow' },
+        'KeyC': { action: 'Character', color: 'gray' },
+        'KeyB': { action: 'Bags', color: 'gray' },
+        'KeyM': { action: 'Map', color: 'gray' },
+        'Escape': { action: 'Menu', color: 'gray' },
+        'ShiftLeft': { action: 'Modifier', color: 'purple' },
+        'ControlLeft': { action: 'Modifier', color: 'purple' },
+        'AltLeft': { action: 'Modifier', color: 'purple' }
+      }
+    };
+
+    // DOM Elements
+    const keyboardEl = document.getElementById('keyboard');
+    const editorEmpty = document.getElementById('editorEmpty');
+    const editorContent = document.getElementById('editorContent');
+    const actionInput = document.getElementById('actionInput');
+    const colorOptions = document.getElementById('colorOptions');
+    const selectedKeyDisplay = document.getElementById('selectedKeyDisplay');
+    const jsonIO = document.getElementById('jsonIO');
+
+    // Initialize Keyboard UI
+    function initKeyboard() {
+      keyboardEl.innerHTML = '';
+      keyboardLayout.forEach(row => {
+        const rowEl = document.createElement('div');
+        rowEl.className = 'key-row';
+        row.forEach(keyDef => {
+          const keyEl = document.createElement('div');
+          keyEl.className = `key ${keyDef.class}`;
+          keyEl.id = `key-${keyDef.id}`;
+          keyEl.dataset.id = keyDef.id;
+          keyEl.dataset.label = keyDef.label;
+
+          keyEl.innerHTML = `
+            <div class="key-bg-color"></div>
+            <div class="key-label">${keyDef.label}</div>
+            <div class="key-action"></div>
+          `;
+
+          keyEl.addEventListener('click', () => selectKey(keyDef.id));
+          rowEl.appendChild(keyEl);
+        });
+        keyboardEl.appendChild(rowEl);
+      });
+    }
+
+    // Initialize Color Picker UI
+    function initColorPicker() {
+      colorOptions.innerHTML = '';
+      Object.entries(colors).forEach(([name, hex]) => {
+        const btn = document.createElement('button');
+        btn.className = 'color-btn';
+        btn.dataset.color = name;
+        if (name !== 'none') {
+          btn.style.backgroundColor = hex;
+        } else {
+          btn.style.background = `repeating-linear-gradient(45deg, var(--bg), var(--bg) 5px, var(--border) 5px, var(--border) 10px)`;
+        }
+
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          updateKeybindColor(name);
+        });
+
+        colorOptions.appendChild(btn);
+      });
+    }
+
+    // Render Keyboard State
+    function renderKeyboard() {
+      document.querySelectorAll('.key').forEach(keyEl => {
+        const id = keyEl.dataset.id;
+        const bind = state.keybinds[id];
+
+        const actionEl = keyEl.querySelector('.key-action');
+        const bgEl = keyEl.querySelector('.key-bg-color');
+
+        if (bind) {
+          actionEl.textContent = bind.action || '';
+          bgEl.style.backgroundColor = bind.color !== 'none' ? colors[bind.color] : 'transparent';
+        } else {
+          actionEl.textContent = '';
+          bgEl.style.backgroundColor = 'transparent';
+        }
+      });
+    }
+
+    // Key Selection Logic
+    function selectKey(id) {
+      document.querySelectorAll('.key').forEach(k => k.classList.remove('selected'));
+      const keyEl = document.getElementById(`key-${id}`);
+      if (keyEl) keyEl.classList.add('selected');
+
+      state.selectedKey = id;
+      selectedKeyDisplay.value = keyEl.dataset.label;
+      editorEmpty.style.display = 'none';
+      editorContent.classList.add('active');
+
+      const bind = state.keybinds[id] || { action: '', color: 'none' };
+      actionInput.value = bind.action;
+
+      document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+      const colorBtn = document.querySelector(`.color-btn[data-color="${bind.color}"]`);
+      if (colorBtn) colorBtn.classList.add('active');
+    }
+
+    // Update Action via Editor
+    actionInput.addEventListener('input', (e) => {
+      if (!state.selectedKey) return;
+
+      const action = e.target.value;
+      const id = state.selectedKey;
+
+      if (!state.keybinds[id]) state.keybinds[id] = { action: '', color: 'none' };
+      state.keybinds[id].action = action;
+
+      if (action.trim() === '' && state.keybinds[id].color === 'none') {
+        delete state.keybinds[id];
+      }
+
+      renderKeyboard();
+    });
+
+    // Update Color via Editor
+    function updateKeybindColor(color) {
+      if (!state.selectedKey) return;
+
+      const id = state.selectedKey;
+
+      if (!state.keybinds[id]) state.keybinds[id] = { action: '', color: 'none' };
+      state.keybinds[id].color = color;
+
+      if (state.keybinds[id].action.trim() === '' && color === 'none') {
+        delete state.keybinds[id];
+      }
+
+      renderKeyboard();
+    }
+
+    // Button Logic
+    document.getElementById('loadTemplateBtn').addEventListener('click', () => {
+      const templateSelect = document.getElementById('templateSelect').value;
+      if (templateSelect && templates[templateSelect]) {
+        state.keybinds = JSON.parse(JSON.stringify(templates[templateSelect]));
+        renderKeyboard();
+        if (state.selectedKey) selectKey(state.selectedKey); // Refresh editor panel
+      }
+    });
+
+    document.getElementById('clearAllBtn').addEventListener('click', () => {
+      if (confirm('Are you sure you want to clear all keybinds?')) {
+        state.keybinds = {};
+        renderKeyboard();
+        if (state.selectedKey) selectKey(state.selectedKey);
+      }
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      jsonIO.value = JSON.stringify(state.keybinds, null, 2);
+    });
+
+    document.getElementById('importBtn').addEventListener('click', () => {
+      try {
+        const parsed = JSON.parse(jsonIO.value);
+        if (typeof parsed === 'object' && parsed !== null) {
+          state.keybinds = parsed;
+          renderKeyboard();
+          if (state.selectedKey) selectKey(state.selectedKey);
+          alert('Keybinds imported successfully.');
+        }
+      } catch (e) {
+        alert('Invalid JSON. Please check the format and try again.');
+      }
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', (e) => {
+      const btn = e.target;
+      if (!jsonIO.value) {
+        jsonIO.value = JSON.stringify(state.keybinds, null, 2);
+      }
+      jsonIO.select();
+      navigator.clipboard.writeText(jsonIO.value).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = originalText; }, 2000);
+      });
+    });
+
+    // Initialize App
+    initKeyboard();
+    initColorPicker();
+    renderKeyboard();
+
+  </script>
+</body>
+</html>
