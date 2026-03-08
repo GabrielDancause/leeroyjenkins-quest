@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming PC Budget Builder | Leeroy Jenkins</title>
+  <meta name="description" content="Plan your optimal gaming PC build. Allocate your budget across GPU, CPU, RAM, and more based on your use case for the best performance.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gaming PC Budget Builder",
+    "description": "Plan your optimal gaming PC build. Allocate your budget across GPU, CPU, RAM, and more based on your use case for the best performance.",
+    "url": "https://leeroyjenkins.quest/gaming-pc-builder",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .budget-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .budget-input-wrapper span {
+      position: absolute;
+      left: 16px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    .budget-input-wrapper input {
+      padding-left: 32px;
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-label small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pro-comparison {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .pro-comparison span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 12px;
+      background: var(--border);
+      border-radius: 6px;
+      margin-top: 24px;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .progress-segment {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      justify-content: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-color {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+      .pro-comparison { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Gaming PC Budget Builder</h1>
+      <p>Optimal budget allocation for your next PC build.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="totalBudget">Total Budget</label>
+          <div class="budget-input-wrapper">
+            <span>$</span>
+            <input type="number" id="totalBudget" value="1500" min="500" step="100">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="useCase">Primary Use Case</label>
+          <select id="useCase">
+            <option value="gaming">Pure Gaming (Max FPS)</option>
+            <option value="balanced">Gaming + Streaming</option>
+            <option value="productivity">Productivity & Editing</option>
+            <option value="budget">Ultra Budget Gaming</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">
+            Graphics Card (GPU)
+            <small id="gpuPct">45% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="gpuOut">$675</div>
+            <button class="copy-btn" onclick="copyValue('gpuOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Processor (CPU)
+            <small id="cpuPct">20% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="cpuOut">$300</div>
+            <button class="copy-btn" onclick="copyValue('cpuOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Motherboard
+            <small id="moboPct">10% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="moboOut">$150</div>
+            <button class="copy-btn" onclick="copyValue('moboOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Memory (RAM)
+            <small id="ramPct">7% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="ramOut">$105</div>
+            <button class="copy-btn" onclick="copyValue('ramOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Storage (SSD/NVMe)
+            <small id="storagePct">8% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="storageOut">$120</div>
+            <button class="copy-btn" onclick="copyValue('storageOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Power Supply (PSU)
+            <small id="psuPct">6% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="psuOut">$90</div>
+            <button class="copy-btn" onclick="copyValue('psuOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Case & Cooling
+            <small id="casePct">4% of budget</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="caseOut">$60</div>
+            <button class="copy-btn" onclick="copyValue('caseOut', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-container" id="budgetBar">
+        <!-- Segments added via JS -->
+      </div>
+
+      <div class="legend" id="budgetLegend">
+        <!-- Legend added via JS -->
+      </div>
+
+      <div class="pro-comparison" id="buildSuggestion">
+        Suggestion: <span>Target an RTX 4070 or RX 7800 XT for this budget.</span>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why Component Allocation Matters</h2>
+      <p>Building a gaming PC isn't just about throwing money at the most expensive parts; it's about eliminating bottlenecks. If you pair an extremely high-end processor with a low-tier graphics card for a gaming build, you'll leave a significant amount of performance on the table. Proper budget allocation ensures that every dollar spent contributes directly to a smoother, higher-framerate experience.</p>
+
+      <h2>Gaming vs. Productivity Builds</h2>
+      <p>Depending on your primary use case, how you split your budget should change drastically:</p>
+      <ul>
+        <li><strong>Pure Gaming:</strong> For maximum FPS, the GPU is king. Depending on your overall budget, roughly 40-50% of your total spend should go directly to your graphics card. Games rely heavily on GPU compute and VRAM.</li>
+        <li><strong>Gaming + Streaming:</strong> Streaming requires additional CPU overhead and encoding capabilities. A stronger CPU with more cores, or a GPU with a dedicated high-quality encoder (like NVIDIA's NVENC), becomes necessary, slightly shifting the balance.</li>
+        <li><strong>Productivity & Editing:</strong> Applications like Premiere Pro, Blender, or heavy code compilation thrive on CPU cores, ample RAM, and fast storage. For these builds, CPU and RAM allocation increases significantly compared to pure gaming setups.</li>
+      </ul>
+
+      <h2>Don't Skimp on the Power Supply</h2>
+      <p>A common mistake for first-time builders is putting all their budget into the CPU and GPU, and buying the cheapest power supply (PSU) available. The PSU is the heart of your system. A low-quality unit can fail and take your expensive components with it. Always allocate at least 5-8% of your budget for a reliable, well-reviewed 80+ Bronze or Gold rated unit from a reputable brand.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const totalBudgetInput = document.getElementById('totalBudget');
+    const useCaseSelect = document.getElementById('useCase');
+
+    const allocations = {
+      gaming: {
+        gpu: 0.45, cpu: 0.20, mobo: 0.10, ram: 0.07, storage: 0.08, psu: 0.06, case: 0.04
+      },
+      balanced: {
+        gpu: 0.40, cpu: 0.25, mobo: 0.10, ram: 0.08, storage: 0.07, psu: 0.06, case: 0.04
+      },
+      productivity: {
+        gpu: 0.30, cpu: 0.25, mobo: 0.12, ram: 0.12, storage: 0.10, psu: 0.06, case: 0.05
+      },
+      budget: {
+        gpu: 0.40, cpu: 0.20, mobo: 0.12, ram: 0.08, storage: 0.08, psu: 0.07, case: 0.05
+      }
+    };
+
+    const colors = {
+      gpu: '#9333EA',     // Accent
+      cpu: '#3b82f6',     // Blue
+      mobo: '#10b981',    // Green
+      ram: '#f59e0b',     // Yellow
+      storage: '#ef4444', // Red
+      psu: '#8b5cf6',     // Violet
+      case: '#64748b'     // Slate
+    };
+
+    const labels = {
+      gpu: 'GPU', cpu: 'CPU', mobo: 'Mobo', ram: 'RAM', storage: 'Storage', psu: 'PSU', case: 'Case/Cooling'
+    };
+
+    function calculate() {
+      let budget = parseFloat(totalBudgetInput.value);
+      if (isNaN(budget) || budget < 0) budget = 0;
+
+      const useCase = useCaseSelect.value;
+      const alloc = allocations[useCase];
+
+      // Calculate amounts
+      const amounts = {};
+      let totalAssigned = 0;
+
+      // Calculate each exact part
+      for (const [key, pct] of Object.entries(alloc)) {
+        amounts[key] = Math.round(budget * pct);
+
+        // Update DOM
+        const outEl = document.getElementById(`${key}Out`);
+        const pctEl = document.getElementById(`${key}Pct`);
+        if (outEl) outEl.textContent = `$${amounts[key]}`;
+        if (pctEl) pctEl.textContent = `${Math.round(pct * 100)}% of budget`;
+
+        totalAssigned += amounts[key];
+      }
+
+      // Deal with rounding errors (add/subtract difference from GPU)
+      const diff = budget - totalAssigned;
+      if (diff !== 0 && budget > 0) {
+        amounts.gpu += diff;
+        document.getElementById('gpuOut').textContent = `$${amounts.gpu}`;
+      }
+
+      updateProgressBar(alloc);
+      updateSuggestion(budget, useCase);
+    }
+
+    function updateProgressBar(alloc) {
+      const barContainer = document.getElementById('budgetBar');
+      const legendContainer = document.getElementById('budgetLegend');
+
+      barContainer.innerHTML = '';
+      legendContainer.innerHTML = '';
+
+      for (const [key, pct] of Object.entries(alloc)) {
+        if (pct <= 0) continue;
+
+        // Add bar segment
+        const segment = document.createElement('div');
+        segment.className = 'progress-segment';
+        segment.style.width = `${pct * 100}%`;
+        segment.style.backgroundColor = colors[key];
+        segment.title = `${labels[key]}: ${Math.round(pct * 100)}%`;
+        barContainer.appendChild(segment);
+
+        // Add legend item
+        const legendItem = document.createElement('div');
+        legendItem.className = 'legend-item';
+
+        const legendColor = document.createElement('div');
+        legendColor.className = 'legend-color';
+        legendColor.style.backgroundColor = colors[key];
+
+        const legendText = document.createElement('span');
+        legendText.textContent = labels[key];
+
+        legendItem.appendChild(legendColor);
+        legendItem.appendChild(legendText);
+        legendContainer.appendChild(legendItem);
+      }
+    }
+
+    function updateSuggestion(budget, useCase) {
+      const suggestionEl = document.getElementById('buildSuggestion');
+      let text = '';
+
+      if (budget < 600) {
+        text = 'Consider integrated graphics (like Ryzen 5 5600G) or the used market for this budget.';
+      } else if (budget < 900) {
+        text = 'Target an RX 6600 or RTX 4060 for a solid 1080p experience.';
+      } else if (budget < 1300) {
+        text = 'Target an RX 7700 XT or RTX 4060 Ti for excellent 1080p/1440p gaming.';
+      } else if (budget < 1800) {
+        text = 'Target an RTX 4070 SUPER or RX 7900 GRE for high-refresh 1440p gaming.';
+      } else if (budget < 2500) {
+        text = 'Target an RTX 4080 SUPER or RX 7900 XTX for premium 4K gaming.';
+      } else {
+        text = 'Target an RTX 4090 for the absolute best performance currently available.';
+      }
+
+      if (useCase === 'productivity') {
+        text += ' Make sure to pair it with at least 32GB of RAM and a fast Gen4 NVMe.';
+      }
+
+      suggestionEl.innerHTML = `Suggestion: <span>${text}</span>`;
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent.replace('$', '');
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [totalBudgetInput, useCaseSelect].forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
