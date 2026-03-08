@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Free-to-Play Games | Leeroy Jenkins</title>
+  <meta name="description" content="Curated list of the top free-to-play games including Valorant, Fortnite, Apex Legends, League of Legends, Genshin Impact, and Path of Exile. Compare genres, platforms, and monetization.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Free-to-Play Games",
+    "description": "Curated list of the top free-to-play games including Valorant, Fortnite, Apex Legends, League of Legends, Genshin Impact, and Path of Exile.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures"
+    },
+    "url": "https://leeroyjenkins.quest/list-free-games"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --score-high: #10b981;
+      --score-mid: #f59e0b;
+      --score-low: #ef4444;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 2.5rem; }
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .filter-section {
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
+    }
+
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .card-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .card-title-group h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .score-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: var(--bg);
+      border: 2px solid;
+    }
+
+    .score-high { border-color: var(--score-high); color: var(--score-high); }
+    .score-mid { border-color: var(--score-mid); color: var(--score-mid); }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 20px;
+    }
+
+    .card-description {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      background: var(--bg);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-label {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .metric-value {
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .pros-cons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .list-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .pros-list, .cons-list {
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .pros-list li, .cons-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .pros-list li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--score-high);
+      font-weight: 800;
+    }
+
+    .cons-list li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--score-low);
+      font-weight: 800;
+    }
+
+    .seo-content {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      background: var(--card-bg);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Best Free-to-Play Games</h1>
+      <p>Curated, no-bullshit list of the top F2P titles worth your time. Filter by genre to find your next obsession.</p>
+    </header>
+
+    <div class="filter-section">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search games, genres, platforms (e.g., 'FPS', 'PC', 'Riot')...">
+      </div>
+      <div class="filter-tags" id="filterTags">
+        <button class="filter-btn active" data-filter="all">All Games</button>
+        <button class="filter-btn" data-filter="fps">FPS</button>
+        <button class="filter-btn" data-filter="moba">MOBA</button>
+        <button class="filter-btn" data-filter="rpg">Action RPG</button>
+        <button class="filter-btn" data-filter="br">Battle Royale</button>
+      </div>
+    </div>
+
+    <div class="grid-2" id="gamesGrid">
+
+      <!-- Valorant -->
+      <div class="card game-card" data-tags="valorant fps tactical shooter pc riot competitive multiplayer">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Valorant</h3>
+            <div class="card-subtitle">Riot Games &middot; Released 2020</div>
+          </div>
+          <div class="score-badge score-high" title="Leeroy Score: 9.0/10">9.0</div>
+        </div>
+        <div class="card-body">
+          <div class="card-description">
+            A precise 5v5 tactical hero shooter combining CS:GO's lethal gunplay with Overwatch's character abilities. Highly competitive and aggressively updated.
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-label">Genre</span>
+              <span class="metric-value">Tactical FPS</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Platforms</span>
+              <span class="metric-value">PC, PS5, Xbox Series X/S</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Monetization</span>
+              <span class="metric-value">Cosmetics only</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Playerbase</span>
+              <span class="metric-value">Massive / Active</span>
+            </div>
+          </div>
+          <div class="pros-cons">
+            <div>
+              <div class="list-title">Pros</div>
+              <ul class="pros-list">
+                <li>Excellent gunplay and map design</li>
+                <li>Best-in-class anti-cheat (Vanguard)</li>
+                <li>128-tick servers standard</li>
+              </ul>
+            </div>
+            <div>
+              <div class="list-title">Cons</div>
+              <ul class="cons-list">
+                <li>Extremely steep learning curve</li>
+                <li>Weapon skins are absurdly expensive</li>
+                <li>Toxic elements in ranked queue</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fortnite -->
+      <div class="card game-card" data-tags="fortnite br battle royale tps building epic games multiplatform">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Fortnite</h3>
+            <div class="card-subtitle">Epic Games &middot; Released 2017</div>
+          </div>
+          <div class="score-badge score-high" title="Leeroy Score: 9.5/10">9.5</div>
+        </div>
+        <div class="card-body">
+          <div class="card-description">
+            The cultural juggernaut that redefined live-service games. Offers traditional battle royale, a highly popular Zero Build mode, and endless user-generated content.
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-label">Genre</span>
+              <span class="metric-value">Battle Royale</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Platforms</span>
+              <span class="metric-value">Everything</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Monetization</span>
+              <span class="metric-value">Cosmetics & Battle Pass</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Playerbase</span>
+              <span class="metric-value">Colossal</span>
+            </div>
+          </div>
+          <div class="pros-cons">
+            <div>
+              <div class="list-title">Pros</div>
+              <ul class="pros-list">
+                <li>Zero Build mode makes it highly accessible</li>
+                <li>Unmatched crossover events and IP integration</li>
+                <li>Constant, game-changing seasonal updates</li>
+              </ul>
+            </div>
+            <div>
+              <div class="list-title">Cons</div>
+              <ul class="cons-list">
+                <li>Build mode skill gap is insurmountable for new players</li>
+                <li>FOMO-driven item shop mechanics</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apex Legends -->
+      <div class="card game-card" data-tags="apex legends fps br battle royale ea respawn fast movement">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Apex Legends</h3>
+            <div class="card-subtitle">Respawn / EA &middot; Released 2019</div>
+          </div>
+          <div class="score-badge score-high" title="Leeroy Score: 8.5/10">8.5</div>
+        </div>
+        <div class="card-body">
+          <div class="card-description">
+            A fast-paced, movement-heavy squad battle royale set in the Titanfall universe. Known for its ping system and incredibly fluid gunplay.
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-label">Genre</span>
+              <span class="metric-value">Hero Battle Royale</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Platforms</span>
+              <span class="metric-value">PC, Console, Switch</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Monetization</span>
+              <span class="metric-value">Cosmetics & Legends</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Playerbase</span>
+              <span class="metric-value">Large</span>
+            </div>
+          </div>
+          <div class="pros-cons">
+            <div>
+              <div class="list-title">Pros</div>
+              <ul class="pros-list">
+                <li>Best movement mechanics in the genre</li>
+                <li>Gunplay feels impactful and rewarding</li>
+                <li>Revolutionary ping communication system</li>
+              </ul>
+            </div>
+            <div>
+              <div class="list-title">Cons</div>
+              <ul class="cons-list">
+                <li>Server tick-rate and audio issues persist</li>
+                <li>Grindy character unlock system</li>
+                <li>Matchmaking can be punishing for solo queue</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- League of Legends -->
+      <div class="card game-card" data-tags="league of legends lol moba riot competitive pc">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>League of Legends</h3>
+            <div class="card-subtitle">Riot Games &middot; Released 2009</div>
+          </div>
+          <div class="score-badge score-high" title="Leeroy Score: 8.8/10">8.8</div>
+        </div>
+        <div class="card-body">
+          <div class="card-description">
+            The undisputed king of the MOBA genre. Two teams of five battle to destroy the enemy's Nexus. Deeply strategic with a massive roster of champions.
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-label">Genre</span>
+              <span class="metric-value">MOBA</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Platforms</span>
+              <span class="metric-value">PC, Mac</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Monetization</span>
+              <span class="metric-value">Cosmetics & Champs</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Playerbase</span>
+              <span class="metric-value">Colossal</span>
+            </div>
+          </div>
+          <div class="pros-cons">
+            <div>
+              <div class="list-title">Pros</div>
+              <ul class="pros-list">
+                <li>Unparalleled strategic depth and replayability</li>
+                <li>Runs on basically any computer</li>
+                <li>Thriving esports scene</li>
+              </ul>
+            </div>
+            <div>
+              <div class="list-title">Cons</div>
+              <ul class="cons-list">
+                <li>Notoriously toxic community</li>
+                <li>Matches can be long (30-45 mins) and held hostage</li>
+                <li>160+ champions makes for a brutal learning curve</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Genshin Impact -->
+      <div class="card game-card" data-tags="genshin impact rpg action gacha anime hoyoverse open world pve">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Genshin Impact</h3>
+            <div class="card-subtitle">HoYoverse &middot; Released 2020</div>
+          </div>
+          <div class="score-badge score-mid" title="Leeroy Score: 8.0/10">8.0</div>
+        </div>
+        <div class="card-body">
+          <div class="card-description">
+            A massive, gorgeous open-world action RPG featuring elemental combat. Heavily story-driven with high production values, but relies on gacha mechanics.
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-label">Genre</span>
+              <span class="metric-value">Action RPG</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Platforms</span>
+              <span class="metric-value">PC, PS4/5, Mobile</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Monetization</span>
+              <span class="metric-value">Gacha (Characters/Weapons)</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Playerbase</span>
+              <span class="metric-value">Massive / PvE</span>
+            </div>
+          </div>
+          <div class="pros-cons">
+            <div>
+              <div class="list-title">Pros</div>
+              <ul class="pros-list">
+                <li>AAA-quality open world exploration</li>
+                <li>Satisfying elemental combo combat system</li>
+                <li>Frequent, high-quality content updates</li>
+              </ul>
+            </div>
+            <div>
+              <div class="list-title">Cons</div>
+              <ul class="cons-list">
+                <li>Predatory gacha (loot box) monetization</li>
+                <li>Endgame relies heavily on daily stamina (Resin)</li>
+                <li>Co-op multiplayer is severely limited</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Path of Exile -->
+      <div class="card game-card" data-tags="path of exile poe arpg hack and slash griding gear games rpg">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3>Path of Exile</h3>
+            <div class="card-subtitle">Grinding Gear Games &middot; Released 2013</div>
+          </div>
+          <div class="score-badge score-high" title="Leeroy Score: 9.2/10">9.2</div>
+        </div>
+        <div class="card-body">
+          <div class="card-description">
+            The definitive modern ARPG. A dark fantasy loot-fest featuring an incomprehensibly large passive skill tree and deep crafting systems.
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric-label">Genre</span>
+              <span class="metric-value">Action RPG (Hack & Slash)</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Platforms</span>
+              <span class="metric-value">PC, Mac, Consoles</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Monetization</span>
+              <span class="metric-value">Stash Tabs & Cosmetics</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Playerbase</span>
+              <span class="metric-value">Large / Seasonal</span>
+            </div>
+          </div>
+          <div class="pros-cons">
+            <div>
+              <div class="list-title">Pros</div>
+              <ul class="pros-list">
+                <li>The deepest character customization in gaming</li>
+                <li>Massive, transformative quarterly expansions (Leagues)</li>
+                <li>Incredible build diversity</li>
+              </ul>
+            </div>
+            <div>
+              <div class="list-title">Cons</div>
+              <ul class="cons-list">
+                <li>Requires a PhD to understand endgame crafting</li>
+                <li>Performance issues during high-density combat</li>
+                <li>"Stash tabs" are essentially a mandatory hidden cost</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="seo-content">
+      <h2>The Evolution of Free-to-Play Gaming</h2>
+      <p>Gone are the days when "free-to-play" (F2P) meant low-quality, pay-to-win browser games. Today, the most played, most profitable, and most competitive games on the planet utilize the F2P model. Developers have realized that removing the barrier to entry allows for massive player bases, which sustains matchmaking ecosystems and drives long-term revenue through cosmetics and battle passes.</p>
+
+      <h2>How Do Free Games Make Money?</h2>
+      <p>Understanding monetization is crucial before investing hundreds of hours into a F2P title. The games on this list generally fall into three categories:</p>
+      <ul>
+        <li><strong>Pure Cosmetics (e.g., Valorant, Fortnite):</strong> The gold standard. You cannot buy an advantage. Revenue is generated purely through weapon skins, character outfits, and battle passes.</li>
+        <li><strong>Pay for Convenience / Roster (e.g., League of Legends, Apex Legends, Path of Exile):</strong> While gameplay remains fair, you can pay to unlock characters faster, or in POE's case, buy inventory space to make inventory management less tedious.</li>
+        <li><strong>Gacha / Pay to Progress (e.g., Genshin Impact):</strong> Heavily relies on random chance to unlock characters and weapons. While entirely playable for free, paying money directly accelerates your power and progress.</li>
+      </ul>
+
+      <h2>Choosing the Right Game For You</h2>
+      <p>If you're looking for high-stakes competition and have the patience to learn, tactical shooters like <strong>Valorant</strong> or MOBAs like <strong>League of Legends</strong> offer endless depth. If you prefer solo grinding and theory-crafting, <strong>Path of Exile</strong> is unrivaled. For a more relaxed, narrative-driven experience (provided you can resist the gambling mechanics), <strong>Genshin Impact</strong> provides AAA quality for zero upfront cost.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gameCards = document.querySelectorAll('.game-card');
+    const gamesGrid = document.getElementById('gamesGrid');
+
+    // Create no results message element
+    const noResultsMsg = document.createElement('div');
+    noResultsMsg.className = 'no-results hidden';
+    noResultsMsg.textContent = 'No games found matching your criteria.';
+    gamesGrid.appendChild(noResultsMsg);
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterGames() {
+      let visibleCount = 0;
+
+      gameCards.forEach(card => {
+        const tags = card.getAttribute('data-tags').toLowerCase();
+        const textContent = card.textContent.toLowerCase();
+
+        const matchesSearch = currentSearch === '' ||
+                              textContent.includes(currentSearch) ||
+                              tags.includes(currentSearch);
+
+        const matchesFilter = currentFilter === 'all' ||
+                              tags.includes(currentFilter);
+
+        if (matchesSearch && matchesFilter) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResultsMsg.classList.remove('hidden');
+      } else {
+        noResultsMsg.classList.add('hidden');
+      }
+    }
+
+    // Search input listener
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.toLowerCase().trim();
+      filterGames();
+    });
+
+    // Filter buttons listener
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active class
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update filter state and run
+        currentFilter = btn.getAttribute('data-filter');
+        filterGames();
+      });
+    });
+  </script>
+</body>
+</html>
