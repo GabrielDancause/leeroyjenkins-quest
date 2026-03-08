@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FPS Optimization Guide | Leeroy Jenkins</title>
+  <meta name="description" content="Complete guide to boosting FPS. Windows settings, GPU drivers, in-game settings, hardware upgrades. A comprehensive cheat sheet for gamers.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "FPS Optimization Guide",
+    "description": "Complete guide to boosting FPS. Windows settings, GPU drivers, in-game settings, hardware upgrades.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures",
+      "url": "https://gab.ae"
+    },
+    "url": "https://leeroyjenkins.quest/guide-fps-optimization"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .search-container {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .guide-section {
+      margin-bottom: 24px;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .guide-section:hover {
+      border-color: #332d46;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .section-header {
+      padding: 20px 24px;
+      background: rgba(16, 14, 24, 0.8);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-icon {
+      color: var(--accent);
+      font-size: 1.4rem;
+    }
+
+    .toggle-icon {
+      color: var(--text-secondary);
+      transition: transform 0.3s ease;
+    }
+
+    .guide-section.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .section-content {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: var(--bg);
+    }
+
+    .guide-section.active .section-content {
+      padding: 24px;
+      max-height: 2000px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .info-card h4 {
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .info-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: var(--text-primary);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge.high { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge.med { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge.low { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .code-block {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .code-block code {
+      font-family: var(--font-mono);
+      color: #a78bfa;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .container { padding: 40px 16px; }
+      .section-header { padding: 16px; }
+      .section-content { padding: 0 16px; }
+      .guide-section.active .section-content { padding: 16px; }
+      th, td { padding: 8px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>FPS Optimization Guide</h1>
+      <p>The ultimate cheat sheet for maximum frame rates and lowest input lag.</p>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search for settings, tweaks, e.g., 'Nvidia', 'Shadows'...">
+    </div>
+
+    <div id="guideContainer">
+
+      <!-- Section 1: Windows Optimization -->
+      <div class="guide-section active" data-keywords="windows os operating system power plan game mode xbox game bar background apps hardware accelerated gpu scheduling hags">
+        <div class="section-header" onclick="toggleSection(this)">
+          <div class="section-title"><span class="section-icon">❖</span> Windows OS Tweaks</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="section-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Core operating system settings that ensure Windows prioritizes your game over background tasks.</p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <h4>Game Mode</h4>
+              <p>Turn ON in Settings > Gaming > Game Mode. Helps stabilize framerate by preventing background updates.</p>
+            </div>
+            <div class="info-card">
+              <h4>Xbox Game Bar</h4>
+              <p>Turn OFF unless actively using it for party chat. Disabling background recording (DVR) reduces stuttering.</p>
+            </div>
+            <div class="info-card">
+              <h4>Power Plan</h4>
+              <p>Set to 'High Performance' or 'Ultimate Performance' to prevent CPU downclocking during gameplay.</p>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Setting</th>
+                <th>Location</th>
+                <th>Recommendation</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hardware-Accelerated GPU Scheduling (HAGS)</td>
+                <td>Settings > System > Display > Graphics</td>
+                <td><strong style="color:var(--text-primary)">ON</strong></td>
+                <td><span class="badge med">Med</span></td>
+              </tr>
+              <tr>
+                <td>Startup Apps</td>
+                <td>Task Manager > Startup Apps</td>
+                <td><strong style="color:var(--text-primary)">Disable Non-Essential</strong></td>
+                <td><span class="badge high">High</span></td>
+              </tr>
+              <tr>
+                <td>Mouse Acceleration</td>
+                <td>Mouse Settings > Additional options</td>
+                <td><strong style="color:var(--text-primary)">Disable 'Enhance pointer precision'</strong></td>
+                <td><span class="badge low">Aim</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="color: var(--text-primary); margin-bottom: 8px; font-size: 1rem;">Ultimate Performance Power Plan Unlock</h4>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Run this in an Administrator Command Prompt if the plan is hidden:</p>
+          <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: NVIDIA Control Panel -->
+      <div class="guide-section" data-keywords="nvidia control panel gpu graphics driver latency reflex g-sync vsync power management texture filtering">
+        <div class="section-header" onclick="toggleSection(this)">
+          <div class="section-title"><span class="section-icon">🟢</span> NVIDIA Control Panel</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="section-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Optimize 3D settings globally or per-game for maximum performance and minimum input latency.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>NVIDIA Setting</th>
+                <th>Optimal Value</th>
+                <th>Why?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Power Management Mode</td>
+                <td><strong style="color:var(--text-primary)">Prefer Maximum Performance</strong></td>
+                <td>Keeps GPU clocks high during gameplay.</td>
+              </tr>
+              <tr>
+                <td>Low Latency Mode</td>
+                <td><strong style="color:var(--text-primary)">On or Ultra</strong></td>
+                <td>Reduces render queue. Use 'Ultra' if GPU bottlenecked. Use In-Game Reflex instead if available.</td>
+              </tr>
+              <tr>
+                <td>Texture Filtering - Quality</td>
+                <td><strong style="color:var(--text-primary)">High Performance</strong></td>
+                <td>Disables texture optimizations that cost FPS for minimal visual gain.</td>
+              </tr>
+              <tr>
+                <td>Vertical Sync (V-Sync)</td>
+                <td><strong style="color:var(--text-primary)">Off</strong> (Unless using G-Sync)</td>
+                <td>V-Sync adds significant input lag. If using G-Sync, set V-Sync ON here, but OFF in-game.</td>
+              </tr>
+              <tr>
+                <td>Max Frame Rate</td>
+                <td><strong style="color:var(--text-primary)">Off</strong></td>
+                <td>Use in-game limiters instead, as they have less input lag than driver-level limiters.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: AMD Radeon Software -->
+      <div class="guide-section" data-keywords="amd radeon software adrenalin gpu graphics driver anti-lag chill boost freesync">
+        <div class="section-header" onclick="toggleSection(this)">
+          <div class="section-title"><span class="section-icon">🔴</span> AMD Radeon Software</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="section-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Key settings for AMD Adrenalin users to maximize frames and responsiveness.</p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <h4>Radeon Anti-Lag</h4>
+              <p><strong>Enable</strong> for GPU-bound games to reduce input delay. (Equivalent to NVIDIA Low Latency).</p>
+            </div>
+            <div class="info-card">
+              <h4>Radeon Boost</h4>
+              <p><strong>Disable</strong> for competitive games. It dynamically lowers resolution during mouse movement, which can cause inconsistency.</p>
+            </div>
+            <div class="info-card">
+              <h4>Radeon Chill</h4>
+              <p><strong>Disable</strong>. It limits FPS when you aren't moving, which is terrible for competitive shooters.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: In-Game Settings -->
+      <div class="guide-section" data-keywords="in-game settings graphics quality shadows textures anti-aliasing resolution dlss fsr reflex">
+        <div class="section-header" onclick="toggleSection(this)">
+          <div class="section-title"><span class="section-icon">🎮</span> In-Game Settings</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="section-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">The most impactful settings inside the game menus.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Setting</th>
+                <th>Recommendation</th>
+                <th>FPS Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Shadow Quality</td>
+                <td><strong style="color:var(--text-primary)">Low / Medium</strong></td>
+                <td><span class="badge high">High</span></td>
+              </tr>
+              <tr>
+                <td>Volumetric Lighting / Fog</td>
+                <td><strong style="color:var(--text-primary)">Low</strong></td>
+                <td><span class="badge high">High</span></td>
+              </tr>
+              <tr>
+                <td>Anti-Aliasing (AA)</td>
+                <td><strong style="color:var(--text-primary)">TAA / FXAA / Off</strong> (Avoid MSAA)</td>
+                <td><span class="badge med">Med</span></td>
+              </tr>
+              <tr>
+                <td>Texture Quality</td>
+                <td><strong style="color:var(--text-primary)">High</strong> (If VRAM allows)</td>
+                <td><span class="badge low">Low</span></td>
+              </tr>
+              <tr>
+                <td>Post-Processing / Effects</td>
+                <td><strong style="color:var(--text-primary)">Low</strong></td>
+                <td><span class="badge med">Med</span></td>
+              </tr>
+              <tr>
+                <td>Motion Blur / Depth of Field</td>
+                <td><strong style="color:var(--text-primary)">Off</strong> (Improves visibility)</td>
+                <td><span class="badge low">Low</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="info-card" style="margin-top: 16px;">
+            <h4>Upscaling Technologies (DLSS / FSR / XeSS)</h4>
+            <p>If your GPU struggles to hit your monitor's refresh rate, use upscaling. Set to <strong>'Quality'</strong> for best visuals, or <strong>'Balanced/Performance'</strong> for maximum FPS. Note: Upscaling is usually unnecessary and adds slight blur at 1080p, but is highly recommended for 1440p and 4K gaming.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Hardware & Overclocking -->
+      <div class="guide-section" data-keywords="hardware upgrades overclocking xmp expo ram memory cpu gpu cooling temperatures thermal throttling">
+        <div class="section-header" onclick="toggleSection(this)">
+          <div class="section-title"><span class="section-icon">⚙️</span> Hardware & BIOS</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="section-content">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">Physical and low-level tweaks to unlock hidden performance.</p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <h4>Enable XMP / EXPO (BIOS)</h4>
+              <p>Crucial! RAM runs at slow default speeds until XMP (Intel) or EXPO/DOCP (AMD) is enabled in BIOS. This provides a massive FPS boost in CPU-bound games.</p>
+            </div>
+            <div class="info-card">
+              <h4>Resizable BAR / SAM (BIOS)</h4>
+              <p>Allows the CPU to access all GPU memory at once. Enable 'Above 4G Decoding' and 'Re-Size BAR' in BIOS for a free 5-10% FPS boost in supported games.</p>
+            </div>
+            <div class="info-card">
+              <h4>Temperatures</h4>
+              <p>Monitor temps using HWMonitor or MSI Afterburner. If CPU/GPU hits 90°C+, it will 'thermal throttle' (slow down). Clean dust, re-paste, or improve case airflow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- End Guide Container -->
+
+    <div class="seo-content">
+      <h2>Why is optimizing FPS important?</h2>
+      <p>Frames Per Second (FPS) determines how smoothly a game runs. Higher FPS not only makes the game look better but fundamentally improves how it plays by reducing system latency (input lag). When your PC renders more frames, the game state is updated more frequently, meaning your mouse clicks and keyboard presses are registered and displayed on-screen faster. In competitive titles like Counter-Strike 2, Valorant, or Apex Legends, optimal FPS is a requirement, not a luxury.</p>
+
+      <h2>Software vs. Hardware Bottlenecks</h2>
+      <p>FPS optimization is a balance. If you turn all in-game settings to 'Low' at 1080p, the burden shifts from your graphics card (GPU) to your processor (CPU). At a certain point, no amount of GPU tweaking will increase your FPS because the CPU cannot prepare frames fast enough (a CPU bottleneck). This guide covers both Windows OS optimizations (to free up CPU cycles) and Graphics Panel tweaks (to ease the GPU load).</p>
+
+      <h2>Do I need a third-party "FPS Booster" program?</h2>
+      <p>Generally, no. Most "FPS Boosters" or "Game Optimizers" are snake oil. They often consume background resources themselves while merely doing things you can do manually: closing background apps, clearing RAM cache, or changing power plans. Following the manual tweaks in this guide ensures your system is optimized at a deeper level without relying on bloatware.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // Accordion Toggle Logic
+    function toggleSection(header) {
+      const section = header.parentElement;
+      section.classList.toggle('active');
+    }
+
+    // Search/Filter Logic
+    const searchInput = document.getElementById('searchInput');
+    const guideSections = document.querySelectorAll('.guide-section');
+
+    searchInput.addEventListener('input', function(e) {
+      const term = e.target.value.toLowerCase().trim();
+
+      guideSections.forEach(section => {
+        // Search in keywords data attribute AND text content
+        const keywords = section.getAttribute('data-keywords') || '';
+        const textContent = section.textContent.toLowerCase();
+
+        if (term === '' || keywords.includes(term) || textContent.includes(term)) {
+          section.classList.remove('hidden');
+          // Optional: Auto-expand if searching, but close if empty
+          if (term !== '' && !section.classList.contains('active')) {
+            section.classList.add('active');
+          }
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    });
+
+    // Copy Code Logic
+    function copyCode(btn) {
+      const codeElement = btn.nextElementSibling;
+      const text = codeElement.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
