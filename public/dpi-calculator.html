@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPI & Sensitivity Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Match your mouse sensitivity across any DPI. Calculate eDPI, cm/360, and in/360. Compare your sensitivity to pro players in Valorant, CS2, and Overwatch.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "DPI & Sensitivity Calculator",
+    "description": "Match your mouse sensitivity across any DPI. Calculate eDPI, cm/360, and in/360. Compare your sensitivity to pro players in Valorant, CS2, and Overwatch.",
+    "url": "https://leeroyjenkins.quest/dpi-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pro-comparison {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .pro-comparison span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+      .pro-comparison { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>DPI & Sensitivity Calculator</h1>
+      <p>Match your exact feel across any mouse or game.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label for="gameSelect">Game</label>
+        <select id="gameSelect">
+          <option value="cs2">Counter-Strike 2 / CS:GO</option>
+          <option value="valorant">Valorant</option>
+          <option value="overwatch">Overwatch 2</option>
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="currentDpi">Current DPI</label>
+          <input type="number" id="currentDpi" value="800" min="100" step="100">
+        </div>
+        <div class="form-group">
+          <label for="currentSens">Current Sensitivity</label>
+          <input type="number" id="currentSens" value="1.0" min="0.01" step="0.01">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 16px;">
+        <label for="newDpi">New DPI</label>
+        <input type="number" id="newDpi" value="1600" min="100" step="100">
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">New Sensitivity</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="newSensOut">0.5</div>
+            <button class="copy-btn" onclick="copyValue('newSensOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">eDPI (Effective DPI)</div>
+          <div class="result-value-group">
+            <div class="result-value" id="edpiOut">800</div>
+            <button class="copy-btn" onclick="copyValue('edpiOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">cm/360</div>
+          <div class="result-value-group">
+            <div class="result-value" id="cm360Out">51.95</div>
+            <button class="copy-btn" onclick="copyValue('cm360Out', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">in/360</div>
+          <div class="result-value-group">
+            <div class="result-value" id="in360Out">20.45</div>
+            <button class="copy-btn" onclick="copyValue('in360Out', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pro-comparison" id="proComparison">
+        Pro Average: <span>~800 eDPI</span> for CS2.
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>What is eDPI?</h2>
+      <p>eDPI stands for <strong>Effective Dots Per Inch</strong>. It is a formula used to compare the true sensitivity of different players, regardless of what hardware DPI they are using. The formula is simply:</p>
+      <p style="background: var(--card-bg); padding: 16px; border-radius: 8px; border: 1px solid var(--border); font-family: var(--font-mono); margin-bottom: 16px;">eDPI = DPI × In-Game Sensitivity</p>
+      <p>For example, a player with 400 DPI and 2.0 sensitivity has the exact same eDPI (800) as a player using 800 DPI and 1.0 sensitivity. Note that eDPI is game-specific; 800 eDPI in Valorant is completely different from 800 eDPI in CS2 because the game engines handle sensitivity scaling differently.</p>
+
+      <h2>What is cm/360?</h2>
+      <p>cm/360 is the physical distance your mouse needs to move on your mousepad to complete a full 360-degree turn in-game. It is the most accurate, universal way to measure and compare sensitivity across entirely different games.</p>
+      <ul>
+        <li><strong>Low Sensitivity (50cm+):</strong> Popular in tactical shooters like CS2 and Valorant for precise micro-adjustments and crosshair placement.</li>
+        <li><strong>Medium Sensitivity (30cm - 50cm):</strong> A balanced middle ground, versatile for most games.</li>
+        <li><strong>High Sensitivity (&lt;30cm):</strong> Preferred in fast-paced tracking games like Overwatch or Apex Legends where 180-degree turns happen constantly.</li>
+      </ul>
+
+      <h2>Why switch DPI?</h2>
+      <p>Many modern gaming mice perform optimally at higher DPIs (like 1600 or 3200) due to reduced sensor latency, even if your eDPI remains the same. If you are playing at 400 DPI, switching to 1600 DPI and dividing your in-game sensitivity by 4 can slightly reduce input lag while keeping your crosshair movement feeling exactly the same.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const gameSelect = document.getElementById('gameSelect');
+    const currentDpi = document.getElementById('currentDpi');
+    const currentSens = document.getElementById('currentSens');
+    const newDpi = document.getElementById('newDpi');
+
+    const newSensOut = document.getElementById('newSensOut');
+    const edpiOut = document.getElementById('edpiOut');
+    const cm360Out = document.getElementById('cm360Out');
+    const in360Out = document.getElementById('in360Out');
+    const proComparison = document.getElementById('proComparison');
+
+    // Yaw values for 360 calculation
+    const gameData = {
+      cs2: { yaw: 0.022, name: 'CS2', proEdpi: '~800 eDPI' },
+      valorant: { yaw: 0.07, name: 'Valorant', proEdpi: '~280 eDPI' },
+      overwatch: { yaw: 0.0066, name: 'Overwatch', proEdpi: '~4000 eDPI' }
+    };
+
+    function calculate() {
+      const cDpi = parseFloat(currentDpi.value) || 0;
+      const cSens = parseFloat(currentSens.value) || 0;
+      const nDpi = parseFloat(newDpi.value) || 1; // prevent div by 0
+      const game = gameSelect.value;
+      const yaw = gameData[game].yaw;
+
+      // New Sensitivity
+      const nSens = (cDpi * cSens) / nDpi;
+      // Use 4 decimal places, removing trailing zeros if there are decimals
+      newSensOut.textContent = nSens > 0 ? parseFloat(nSens.toFixed(4)).toString() : '0';
+
+      // eDPI
+      const edpi = cDpi * cSens;
+      edpiOut.textContent = edpi > 0 ? parseFloat(edpi.toFixed(2)).toString() : '0';
+
+      // 360 Distance
+      if (cDpi > 0 && cSens > 0) {
+        // Full 360 distance calculation based on game yaw
+        const degreesPerCount = yaw * cSens;
+        const countsPer360 = 360 / degreesPerCount;
+        const inchesPer360 = countsPer360 / cDpi;
+        const cmPer360 = inchesPer360 * 2.54;
+
+        in360Out.textContent = parseFloat(inchesPer360.toFixed(2)).toString();
+        cm360Out.textContent = parseFloat(cmPer360.toFixed(2)).toString();
+      } else {
+        in360Out.textContent = '0';
+        cm360Out.textContent = '0';
+      }
+
+      // Pro Comparison
+      proComparison.innerHTML = `Pro Average: <span>${gameData[game].proEdpi}</span> for ${gameData[game].name}.`;
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [gameSelect, currentDpi, currentSens, newDpi].forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
