@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Color Blind Test | Leeroy Jenkins</title>
+  <meta name="description" content="Test your color vision for gaming. Simulate UI elements, identify potential color blindness types, and get accessibility setting suggestions.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gaming Color Blind Test",
+    "description": "Test your color vision for gaming. Simulate UI elements, identify potential color blindness types, and get accessibility setting suggestions.",
+    "url": "https://leeroyjenkins.quest/color-blind-test",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Additional styles for test UI will go here */
+
+    .test-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      min-height: 400px;
+      justify-content: center;
+    }
+
+    .color-grid {
+      display: grid;
+      gap: 8px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .color-cell {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      border: 2px solid transparent;
+    }
+
+    .color-cell:hover {
+      transform: scale(1.05);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      font-family: var(--font-ui);
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .test-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .test-header span {
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results-area {
+      text-align: center;
+    }
+
+    .results-area h3 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .score-display {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin: 24px 0;
+    }
+
+    .suggestion-box {
+      background: rgba(147, 51, 234, 0.1);
+      border: 1px solid var(--accent);
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .suggestion-box h4 {
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .suggestion-box p {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .suggestion-box ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: var(--font-ui);
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      margin: 32px 0 16px;
+      color: #fff;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 24px 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Gaming Color Blind Test</h1>
+      <p>Test your ability to distinguish game UI elements, identify color blindness, and get settings suggestions.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div id="intro-area" class="test-area">
+        <h2>Can you spot the difference?</h2>
+        <p>This test simulates high-pressure gaming scenarios where picking out subtle UI differences (like enemy outlines or minimap pings) is crucial. You have 30 seconds to find the odd-colored square in each grid.</p>
+        <button id="start-btn" class="btn">Start Vision Test</button>
+      </div>
+
+      <div id="game-area" class="test-area hidden">
+        <div class="test-header">
+          <div>Time: <span id="time-left">30</span>s</div>
+          <div>Level: <span id="level">1</span></div>
+        </div>
+        <div id="grid-container" class="color-grid"></div>
+      </div>
+
+      <div id="results-area" class="results-area hidden">
+        <h3>Test Complete</h3>
+        <p>Your ability to distinguish subtle color differences under time pressure:</p>
+        <div class="score-display">Score: <span id="final-score">0</span></div>
+        <p id="result-message"></p>
+
+        <div id="suggestion-box" class="suggestion-box">
+          <h4>Accessibility Recommendations</h4>
+          <p id="recommendation-text"></p>
+          <ul id="recommendation-list"></ul>
+          <button id="copy-suggestions-btn" class="copy-btn">Copy Recommendations</button>
+        </div>
+
+        <button id="restart-btn" class="btn" style="margin-top: 24px;">Retake Test</button>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why color vision matters in gaming</h2>
+      <p>In fast-paced competitive games like Valorant, CS2, or Apex Legends, split-second decisions rely heavily on visual cues. The ability to distinguish an enemy outline from a cluttered background or parse a complex minimap at a glance can be the difference between winning and losing. Color blindness, or color vision deficiency, affects roughly 1 in 12 men and 1 in 200 women, making standard game color palettes difficult or impossible to read quickly.</p>
+
+      <h2>Common types of color blindness</h2>
+      <ul>
+        <li><strong>Protanopia & Deuteranopia (Red-Green):</strong> The most common forms. Players struggle to tell red and green apart. In games, red enemy outlines might blend into green foliage or brown environments.</li>
+        <li><strong>Tritanopia (Blue-Yellow):</strong> Less common. It makes it hard to distinguish between blue and green, and yellow and red. UI elements like blue friendly outlines and green squadmate outlines might look identical.</li>
+        <li><strong>Achromatopsia (Total color blindness):</strong> Extremely rare. Vision is entirely in greyscale. Contrast and brightness settings become the primary way to differentiate UI elements.</li>
+      </ul>
+
+      <h2>Optimizing your game settings</h2>
+      <p>Most modern games include dedicated accessibility settings. If you struggle with this test, consider enabling your game's built-in color blind filters (often labeled Protanopia, Deuteranopia, or Tritanopia). Additionally, many games allow you to manually customize UI colors. For red-green deficiencies, changing enemy highlight colors from red to bright yellow (like "Deuteranopia" or "Tritanopia" presets in Valorant) is a highly recommended tweak used even by pros with normal color vision due to its high contrast.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const introArea = document.getElementById('intro-area');
+    const gameArea = document.getElementById('game-area');
+    const resultsArea = document.getElementById('results-area');
+    const startBtn = document.getElementById('start-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const copySuggestionsBtn = document.getElementById('copy-suggestions-btn');
+    const gridContainer = document.getElementById('grid-container');
+    const timeLeftSpan = document.getElementById('time-left');
+    const levelSpan = document.getElementById('level');
+    const finalScoreSpan = document.getElementById('final-score');
+    const resultMessageP = document.getElementById('result-message');
+    const recommendationText = document.getElementById('recommendation-text');
+    const recommendationList = document.getElementById('recommendation-list');
+
+    let score = 0;
+    let level = 1;
+    let timeLeft = 30;
+    let timerId;
+
+    // Track mistakes by color axis to give better recommendations
+    let mistakes = {
+      redGreen: 0,
+      blueYellow: 0,
+      general: 0
+    };
+
+    // Color difficulty scaling
+    // Higher levels mean less difference in RGB values
+    function getDifficultyOffset(level) {
+      // Starts easy (large difference), gets hard (small difference)
+      return Math.max(8, 40 - (level * 1.5));
+    }
+
+    // Determine axis based on level to test different color blind types
+    function getColorAxis(level) {
+      const type = level % 3;
+      if (type === 1) return 'redGreen'; // Emphasize R/G differences
+      if (type === 2) return 'blueYellow'; // Emphasize B/Y differences
+      return 'general'; // Luminance / saturation differences
+    }
+
+    function generateColors() {
+      const axis = getColorAxis(level);
+      const offset = getDifficultyOffset(level);
+
+      let baseR, baseG, baseB;
+      let targetR, targetG, targetB;
+
+      if (axis === 'redGreen') {
+        // Red vs Green shades (Protanopia/Deuteranopia simulation)
+        // Keep blue low, vary red and green
+        baseB = Math.floor(Math.random() * 50);
+        baseR = Math.floor(Math.random() * 150) + 50;
+        baseG = Math.floor(Math.random() * 150) + 50;
+
+        targetR = Math.max(0, Math.min(255, baseR + (Math.random() > 0.5 ? offset : -offset)));
+        targetG = Math.max(0, Math.min(255, baseG + (Math.random() > 0.5 ? -offset : offset)));
+        targetB = baseB;
+      } else if (axis === 'blueYellow') {
+        // Blue vs Yellow (Yellow is high R+G, low B) (Tritanopia simulation)
+        baseR = Math.floor(Math.random() * 100) + 100;
+        baseG = Math.floor(Math.random() * 100) + 100;
+        baseB = Math.floor(Math.random() * 150) + 50;
+
+        targetR = baseR;
+        targetG = baseG;
+        targetB = Math.max(0, Math.min(255, baseB + (Math.random() > 0.5 ? offset : -offset)));
+      } else {
+        // General saturation/luminance
+        baseR = Math.floor(Math.random() * 200) + 20;
+        baseG = Math.floor(Math.random() * 200) + 20;
+        baseB = Math.floor(Math.random() * 200) + 20;
+
+        targetR = Math.max(0, Math.min(255, baseR + offset));
+        targetG = Math.max(0, Math.min(255, baseG + offset));
+        targetB = Math.max(0, Math.min(255, baseB + offset));
+      }
+
+      return {
+        base: `rgb(${baseR}, ${baseG}, ${baseB})`,
+        target: `rgb(${targetR}, ${targetG}, ${targetB})`,
+        axis: axis
+      };
+    }
+
+    function renderGrid() {
+      gridContainer.innerHTML = '';
+
+      // Determine grid size based on level
+      let gridSize = 2;
+      if (level > 2) gridSize = 3;
+      if (level > 5) gridSize = 4;
+      if (level > 10) gridSize = 5;
+      if (level > 20) gridSize = 6;
+      if (level > 30) gridSize = 7;
+
+      gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+
+      const totalCells = gridSize * gridSize;
+      const targetIndex = Math.floor(Math.random() * totalCells);
+      const colors = generateColors();
+
+      for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'color-cell';
+
+        if (i === targetIndex) {
+          cell.style.backgroundColor = colors.target;
+          cell.dataset.isTarget = "true";
+        } else {
+          cell.style.backgroundColor = colors.base;
+          cell.dataset.isTarget = "false";
+        }
+
+        // Save the axis of the current level to track mistakes
+        cell.dataset.axis = colors.axis;
+
+        cell.addEventListener('click', handleCellClick);
+        gridContainer.appendChild(cell);
+      }
+    }
+
+    function handleCellClick(e) {
+      if (e.target.dataset.isTarget === "true") {
+        score++;
+        level++;
+        levelSpan.textContent = level;
+        // Small time bonus for getting it right
+        timeLeft = Math.min(30, timeLeft + 1);
+        renderGrid();
+      } else {
+        // Penalty for wrong click
+        timeLeft = Math.max(0, timeLeft - 3);
+        mistakes[e.target.dataset.axis]++;
+        // Flash red
+        gridContainer.style.outline = "4px solid red";
+        setTimeout(() => gridContainer.style.outline = "none", 200);
+        updateTime();
+      }
+    }
+
+    function updateTime() {
+      timeLeftSpan.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        endGame();
+      }
+    }
+
+    function startGame() {
+      score = 0;
+      level = 1;
+      timeLeft = 30;
+      mistakes = { redGreen: 0, blueYellow: 0, general: 0 };
+
+      levelSpan.textContent = level;
+      timeLeftSpan.textContent = timeLeft;
+
+      introArea.classList.add('hidden');
+      resultsArea.classList.add('hidden');
+      gameArea.classList.remove('hidden');
+
+      renderGrid();
+
+      clearInterval(timerId);
+      timerId = setInterval(() => {
+        timeLeft--;
+        updateTime();
+      }, 1000);
+    }
+
+    function endGame() {
+      clearInterval(timerId);
+      gameArea.classList.add('hidden');
+      resultsArea.classList.remove('hidden');
+
+      finalScoreSpan.textContent = score;
+
+      generateRecommendations();
+    }
+
+    function generateRecommendations() {
+      let rating = "";
+      let recommendations = [];
+      let text = "";
+
+      if (score >= 40) {
+        rating = "Excellent vision.";
+        text = "Your color discrimination is fantastic. You likely don't need any color blind filters.";
+        recommendations.push("Standard game color palettes should work perfectly for you.");
+        recommendations.push("For maximum visibility in competitive games, you can still try changing enemy outlines to Yellow to maximize contrast against dark backgrounds.");
+      } else if (score >= 25) {
+        rating = "Good vision.";
+        text = "You have solid color discrimination, though you might struggle slightly with very low-contrast elements under pressure.";
+
+        if (mistakes.redGreen > mistakes.blueYellow) {
+          recommendations.push("You missed a few red/green targets. Consider trying a mild Protanopia or Deuteranopia filter in-game.");
+          recommendations.push("Change enemy highlight colors from Red to Yellow.");
+        } else {
+          recommendations.push("Consider increasing your monitor's digital vibrance or saturation by 10-15% to make UI elements pop more.");
+        }
+      } else {
+        rating = "Below average score.";
+        text = "You struggled to identify subtle color differences. This can significantly impact your reaction time in games.";
+
+        if (mistakes.redGreen > mistakes.blueYellow && mistakes.redGreen > mistakes.general) {
+          recommendations.push("Strong indicator of Red-Green color deficiency (Protanopia/Deuteranopia).");
+          recommendations.push("Enable Protanopia/Deuteranopia color blind modes in your game settings.");
+          recommendations.push("Always change enemy outlines and reticles to bright Yellow or Cyan, avoiding Red entirely.");
+        } else if (mistakes.blueYellow > mistakes.redGreen && mistakes.blueYellow > mistakes.general) {
+          recommendations.push("Indicator of Blue-Yellow color deficiency (Tritanopia).");
+          recommendations.push("Enable Tritanopia color blind mode in your game settings.");
+          recommendations.push("Adjust team colors to ensure friendly (often Blue) and squad (often Green) are clearly distinguishable.");
+        } else {
+          recommendations.push("Consider enabling a color blind mode that increases overall UI contrast.");
+          recommendations.push("Use high-contrast crosshair colors like bright Green or Cyan with a black outline.");
+        }
+      }
+
+      resultMessageP.innerHTML = `<strong>${rating}</strong> ${text}`;
+
+      recommendationList.innerHTML = '';
+      recommendations.forEach(rec => {
+        const li = document.createElement('li');
+        li.textContent = rec;
+        recommendationList.appendChild(li);
+      });
+    }
+
+    startBtn.addEventListener('click', startGame);
+    restartBtn.addEventListener('click', startGame);
+
+    copySuggestionsBtn.addEventListener('click', () => {
+      const recs = Array.from(recommendationList.querySelectorAll('li')).map(li => "- " + li.textContent).join('\n');
+      const copyText = `Gaming Color Blind Test Results\nScore: ${score}\n\nRecommendations:\n${recs}`;
+
+      navigator.clipboard.writeText(copyText).then(() => {
+        const originalText = copySuggestionsBtn.textContent;
+        copySuggestionsBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          copySuggestionsBtn.textContent = originalText;
+        }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
