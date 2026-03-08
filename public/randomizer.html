@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Number & Name Generator | Leeroy Jenkins</title>
+  <meta name="description" content="Free tool to generate random numbers, pick random names, create random teams, and generate tournament brackets. Works completely offline.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Random Number & Name Generator",
+    "description": "Free tool to generate random numbers, pick random names, create random teams, and generate tournament brackets.",
+    "url": "https://leeroyjenkins.quest/randomizer",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--text-secondary);
+    }
+
+    .tab-btn.active {
+      background: rgba(147, 51, 234, 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .mode-content {
+      display: none;
+    }
+
+    .mode-content.active {
+      display: block;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
+      cursor: pointer;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input[type="number"], input[type="text"], textarea, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      font-family: var(--font-ui);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .generate-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+      margin-top: 16px;
+    }
+
+    .generate-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+      display: none;
+    }
+
+    .results.active {
+      display: block;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .result-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .result-content {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      color: #fff;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .result-content.bracket {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+    }
+
+    .bracket-match {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bracket-vs {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin: 0 16px;
+    }
+
+    .bracket-team {
+      flex: 1;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .bracket-match {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .bracket-vs {
+        margin: 4px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Random Generator</h1>
+      <p>Generate random numbers, names, teams, and tournament brackets.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="tabs">
+        <button class="tab-btn active" data-target="numbers">Numbers</button>
+        <button class="tab-btn" data-target="names">Names</button>
+        <button class="tab-btn" data-target="teams">Teams</button>
+        <button class="tab-btn" data-target="bracket">Tournament Bracket</button>
+      </div>
+
+      <!-- Numbers Mode -->
+      <div id="numbers" class="mode-content active">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="numMin">Minimum</label>
+            <input type="number" id="numMin" value="1">
+          </div>
+          <div class="form-group">
+            <label for="numMax">Maximum</label>
+            <input type="number" id="numMax" value="100">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="numCount">How many numbers to generate?</label>
+          <input type="number" id="numCount" value="1" min="1" max="10000">
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="numAllowDuplicates" checked>
+          <label for="numAllowDuplicates">Allow Duplicates</label>
+        </div>
+
+        <button class="generate-btn" onclick="generateNumbers()">Generate Numbers</button>
+      </div>
+
+      <!-- Names Mode -->
+      <div id="names" class="mode-content">
+        <div class="form-group">
+          <label for="namesList">List of Names/Items (one per line or comma-separated)</label>
+          <textarea id="namesList" placeholder="Alice\nBob\nCharlie\nDavid\nEve"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="namesCount">How many to pick?</label>
+          <input type="number" id="namesCount" value="1" min="1">
+        </div>
+
+        <button class="generate-btn" onclick="generateNames()">Pick Random Names</button>
+      </div>
+
+      <!-- Teams Mode -->
+      <div id="teams" class="mode-content">
+        <div class="form-group">
+          <label for="teamsList">List of Players/Items (one per line or comma-separated)</label>
+          <textarea id="teamsList" placeholder="Player 1\nPlayer 2\nPlayer 3\nPlayer 4\nPlayer 5\nPlayer 6"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="teamsCount">Number of Teams</label>
+          <input type="number" id="teamsCount" value="2" min="2">
+        </div>
+
+        <button class="generate-btn" onclick="generateTeams()">Create Random Teams</button>
+      </div>
+
+      <!-- Bracket Mode -->
+      <div id="bracket" class="mode-content">
+        <div class="form-group">
+          <label for="bracketList">List of Competitors (one per line or comma-separated)</label>
+          <textarea id="bracketList" placeholder="Team A\nTeam B\nTeam C\nTeam D\nTeam E"></textarea>
+        </div>
+
+        <button class="generate-btn" onclick="generateBracket()">Generate Matchups (Round 1)</button>
+      </div>
+
+      <!-- Results Area -->
+      <div id="resultsArea" class="results">
+        <div class="result-header">
+          <div class="result-title" id="resultTitle">Result</div>
+          <button class="copy-btn" id="copyBtn" onclick="copyResults()">Copy</button>
+        </div>
+        <div class="result-content" id="resultContent"></div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why Use a Random Generator?</h2>
+      <p>A random generator is an essential tool for creating fair and unbiased outcomes. Whether you are running a giveaway, organizing a local esports tournament, assigning group projects, or simply making a random decision, using a secure and unpredictable generator ensures everyone has an equal chance.</p>
+
+      <h2>How Our Randomizer Works</h2>
+      <p>This tool runs entirely in your web browser. This means:</p>
+      <ul>
+        <li><strong>Privacy:</strong> None of your entered names, teams, or data are ever sent to a server. Everything stays on your device.</li>
+        <li><strong>Speed:</strong> Because it relies on your device's local processing power, generation is instantaneous.</li>
+        <li><strong>Offline Capability:</strong> Once loaded, you can disconnect from the internet and the tool will continue to function flawlessly.</li>
+      </ul>
+      <p>Under the hood, we utilize your browser's built-in <code>Math.random()</code> functionality combined with standard shuffling algorithms (like the Fisher-Yates shuffle) to provide statistically random and unbiased results for names, brackets, and teams.</p>
+
+      <h2>Supported Randomization Modes</h2>
+      <ul>
+        <li><strong>Numbers:</strong> Generate a single random number or a list of numbers between a specified minimum and maximum range. You can toggle whether duplicate numbers are allowed.</li>
+        <li><strong>Names:</strong> Input a list of participants and randomly pick one or multiple winners. Perfect for raffles and giveaways.</li>
+        <li><strong>Teams:</strong> Paste a list of players and automatically divide them into as many even teams as you need for a match.</li>
+        <li><strong>Tournament Bracket:</strong> Need to start a competition? Enter all the competitors and we'll shuffle them and create the initial Round 1 matchups, automatically handling "Byes" if the number of players isn't a perfect power of two.</li>
+      </ul>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.mode-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).classList.add('active');
+        document.getElementById('resultsArea').classList.remove('active');
+      });
+    });
+
+    // Helper: Parse text area input into an array
+    function parseList(input) {
+      if (!input) return [];
+      if (input.includes('\n')) {
+        return input.split('\n').map(item => item.trim()).filter(item => item.length > 0);
+      } else if (input.includes(',')) {
+        return input.split(',').map(item => item.trim()).filter(item => item.length > 0);
+      }
+      return [input.trim()];
+    }
+
+    // Helper: Fisher-Yates shuffle
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Display results
+    function showResult(title, contentHtml, rawText) {
+      document.getElementById('resultTitle').textContent = title;
+      const contentEl = document.getElementById('resultContent');
+      contentEl.innerHTML = contentHtml;
+      contentEl.className = 'result-content' + (title.includes('Matchups') ? ' bracket' : '');
+      contentEl.setAttribute('data-raw', rawText);
+      document.getElementById('resultsArea').classList.add('active');
+    }
+
+    // Copy functionality
+    function copyResults() {
+      const btn = document.getElementById('copyBtn');
+      const textToCopy = document.getElementById('resultContent').getAttribute('data-raw');
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+    }
+
+    // Number Generator
+    function generateNumbers() {
+      const min = parseInt(document.getElementById('numMin').value);
+      const max = parseInt(document.getElementById('numMax').value);
+      const count = parseInt(document.getElementById('numCount').value);
+      const allowDupes = document.getElementById('numAllowDuplicates').checked;
+
+      if (isNaN(min) || isNaN(max) || isNaN(count) || count < 1) {
+        alert("Please enter valid numbers.");
+        return;
+      }
+
+      if (min > max) {
+        alert("Minimum must be less than or equal to Maximum.");
+        return;
+      }
+
+      if (!allowDupes && count > (max - min + 1)) {
+        alert(`Cannot generate ${count} unique numbers between ${min} and ${max}. Max possible is ${max - min + 1}.`);
+        return;
+      }
+
+      let results = [];
+      if (allowDupes) {
+        for (let i = 0; i < count; i++) {
+          results.push(Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+      } else {
+        // For no duplicates, create array and shuffle (or sample if range is huge)
+        const range = max - min + 1;
+        if (range > 100000) {
+          // If range is massive, use a Set to ensure uniqueness
+          const used = new Set();
+          while (used.size < count) {
+            used.add(Math.floor(Math.random() * range) + min);
+          }
+          results = Array.from(used);
+        } else {
+          // Normal range, create array and shuffle
+          let pool = [];
+          for (let i = min; i <= max; i++) {
+            pool.push(i);
+          }
+          pool = shuffleArray(pool);
+          results = pool.slice(0, count);
+        }
+      }
+
+      const rawText = results.join(', ');
+      showResult('Generated Numbers', rawText, rawText);
+    }
+
+    // Name Picker
+    function generateNames() {
+      const rawInput = document.getElementById('namesList').value;
+      const count = parseInt(document.getElementById('namesCount').value);
+      const list = parseList(rawInput);
+
+      if (list.length === 0) {
+        alert("Please enter some names.");
+        return;
+      }
+
+      if (isNaN(count) || count < 1) {
+        alert("Please enter a valid count.");
+        return;
+      }
+
+      const shuffled = shuffleArray(list);
+      const picked = shuffled.slice(0, Math.min(count, list.length));
+
+      const rawText = picked.join('\n');
+      showResult('Randomly Picked', picked.join('<br>'), rawText);
+    }
+
+    // Team Generator
+    function generateTeams() {
+      const rawInput = document.getElementById('teamsList').value;
+      const numTeams = parseInt(document.getElementById('teamsCount').value);
+      const list = parseList(rawInput);
+
+      if (list.length === 0) {
+        alert("Please enter some players.");
+        return;
+      }
+
+      if (isNaN(numTeams) || numTeams < 2) {
+        alert("Please enter a valid number of teams (minimum 2).");
+        return;
+      }
+
+      const shuffled = shuffleArray(list);
+      const teams = Array.from({ length: numTeams }, () => []);
+
+      shuffled.forEach((player, index) => {
+        teams[index % numTeams].push(player);
+      });
+
+      let htmlOut = '';
+      let textOut = '';
+
+      teams.forEach((team, i) => {
+        const teamStr = `Team ${i + 1}:\n${team.join(', ')}`;
+        htmlOut += `<strong>Team ${i + 1}:</strong><br>${team.join(', ')}<br><br>`;
+        textOut += teamStr + '\n\n';
+      });
+
+      showResult('Random Teams', htmlOut, textOut.trim());
+    }
+
+    // Bracket Generator
+    function generateBracket() {
+      const rawInput = document.getElementById('bracketList').value;
+      let list = parseList(rawInput);
+
+      if (list.length < 2) {
+        alert("Please enter at least 2 competitors.");
+        return;
+      }
+
+      list = shuffleArray(list);
+
+      // Calculate next power of 2 for bracket sizing
+      const numCompetitors = list.length;
+      let nextPowerOfTwo = 1;
+      while (nextPowerOfTwo < numCompetitors) {
+        nextPowerOfTwo *= 2;
+      }
+
+      const numByes = nextPowerOfTwo - numCompetitors;
+
+      let htmlOut = '';
+      let textOut = '';
+      let matchCount = 1;
+
+      // First deal with Byes
+      let currentIndex = 0;
+
+      if (numByes > 0) {
+        htmlOut += `<strong>Byes (Auto-advance to Round 2):</strong><br>`;
+        textOut += `Byes (Auto-advance to Round 2):\n`;
+
+        for (let i = 0; i < numByes; i++) {
+          htmlOut += `${list[currentIndex]}<br>`;
+          textOut += `- ${list[currentIndex]}\n`;
+          currentIndex++;
+        }
+        htmlOut += `<br><strong>Round 1 Matchups:</strong><br>`;
+        textOut += `\nRound 1 Matchups:\n`;
+      } else {
+        htmlOut += `<strong>Round 1 Matchups:</strong><br>`;
+        textOut += `Round 1 Matchups:\n`;
+      }
+
+      // Generate pairs for the remaining players
+      for (let i = currentIndex; i < list.length; i += 2) {
+        if (i + 1 < list.length) {
+          const p1 = list[i];
+          const p2 = list[i+1];
+
+          htmlOut += `
+            <div class="bracket-match">
+              <div class="bracket-team">${p1}</div>
+              <div class="bracket-vs">VS</div>
+              <div class="bracket-team">${p2}</div>
+            </div>`;
+          textOut += `Match ${matchCount}: ${p1} VS ${p2}\n`;
+          matchCount++;
+        }
+      }
+
+      showResult('Tournament Matchups', htmlOut, textOut.trim());
+    }
+  </script>
+</body>
+</html>
