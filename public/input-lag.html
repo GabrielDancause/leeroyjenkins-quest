@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Lag Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate your total system input lag. Breakdown of mouse, USB, CPU, GPU, and display latency in milliseconds.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Input Lag Calculator",
+    "description": "Calculate your total system input lag. Breakdown of mouse, USB, CPU, GPU, and display latency in milliseconds.",
+    "url": "https://leeroyjenkins.quest/input-lag",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Input Lag Calculator</h1>
+      <p>Calculate your total system input lag.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="mouseLag">Mouse Latency (ms)</label>
+          <input type="number" id="mouseLag" value="1.0" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="usbLag">USB Polling Latency (ms)</label>
+          <input type="number" id="usbLag" value="1.0" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="cpuLag">CPU Latency (ms)</label>
+          <input type="number" id="cpuLag" value="4.0" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="gpuLag">GPU Latency (ms)</label>
+          <input type="number" id="gpuLag" value="5.0" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="displayLag">Display Latency (ms)</label>
+          <input type="number" id="displayLag" value="4.0" min="0" step="0.1">
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Total System Input Lag</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="totalLagOut">15.0 ms</div>
+            <button class="copy-btn" onclick="copyValue('totalLagOut', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Understanding Input Lag</h2>
+      <p>Input lag is the total amount of time it takes for your physical action (like moving a mouse or pressing a key) to be reflected on your screen. It is measured in milliseconds (ms) and is crucial for competitive gaming, where split-second reactions can determine the outcome of a match.</p>
+
+      <h2>Components of System Input Lag</h2>
+      <p>Several components contribute to the total input lag of your system. Here is a breakdown:</p>
+      <ul>
+        <li><strong>Mouse Latency:</strong> The time it takes for your mouse's internal hardware to register a movement or click.</li>
+        <li><strong>USB Polling Latency:</strong> The time taken for the USB port to read data from your mouse. A standard 1000Hz polling rate introduces about 1ms of latency.</li>
+        <li><strong>CPU Latency:</strong> The time your processor takes to process the game logic and prepare frames for the GPU. This is often tied to your game's framerate and engine.</li>
+        <li><strong>GPU Latency:</strong> The time your graphics card takes to render the frame. Technologies like NVIDIA Reflex and AMD Anti-Lag help reduce this.</li>
+        <li><strong>Display Latency:</strong> The time your monitor takes to process the image signal from the GPU and physically change the pixels on the screen.</li>
+      </ul>
+
+      <h2>How to Reduce Input Lag</h2>
+      <p>Minimizing input lag provides a smoother and more responsive gaming experience. Consider the following tips:</p>
+      <ul>
+        <li>Use a high-quality gaming mouse with a high polling rate (1000Hz or above).</li>
+        <li>Ensure your game runs at a high framerate. Higher FPS generally translates to lower CPU and GPU latency.</li>
+        <li>Enable low-latency modes in your graphics driver or game settings (e.g., NVIDIA Reflex, AMD Anti-Lag).</li>
+        <li>Use a gaming monitor with a high refresh rate (e.g., 144Hz, 240Hz, or 360Hz) and fast pixel response times.</li>
+        <li>Disable V-Sync in competitive games, as it can introduce significant display latency.</li>
+      </ul>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const mouseLag = document.getElementById('mouseLag');
+    const usbLag = document.getElementById('usbLag');
+    const cpuLag = document.getElementById('cpuLag');
+    const gpuLag = document.getElementById('gpuLag');
+    const displayLag = document.getElementById('displayLag');
+    const totalLagOut = document.getElementById('totalLagOut');
+
+    function calculate() {
+      const mouse = parseFloat(mouseLag.value) || 0;
+      const usb = parseFloat(usbLag.value) || 0;
+      const cpu = parseFloat(cpuLag.value) || 0;
+      const gpu = parseFloat(gpuLag.value) || 0;
+      const display = parseFloat(displayLag.value) || 0;
+
+      const total = mouse + usb + cpu + gpu + display;
+
+      totalLagOut.textContent = total.toFixed(2) + ' ms';
+    }
+
+    function copyValue(elementId, btn) {
+      // Remove ' ms' for copying just the value, or keep it. Let's keep it.
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [mouseLag, usbLag, cpuLag, gpuLag, displayLag].forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
