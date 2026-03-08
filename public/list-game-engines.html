@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Game Engines for Beginners | Leeroy Jenkins</title>
+  <meta name="description" content="Compare the best game engines for beginners: Unity, Godot, Unreal, and GameMaker. Learn about learning curves, 2D/3D support, pricing, pros, and cons.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Game Engines for Beginners: Unity, Godot, Unreal, GameMaker",
+    "description": "Compare the best game engines for beginners: Unity, Godot, Unreal, and GameMaker. Learn about learning curves, 2D/3D support, pricing, pros, and cons.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leeroyjenkins.quest/favicon.ico"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://leeroyjenkins.quest/list-game-engines"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .engine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .engine-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .engine-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .engine-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .engine-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .engine-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .card-body {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .metric {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .metric-full {
+      grid-column: 1 / -1;
+    }
+
+    .score-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .score-bar {
+      flex-grow: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .score-text {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 30px;
+      text-align: right;
+    }
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .pc-list {
+      list-style: none;
+    }
+
+    .pc-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pros .pc-title { color: #10b981; }
+    .cons .pc-title { color: #ef4444; }
+
+    .pc-list li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .pc-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .pros .pc-list li::before { background: #10b981; }
+    .cons .pc-list li::before { background: #ef4444; }
+
+    .seo-content {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 20px;
+      margin-top: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    .seo-content h3 {
+        font-size: 1.3rem;
+        color: #fff;
+        margin-bottom: 16px;
+        margin-top: 24px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    .seo-content strong {
+        color: var(--text-primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 40px 16px; }
+      h1 { font-size: 2rem; }
+      .engine-grid { grid-template-columns: 1fr; }
+      .pros-cons { grid-template-columns: 1fr; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Best Game Engines for Beginners</h1>
+      <p>Compare the top engines to start your game development journey. Find the perfect balance of learning curve, features, and pricing.</p>
+    </header>
+
+    <div class="engine-grid">
+
+      <!-- Unity -->
+      <div class="engine-card">
+        <div class="card-header">
+          <div class="engine-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <div class="engine-title">Unity</div>
+            <div class="engine-subtitle">The Industry Standard</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="metrics-grid">
+            <div class="metric">
+              <div class="metric-label">Learning Curve</div>
+              <div class="metric-value">Moderate</div>
+              <div class="score-container">
+                <div class="score-bar"><div class="score-fill" style="width: 60%"></div></div>
+                <div class="score-text">3/5</div>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Language</div>
+              <div class="metric-value">C#</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">2D Support</div>
+              <div class="metric-value">Excellent</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">3D Support</div>
+              <div class="metric-value">Excellent</div>
+            </div>
+            <div class="metric metric-full">
+              <div class="metric-label">Pricing</div>
+              <div class="metric-value">Free (until $100k revenue)</div>
+            </div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <div class="pc-title">Pros</div>
+              <ul class="pc-list">
+                <li>Massive community & tutorials</li>
+                <li>Huge asset store</li>
+                <li>Versatile for 2D and 3D</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <div class="pc-title">Cons</div>
+              <ul class="pc-list">
+                <li>Bloated for simple 2D games</li>
+                <li>Recent pricing controversies</li>
+                <li>Steeper curve than 2D-only engines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Godot -->
+      <div class="engine-card">
+        <div class="card-header">
+          <div class="engine-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <div class="engine-title">Godot</div>
+            <div class="engine-subtitle">The Open-Source Rising Star</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="metrics-grid">
+            <div class="metric">
+              <div class="metric-label">Learning Curve</div>
+              <div class="metric-value">Gentle</div>
+              <div class="score-container">
+                <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
+                <div class="score-text">4/5</div>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Language</div>
+              <div class="metric-value">GDScript, C#</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">2D Support</div>
+              <div class="metric-value">Outstanding</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">3D Support</div>
+              <div class="metric-value">Good (Improving)</div>
+            </div>
+            <div class="metric metric-full">
+              <div class="metric-label">Pricing</div>
+              <div class="metric-value">100% Free & Open Source</div>
+            </div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <div class="pc-title">Pros</div>
+              <ul class="pc-list">
+                <li>Completely free, no royalties</li>
+                <li>GDScript is very easy to learn</li>
+                <li>Lightweight & fast editor</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <div class="pc-title">Cons</div>
+              <ul class="pc-list">
+                <li>3D features behind Unreal/Unity</li>
+                <li>Smaller (but growing) asset pool</li>
+                <li>Fewer jobs in AAA studios</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unreal Engine -->
+      <div class="engine-card">
+        <div class="card-header">
+          <div class="engine-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20M4.93 4.93l14.14 14.14M4.93 19.07 19.07 4.93"/></svg>
+          </div>
+          <div>
+            <div class="engine-title">Unreal Engine</div>
+            <div class="engine-subtitle">The AAA Powerhouse</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="metrics-grid">
+            <div class="metric">
+              <div class="metric-label">Learning Curve</div>
+              <div class="metric-value">Steep</div>
+              <div class="score-container">
+                <div class="score-bar"><div class="score-fill" style="width: 40%"></div></div>
+                <div class="score-text">2/5</div>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Language</div>
+              <div class="metric-value">C++, Blueprints</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">2D Support</div>
+              <div class="metric-value">Poor</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">3D Support</div>
+              <div class="metric-value">Unmatched</div>
+            </div>
+            <div class="metric metric-full">
+              <div class="metric-label">Pricing</div>
+              <div class="metric-value">Free (until $1M revenue)</div>
+            </div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <div class="pc-title">Pros</div>
+              <ul class="pc-list">
+                <li>Industry-leading 3D graphics</li>
+                <li>Blueprints (visual scripting) are great</li>
+                <li>Incredible built-in tools (Nanite, Lumen)</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <div class="pc-title">Cons</div>
+              <ul class="pc-list">
+                <li>Very demanding on PC hardware</li>
+                <li>Overkill and clunky for 2D games</li>
+                <li>Steepest learning curve overall</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GameMaker -->
+      <div class="engine-card">
+        <div class="card-header">
+          <div class="engine-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
+          </div>
+          <div>
+            <div class="engine-title">GameMaker</div>
+            <div class="engine-subtitle">The 2D Specialist</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="metrics-grid">
+            <div class="metric">
+              <div class="metric-label">Learning Curve</div>
+              <div class="metric-value">Very Gentle</div>
+              <div class="score-container">
+                <div class="score-bar"><div class="score-fill" style="width: 100%"></div></div>
+                <div class="score-text">5/5</div>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Language</div>
+              <div class="metric-value">GML, Visual</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">2D Support</div>
+              <div class="metric-value">Exceptional</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">3D Support</div>
+              <div class="metric-value">None/Hacky</div>
+            </div>
+            <div class="metric metric-full">
+              <div class="metric-label">Pricing</div>
+              <div class="metric-value">Free (non-commercial) / Paid Tiers</div>
+            </div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <div class="pc-title">Pros</div>
+              <ul class="pc-list">
+                <li>Incredibly fast for 2D prototyping</li>
+                <li>Easiest engine for pure beginners</li>
+                <li>Great drag-and-drop system</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <div class="pc-title">Cons</div>
+              <ul class="pc-list">
+                <li>Effectively no 3D support</li>
+                <li>GML knowledge doesn't transfer well</li>
+                <li>Commercial export requires payment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="seo-content">
+      <h2>How to Choose the Best Game Engine</h2>
+      <p>Choosing the right game engine is one of the most important decisions you'll make when starting your game development journey. As a beginner, it's easy to get caught up in finding the "most powerful" engine, but often the best engine is the one that gets out of your way and allows you to actually finish your game.</p>
+
+      <h3>Consider Your Goals</h3>
+      <p>If your dream is to create a simple 2D platformer or RPG, jumping straight into <strong>Unreal Engine</strong> might be a mistake. The steep learning curve and massive toolkit can be overwhelming. Instead, engines like <strong>Godot</strong> or <strong>GameMaker</strong> are purpose-built for 2D and will allow you to prototype your ideas much faster.</p>
+
+      <h2>The Learning Curve vs. Career Prospects</h2>
+      <p>There is often a tradeoff between how easy an engine is to learn and how well it prepares you for a career in the AAA gaming industry.</p>
+      <ul>
+        <li><strong>Unity and Unreal Engine:</strong> These are the industry standards. Learning C# (Unity) or C++ (Unreal) is highly transferable, and knowledge of these engines makes you highly employable at professional studios.</li>
+        <li><strong>Godot and GameMaker:</strong> While fantastic for indie developers and solo projects, they are less commonly used in large-scale professional studios. However, the foundational concepts of game design you learn (game loops, physics, collisions) are universal.</li>
+      </ul>
+
+      <h3>Pricing and Royalties</h3>
+      <p>For beginners, pricing shouldn't be a major barrier. All of the engines listed offer generous free tiers. <strong>Godot</strong> stands out as being 100% free and open-source forever, meaning you never owe royalties. <strong>Unity</strong> and <strong>Unreal Engine</strong> are free until you hit significant revenue milestones ($100k and $1M respectively), which is a fantastic deal for solo developers just starting out.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+
+  </div>
+
+</body>
+</html>
