@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Bottleneck Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Check for CPU and GPU bottlenecks in your PC build. Calculate hardware bottlenecks across different resolutions like 1080p, 1440p, and 4K to optimize your gaming performance.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PC Bottleneck Calculator",
+    "description": "Check for CPU and GPU bottlenecks in your PC build. Calculate hardware bottlenecks across different resolutions like 1080p, 1440p, and 4K to optimize your gaming performance.",
+    "url": "https://leeroyjenkins.quest/bottleneck-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .upgrade-recommendation {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .upgrade-recommendation span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+      .upgrade-recommendation { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>PC Bottleneck Calculator</h1>
+      <p>Check if your CPU or GPU is holding back your gaming performance.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label for="resolutionSelect">Screen Resolution</label>
+        <select id="resolutionSelect">
+          <option value="1080p">1080p (1920x1080) - CPU Heavy</option>
+          <option value="1440p">1440p (2560x1440) - Balanced</option>
+          <option value="4K">4K (3840x2160) - GPU Heavy</option>
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="cpuSelect">Processor (CPU)</label>
+          <select id="cpuSelect">
+            <optgroup label="AMD Ryzen 7000/9000 Series">
+              <option value="95">Ryzen 7 7800X3D</option>
+              <option value="90">Ryzen 9 7950X3D</option>
+              <option value="85">Ryzen 5 7600X</option>
+              <option value="88">Ryzen 7 7700X</option>
+              <option value="92">Ryzen 9 7900X</option>
+            </optgroup>
+            <optgroup label="Intel Core 13th/14th Gen">
+              <option value="94">Core i9-14900K</option>
+              <option value="92">Core i7-14700K</option>
+              <option value="87">Core i5-14600K</option>
+              <option value="93">Core i9-13900K</option>
+              <option value="90">Core i7-13700K</option>
+              <option value="85">Core i5-13600K</option>
+            </optgroup>
+            <optgroup label="Older / Budget CPUs">
+              <option value="80">Ryzen 7 5800X3D</option>
+              <option value="72">Ryzen 5 5600X</option>
+              <option value="60">Ryzen 5 3600</option>
+              <option value="78">Core i9-12900K</option>
+              <option value="70">Core i5-12400F</option>
+              <option value="55">Core i7-9700K</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gpuSelect">Graphics Card (GPU)</label>
+          <select id="gpuSelect">
+            <optgroup label="NVIDIA RTX 40 Series">
+              <option value="100">RTX 4090</option>
+              <option value="90">RTX 4080 / 4080 Super</option>
+              <option value="82">RTX 4070 Ti / Ti Super</option>
+              <option value="75">RTX 4070 / 4070 Super</option>
+              <option value="65">RTX 4060 Ti</option>
+              <option value="58">RTX 4060</option>
+            </optgroup>
+            <optgroup label="AMD Radeon RX 7000 Series">
+              <option value="92">RX 7900 XTX</option>
+              <option value="85">RX 7900 XT</option>
+              <option value="72">RX 7800 XT</option>
+              <option value="62">RX 7700 XT</option>
+              <option value="55">RX 7600</option>
+            </optgroup>
+            <optgroup label="Older / Popular GPUs">
+              <option value="80">RTX 3090</option>
+              <option value="75">RTX 3080</option>
+              <option value="62">RTX 3070</option>
+              <option value="52">RTX 3060 Ti</option>
+              <option value="45">RTX 3060</option>
+              <option value="70">RX 6800 XT</option>
+              <option value="58">RX 6700 XT</option>
+              <option value="35">GTX 1660 Super</option>
+              <option value="25">GTX 1060</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Bottleneck Source</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="bottleneckSource">Calculating...</div>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Bottleneck Percentage</div>
+          <div class="result-value-group">
+            <div class="result-value" id="bottleneckPercent">0%</div>
+            <button class="copy-btn" onclick="copyValue('bottleneckPercent', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="upgrade-recommendation" id="upgradeRecommendation">
+        <span>Recommendation:</span> Calculating...
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>What is a PC Bottleneck?</h2>
+      <p>A PC bottleneck occurs when one component in your computer holds back the performance of another. In gaming, this usually involves your CPU (Processor) and GPU (Graphics Card). If your GPU can render 200 frames per second, but your CPU can only process physics and game logic for 100 frames per second, your CPU is bottlenecking your system, and you will only see 100 FPS.</p>
+
+      <h2>CPU vs GPU Bottleneck</h2>
+      <ul>
+        <li><strong>CPU Bottleneck:</strong> Your graphics card is waiting for your processor to catch up. This often happens at lower resolutions like 1080p, or in CPU-heavy games like esports titles (CS2, Valorant) and simulation games. Upgrading your CPU or increasing graphical settings/resolution can help.</li>
+        <li><strong>GPU Bottleneck:</strong> Your processor is waiting for your graphics card to finish drawing the frame. In gaming, a slight GPU bottleneck is actually considered ideal, because it means you are getting the absolute maximum performance out of your most expensive component (the graphics card).</li>
+      </ul>
+
+      <h2>Does Resolution Matter?</h2>
+      <p>Yes, significantly. As you increase your resolution from 1080p to 1440p to 4K, the workload on your GPU increases exponentially, while the workload on your CPU stays mostly the same. A CPU that severely bottlenecks an RTX 4090 at 1080p might be perfectly fine for that same graphics card at 4K.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const resolutionSelect = document.getElementById('resolutionSelect');
+    const cpuSelect = document.getElementById('cpuSelect');
+    const gpuSelect = document.getElementById('gpuSelect');
+
+    const bottleneckSourceOut = document.getElementById('bottleneckSource');
+    const bottleneckPercentOut = document.getElementById('bottleneckPercent');
+    const upgradeRecommendationOut = document.getElementById('upgradeRecommendation');
+
+    function calculateBottleneck() {
+      const cpuScore = parseFloat(cpuSelect.value);
+      const gpuScore = parseFloat(gpuSelect.value);
+      const resolution = resolutionSelect.value;
+
+      // Adjust scores based on resolution
+      // 1080p needs strong CPU. 4K needs strong GPU.
+      let adjustedCpuScore = cpuScore;
+      let adjustedGpuScore = gpuScore;
+
+      if (resolution === '1080p') {
+        // CPU needs to be fast to keep up with GPU at 1080p
+        adjustedCpuScore = cpuScore * 0.9;
+        adjustedGpuScore = gpuScore * 1.1;
+      } else if (resolution === '1440p') {
+        // Balanced
+        adjustedCpuScore = cpuScore * 1.0;
+        adjustedGpuScore = gpuScore * 1.0;
+      } else if (resolution === '4K') {
+        // GPU is heavily taxed, CPU is less of an issue
+        adjustedCpuScore = cpuScore * 1.2;
+        adjustedGpuScore = gpuScore * 0.8;
+      }
+
+      // Calculate the difference
+      let difference = adjustedCpuScore - adjustedGpuScore;
+      let bottleneckPercent = Math.abs(difference);
+
+      // Cap at 100% and scale it a bit to look realistic (0-40% range is typical for calculators)
+      bottleneckPercent = Math.min(100, (bottleneckPercent / Math.max(adjustedCpuScore, adjustedGpuScore)) * 100 * 1.5);
+
+      // If the difference is very small, call it balanced
+      if (bottleneckPercent < 5) {
+         bottleneckSourceOut.textContent = "Balanced System";
+         bottleneckSourceOut.style.color = "#10B981"; // Emerald
+         bottleneckPercentOut.textContent = "< 5%";
+         upgradeRecommendationOut.innerHTML = `<span>Recommendation:</span> Your system is well balanced for ${resolution}. No immediate upgrades needed.`;
+      } else if (difference < 0) {
+         // CPU is the bottleneck
+         bottleneckSourceOut.textContent = "Processor (CPU)";
+         bottleneckSourceOut.style.color = "#EF4444"; // Red
+         bottleneckPercentOut.textContent = parseFloat(bottleneckPercent.toFixed(1)) + "%";
+
+         if (bottleneckPercent > 15) {
+             upgradeRecommendationOut.innerHTML = `<span>Recommendation:</span> Your CPU is holding back your graphics card at ${resolution}. Consider upgrading your processor or increasing your resolution to shift the load to your GPU.`;
+         } else {
+             upgradeRecommendationOut.innerHTML = `<span>Recommendation:</span> Minor CPU bottleneck at ${resolution}. This is generally fine, but a faster CPU would yield slightly higher frame rates.`;
+         }
+      } else {
+         // GPU is the bottleneck
+         bottleneckSourceOut.textContent = "Graphics Card (GPU)";
+         bottleneckSourceOut.style.color = "#3B82F6"; // Blue
+         bottleneckPercentOut.textContent = parseFloat(bottleneckPercent.toFixed(1)) + "%";
+
+         if (bottleneckPercent > 20) {
+             upgradeRecommendationOut.innerHTML = `<span>Recommendation:</span> Your graphics card is heavily bottlenecked at ${resolution}. Consider upgrading your GPU or dropping settings/resolution for better performance.`;
+         } else {
+             upgradeRecommendationOut.innerHTML = `<span>Recommendation:</span> A GPU bottleneck of this size at ${resolution} is completely normal and optimal for gaming.`;
+         }
+      }
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [resolutionSelect, cpuSelect, gpuSelect].forEach(el => {
+      el.addEventListener('input', calculateBottleneck);
+      el.addEventListener('change', calculateBottleneck);
+    });
+
+    // Initial calculation
+    calculateBottleneck();
+  </script>
+</body>
+</html>
