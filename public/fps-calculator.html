@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FPS Calculator & Estimator | Leeroy Jenkins</title>
+  <meta name="description" content="Estimate your Frames Per Second (FPS) based on your hardware (CPU, GPU), resolution, and game settings. A fast, free, client-side calculator.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FPS Calculator & Estimator",
+    "description": "Estimate your Frames Per Second (FPS) based on your hardware (CPU, GPU), resolution, and game settings.",
+    "url": "https://leeroyjenkins.quest/fps-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .result-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .unit {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-family: var(--font-ui);
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .disclaimer {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: center;
+      font-style: italic;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-value { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>FPS Calculator</h1>
+      <p>Estimate your frames per second based on your PC hardware and game settings.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label for="gameSelect">Game Type</label>
+        <select id="gameSelect">
+          <option value="esports">Esports (CS2, Valorant, Overwatch, LoL)</option>
+          <option value="br">Battle Royale (Apex Legends, Warzone, Fortnite)</option>
+          <option value="aaa">AAA / Single Player (Cyberpunk, Starfield, RDR2)</option>
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="gpuTier">GPU Tier</label>
+          <select id="gpuTier">
+            <option value="enthusiast">Enthusiast (RTX 4090 / RX 7900 XTX)</option>
+            <option value="high">High End (RTX 4080 / RX 7900 XT)</option>
+            <option value="midhigh">Mid-High (RTX 4070 / RX 7800 XT)</option>
+            <option value="mid" selected>Mid Range (RTX 4060 / RX 7600)</option>
+            <option value="budget">Budget (RTX 3050 / RX 6600)</option>
+            <option value="igpu">Integrated Graphics (APU / Intel UHD)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cpuTier">CPU Tier</label>
+          <select id="cpuTier">
+            <option value="high">High End (Ryzen 9 / Core i9)</option>
+            <option value="mid" selected>Mid Range (Ryzen 5 / Core i5)</option>
+            <option value="budget">Budget (Ryzen 3 / Core i3 / Older Gens)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="resolution">Resolution</label>
+          <select id="resolution">
+            <option value="1080p" selected>1080p (FHD)</option>
+            <option value="1440p">1440p (QHD)</option>
+            <option value="4k">4K (UHD)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quality">Quality Settings</label>
+          <select id="quality">
+            <option value="low">Low (Competitive)</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+            <option value="ultra">Ultra / Max</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Estimated Performance</div>
+          <div class="result-value-group">
+            <div class="result-value" id="fpsOut">0</div>
+            <div class="unit">FPS</div>
+          </div>
+          <button class="copy-btn" onclick="copyValue('fpsOut', this)">Copy Result</button>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        *Estimates are approximate. Real-world performance depends on specific scenes, RAM, temperatures, and background tasks.
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>What affects FPS in games?</h2>
+      <p>Frames Per Second (FPS) is the measure of how many images your computer can render and display per second. A higher FPS results in smoother, more responsive gameplay. Several key hardware and software factors determine your FPS:</p>
+      <ul>
+        <li><strong>GPU (Graphics Processing Unit):</strong> The most important component for gaming. The GPU handles the heavy lifting of rendering 3D graphics, textures, and lighting.</li>
+        <li><strong>CPU (Central Processing Unit):</strong> The brain of your computer. It handles game logic, physics, AI, and tells the GPU what to render. A weak CPU can bottleneck a powerful GPU, especially at lower resolutions like 1080p.</li>
+        <li><strong>Resolution:</strong> The number of pixels on your screen. 4K has 4x as many pixels as 1080p, requiring significantly more GPU power to maintain the same FPS.</li>
+        <li><strong>In-Game Settings:</strong> Quality presets (Low, Medium, High, Ultra) drastically change how much detail is rendered. Lowering settings like shadows, anti-aliasing, and volumetric clouds can provide massive FPS boosts.</li>
+      </ul>
+
+      <h2>Why does FPS matter?</h2>
+      <p>High FPS isn't just about the game looking smoother; it actually affects how the game plays, especially in fast-paced competitive shooters like CS2, Valorant, or Apex Legends.</p>
+      <ul>
+        <li><strong>Lower Input Lag:</strong> Higher FPS means the game engine is processing your mouse and keyboard inputs more frequently, resulting in less delay between your physical movements and what happens on screen.</li>
+        <li><strong>Better Visual Clarity:</strong> Fast motion becomes much clearer at high refresh rates (144Hz, 240Hz+), making it easier to track moving targets.</li>
+        <li><strong>Tear-Free Gaming:</strong> When paired with a high refresh rate monitor and sync technologies (FreeSync/G-Sync), high FPS eliminates screen tearing.</li>
+      </ul>
+
+      <h2>How can I increase my FPS?</h2>
+      <p>If your estimated FPS is lower than you'd like, there are several free ways to improve performance before upgrading your hardware:</p>
+      <p>First, lower your in-game resolution or use upscaling technologies like DLSS or FSR if your graphics card supports them. Next, turn down demanding graphical settings like Shadows, Post-Processing, and Effects. Ensure your graphics drivers are fully up to date, and close unnecessary background applications (like web browsers with many tabs) while gaming to free up CPU and RAM resources.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const gameSelect = document.getElementById('gameSelect');
+    const gpuTier = document.getElementById('gpuTier');
+    const cpuTier = document.getElementById('cpuTier');
+    const resolution = document.getElementById('resolution');
+    const quality = document.getElementById('quality');
+    const fpsOut = document.getElementById('fpsOut');
+
+    // Base FPS values for a Mid-Tier GPU + Mid-Tier CPU at 1080p Medium
+    const gameBaseFPS = {
+      'esports': 350,
+      'br': 160,
+      'aaa': 90
+    };
+
+    // Multipliers for GPU Tiers
+    const gpuMultipliers = {
+      'enthusiast': 2.5,
+      'high': 1.8,
+      'midhigh': 1.4,
+      'mid': 1.0,
+      'budget': 0.65,
+      'igpu': 0.25
+    };
+
+    // Multipliers for CPU Tiers
+    const cpuMultipliers = {
+      'high': 1.2,
+      'mid': 1.0,
+      'budget': 0.75
+    };
+
+    // Multipliers for Resolution
+    const resMultipliers = {
+      '1080p': 1.0,
+      '1440p': 0.65,
+      '4k': 0.35
+    };
+
+    // Multipliers for Quality Settings
+    const qualityMultipliers = {
+      'low': 1.4,
+      'medium': 1.0,
+      'high': 0.75,
+      'ultra': 0.6
+    };
+
+    function calculateFPS() {
+      const base = gameBaseFPS[gameSelect.value];
+      const gpuMod = gpuMultipliers[gpuTier.value];
+      const cpuMod = cpuMultipliers[cpuTier.value];
+      const resMod = resMultipliers[resolution.value];
+      const qualMod = qualityMultipliers[quality.value];
+
+      // Calculate base estimation
+      let estimatedFPS = base * gpuMod * resMod * qualMod;
+
+      // Apply CPU bottlenecking logic loosely
+      // If estimated FPS is extremely high, it gets bottlenecked by the CPU more heavily
+      const maxFPSPotential = 600 * cpuMod;
+
+      if (estimatedFPS > maxFPSPotential) {
+         // Soft cap based on CPU
+         estimatedFPS = maxFPSPotential + (estimatedFPS - maxFPSPotential) * 0.1;
+      } else {
+         // Apply standard CPU modifier if not heavily bottlenecking, but less impact at 4k
+         const cpuImpact = resolution.value === '4k' ? 1.0 : cpuMod;
+         estimatedFPS = estimatedFPS * cpuImpact;
+      }
+
+      // Add a slight variance to make it look "estimated" rather than a perfect formula
+      // (e.g., +/- 2%) but we'll just round to the nearest whole number for display
+      const finalFPS = Math.round(estimatedFPS);
+
+      // Simple animation up to the number
+      animateValue(fpsOut, parseInt(fpsOut.textContent) || 0, finalFPS, 300);
+    }
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        // Easing function (easeOutQuad)
+        const easeOut = progress * (2 - progress);
+        obj.innerHTML = Math.floor(start + easeOut * (end - start));
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerHTML = end;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text + " FPS").then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    [gameSelect, gpuTier, cpuTier, resolution, quality].forEach(el => {
+      el.addEventListener('change', calculateFPS);
+    });
+
+    // Initial calculation
+    // Timeout to let the font load briefly before animating
+    setTimeout(calculateFPS, 100);
+  </script>
+</body>
+</html>
