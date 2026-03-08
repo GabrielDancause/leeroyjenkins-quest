@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Timestamp Generator | Leeroy Jenkins</title>
+  <meta name="description" content="Generate Discord timestamp codes from any date and time. All format styles available. Copy and paste directly into Discord.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Discord Timestamp Generator",
+    "description": "Generate Discord timestamp codes from any date and time. All format styles available. Copy and paste directly into Discord.",
+    "url": "https://leeroyjenkins.quest/discord-timestamp",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      min-width: 150px;
+    }
+
+    .result-preview {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--card-bg);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+      .result-label { min-width: auto; }
+      .result-preview { width: 100%; margin-bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Discord Timestamp Generator</h1>
+      <p>Generate Discord timestamp codes from any date. All format styles. Copy-paste.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label for="datetimeInput">Select Date & Time (Local Time)</label>
+        <input type="datetime-local" id="datetimeInput">
+      </div>
+
+      <div class="results" id="resultsContainer">
+        <!-- Results will be injected here by JS -->
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>What are Discord Timestamps?</h2>
+      <p>Discord timestamps are a feature that allows you to share dates and times that automatically convert to the local timezone of whoever is reading the message. This eliminates the confusion of trying to coordinate times across different regions.</p>
+      <p>They work by using Unix epoch time, which is the number of seconds that have elapsed since January 1, 1970. Our generator does the math for you, converting your selected local time into the exact code Discord needs.</p>
+
+      <h2>Discord Timestamp Formats</h2>
+      <p>Discord supports several different formatting styles to display the time exactly how you want it. Here is a breakdown of what each style looks like:</p>
+      <ul>
+        <li><strong>Default:</strong> The standard format showing date and time (e.g., November 28, 2018 9:01 AM).</li>
+        <li><strong>Short Time:</strong> Displays just the time (e.g., 9:01 AM).</li>
+        <li><strong>Long Time:</strong> Displays the time with seconds (e.g., 9:01:00 AM).</li>
+        <li><strong>Short Date:</strong> Displays just the date in numbers (e.g., 11/28/2018).</li>
+        <li><strong>Long Date:</strong> Displays the full date written out (e.g., November 28, 2018).</li>
+        <li><strong>Short Date/Time:</strong> Combines short date and time (e.g., November 28, 2018 9:01 AM).</li>
+        <li><strong>Long Date/Time:</strong> Combines long date and time with day of the week (e.g., Wednesday, November 28, 2018 9:01 AM).</li>
+        <li><strong>Relative Time:</strong> Shows how far in the past or future the time is (e.g., 3 years ago or in 5 minutes). This is incredibly useful for event countdowns.</li>
+      </ul>
+
+      <h2>How to use Discord Timestamps</h2>
+      <p>Using these timestamps is incredibly easy. Simply select the date and time you want using the tool above. Then, click the "Copy" button next to the format you prefer. Finally, paste the copied code directly into a Discord chat box, server description, or anywhere else Discord supports markdown.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const datetimeInput = document.getElementById('datetimeInput');
+    const resultsContainer = document.getElementById('resultsContainer');
+
+    // Formats mapping
+    const formats = [
+      { id: 'default', label: 'Default', flag: '', previewOptions: { dateStyle: 'long', timeStyle: 'short' } },
+      { id: 'shortTime', label: 'Short Time', flag: 't', previewOptions: { timeStyle: 'short' } },
+      { id: 'longTime', label: 'Long Time', flag: 'T', previewOptions: { timeStyle: 'medium' } },
+      { id: 'shortDate', label: 'Short Date', flag: 'd', previewOptions: { dateStyle: 'short' } },
+      { id: 'longDate', label: 'Long Date', flag: 'D', previewOptions: { dateStyle: 'long' } },
+      { id: 'shortDateTime', label: 'Short Date/Time', flag: 'f', previewOptions: { dateStyle: 'long', timeStyle: 'short' } },
+      { id: 'longDateTime', label: 'Long Date/Time', flag: 'F', previewOptions: { dateStyle: 'full', timeStyle: 'short' } },
+      { id: 'relative', label: 'Relative Time', flag: 'R', isRelative: true }
+    ];
+
+    // Initialize with current time
+    const now = new Date();
+    // Format for datetime-local input: YYYY-MM-DDThh:mm
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    datetimeInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+    function getRelativeTime(date) {
+      const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+      const daysDifference = Math.round((date.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+
+      if (daysDifference === 0) {
+        const hoursDifference = Math.round((date.getTime() - new Date().getTime()) / (1000 * 60 * 60));
+        if (hoursDifference === 0) {
+            const minutesDifference = Math.round((date.getTime() - new Date().getTime()) / (1000 * 60));
+            return rtf.format(minutesDifference, 'minute');
+        }
+        return rtf.format(hoursDifference, 'hour');
+      }
+      return rtf.format(daysDifference, 'day');
+    }
+
+    function generateTimestamps() {
+      const selectedDate = new Date(datetimeInput.value);
+      const unixTimestamp = Math.floor(selectedDate.getTime() / 1000);
+
+      // If date is invalid (e.g. cleared input), don't update
+      if (isNaN(unixTimestamp)) return;
+
+      let html = '';
+
+      formats.forEach(format => {
+        const code = format.flag ? `<t:${unixTimestamp}:${format.flag}>` : `<t:${unixTimestamp}>`;
+
+        let preview = '';
+        if (format.isRelative) {
+          preview = getRelativeTime(selectedDate);
+        } else {
+          preview = new Intl.DateTimeFormat('en-US', format.previewOptions).format(selectedDate);
+        }
+
+        html += `
+          <div class="result-item">
+            <div class="result-label">${format.label}</div>
+            <div class="result-preview">${preview}</div>
+            <div class="result-value-group">
+              <div class="result-value" id="val-${format.id}">${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+              <button class="copy-btn" onclick="copyValue('val-${format.id}', this)">Copy</button>
+            </div>
+          </div>
+        `;
+      });
+
+      resultsContainer.innerHTML = html;
+    }
+
+    window.copyValue = function(elementId, btn) {
+      const el = document.getElementById(elementId);
+      // Get text content and unescape HTML entities
+      const text = el.textContent.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    };
+
+    datetimeInput.addEventListener('input', generateTimestamps);
+    datetimeInput.addEventListener('change', generateTimestamps);
+
+    // Initial generation
+    generateTimestamps();
+  </script>
+</body>
+</html>
