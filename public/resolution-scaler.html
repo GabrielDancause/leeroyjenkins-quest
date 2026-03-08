@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolution Scaler Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate rendered resolution percentages and pixel counts. Estimate the performance impact of resolution scaling in video games.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Resolution Scaler Calculator",
+    "description": "Calculate rendered resolution percentages and pixel counts. Estimate the performance impact of resolution scaling in video games.",
+    "url": "https://leeroyjenkins.quest/resolution-scaler",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pro-comparison {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .pro-comparison span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+      .pro-comparison { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Resolution Scaler</h1>
+      <p>Calculate rendered resolution, pixel counts, and performance impact.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="form-group" style="margin-bottom: 24px;">
+        <label for="presetSelect">Base Resolution Preset</label>
+        <select id="presetSelect">
+          <option value="3840x2160">4K UHD (3840 x 2160)</option>
+          <option value="2560x1440">1440p QHD (2560 x 1440)</option>
+          <option value="1920x1080" selected>1080p FHD (1920 x 1080)</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="baseWidth">Base Width</label>
+          <input type="number" id="baseWidth" value="1920" min="1">
+        </div>
+        <div class="form-group">
+          <label for="baseHeight">Base Height</label>
+          <input type="number" id="baseHeight" value="1080" min="1">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 16px;">
+        <label for="renderScale">Render Scale (%)</label>
+        <input type="number" id="renderScale" value="75" min="1" max="200" step="1">
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Rendered Resolution</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="renderedResOut">1440 x 810</div>
+            <button class="copy-btn" onclick="copyValue('renderedResOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Rendered Pixels</div>
+          <div class="result-value-group">
+            <div class="result-value" id="renderedPixelsOut">1,166,400</div>
+            <button class="copy-btn" onclick="copyValue('renderedPixelsOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">Base Pixels</div>
+          <div class="result-value-group">
+            <div class="result-value" id="basePixelsOut">2,073,600</div>
+            <button class="copy-btn" onclick="copyValue('basePixelsOut', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pro-comparison" id="performanceImpact">
+        Performance Estimate: <span>Renders 43.8% fewer pixels</span>. Expect a significant performance boost.
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>What is Resolution Scaling?</h2>
+      <p>Resolution scaling is a technique used in video games and rendering engines to render the game at a lower or higher resolution than your monitor's native display resolution, and then scale it to fit your screen. This allows you to trade visual clarity for better performance (FPS) or vice versa.</p>
+      <ul>
+        <li><strong>Downscaling (e.g., 75%):</strong> Renders the game at a lower resolution (fewer pixels), which significantly reduces the workload on your GPU, resulting in higher frame rates. The image is then stretched to fill your screen, which can make it look softer or blurrier.</li>
+        <li><strong>Upscaling / Supersampling (e.g., 150%):</strong> Renders the game at a higher resolution (more pixels) than your display, then shrinks it down. This acts as a high-quality anti-aliasing method, making the image much sharper and clearer, but drastically reduces performance.</li>
+      </ul>
+
+      <h2>Spatial vs. Temporal Upscaling</h2>
+      <p>Modern games often feature advanced upscaling technologies that perform better than traditional resolution scaling:</p>
+      <ul>
+        <li><strong>Basic Resolution Scaling:</strong> A simple, uniform scaling that can often look blurry when downscaled.</li>
+        <li><strong>Temporal Upscaling (DLSS, FSR, XeSS):</strong> Uses data from previous frames (and sometimes AI) to reconstruct a high-resolution image from a lower-resolution render. This provides a massive performance boost while maintaining image quality that rivals or sometimes beats native resolution.</li>
+      </ul>
+
+      <h2>How does scaling affect performance?</h2>
+      <p>Performance in games is heavily tied to the number of pixels your GPU has to draw every frame. Because resolution is two-dimensional (width and height), changing the render scale affects the total pixel count quadratically.</p>
+      <p>For example, a render scale of 50% doesn't mean you are rendering half the pixels. It means both the width and the height are halved, resulting in only <strong>25%</strong> of the original pixels being rendered (0.5 * 0.5 = 0.25). This massive reduction in pixel count often leads to a substantial increase in frame rates.</p>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const presetSelect = document.getElementById('presetSelect');
+    const baseWidth = document.getElementById('baseWidth');
+    const baseHeight = document.getElementById('baseHeight');
+    const renderScale = document.getElementById('renderScale');
+
+    const renderedResOut = document.getElementById('renderedResOut');
+    const renderedPixelsOut = document.getElementById('renderedPixelsOut');
+    const basePixelsOut = document.getElementById('basePixelsOut');
+    const performanceImpact = document.getElementById('performanceImpact');
+
+    function updatePreset() {
+      const val = presetSelect.value;
+      if (val !== 'custom') {
+        const [w, h] = val.split('x');
+        baseWidth.value = w;
+        baseHeight.value = h;
+      }
+      calculate();
+    }
+
+    function checkCustom() {
+      const val = `${baseWidth.value}x${baseHeight.value}`;
+      let found = false;
+      for (let i = 0; i < presetSelect.options.length; i++) {
+        if (presetSelect.options[i].value === val) {
+          presetSelect.selectedIndex = i;
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        presetSelect.value = 'custom';
+      }
+      calculate();
+    }
+
+    function calculate() {
+      const w = parseInt(baseWidth.value) || 0;
+      const h = parseInt(baseHeight.value) || 0;
+      const scale = parseFloat(renderScale.value) || 100;
+
+      const rW = Math.round(w * (scale / 100));
+      const rH = Math.round(h * (scale / 100));
+
+      const basePixels = w * h;
+      const renderedPixels = rW * rH;
+
+      renderedResOut.textContent = `${rW} x ${rH}`;
+      basePixelsOut.textContent = basePixels.toLocaleString();
+      renderedPixelsOut.textContent = renderedPixels.toLocaleString();
+
+      if (basePixels > 0) {
+        if (renderedPixels < basePixels) {
+          const reduction = ((basePixels - renderedPixels) / basePixels) * 100;
+          performanceImpact.innerHTML = `Performance Estimate: <span>Renders ${reduction.toFixed(1)}% fewer pixels</span>. Expect a significant performance boost.`;
+        } else if (renderedPixels > basePixels) {
+          const increase = ((renderedPixels - basePixels) / basePixels) * 100;
+          performanceImpact.innerHTML = `Performance Estimate: <span>Renders ${increase.toFixed(1)}% more pixels</span>. Expect a performance decrease (supersampling).`;
+        } else {
+          performanceImpact.innerHTML = `Performance Estimate: <span>Native resolution</span>. No scaling performance impact.`;
+        }
+      } else {
+        performanceImpact.innerHTML = `Performance Estimate: <span>Invalid resolution</span>.`;
+      }
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    presetSelect.addEventListener('change', updatePreset);
+    [baseWidth, baseHeight].forEach(el => {
+      el.addEventListener('input', checkCustom);
+      el.addEventListener('change', checkCustom);
+    });
+    renderScale.addEventListener('input', calculate);
+    renderScale.addEventListener('change', calculate);
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
