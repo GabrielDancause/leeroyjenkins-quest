@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crosshair Generator | Leeroy Jenkins</title>
+  <meta name="description" content="Design and preview custom crosshairs. Adjust shape, color, size, and gap. Export settings easily.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Crosshair Generator",
+    "description": "Design and preview custom crosshairs. Adjust shape, color, size, and gap. Export settings easily.",
+    "url": "https://leeroyjenkins.quest/crosshair-generator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #08060e;
+      --card-bg: #100e18;
+      --border: #221e30;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .preview-box {
+      width: 100%;
+      height: 250px;
+      background-color: #333; /* Default bg */
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-bg-selector {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .preview-bg-selector button {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid #fff;
+      cursor: pointer;
+    }
+
+    .bg-dark { background-color: #333; }
+    .bg-light { background-color: #e0e0e0; }
+    .bg-game { background-color: #5b6957; } /* A generic dust2/game color */
+
+    .crosshair-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .crosshair-part {
+      position: absolute;
+      background-color: #00ff00;
+    }
+
+    /* Outlines handled via box-shadow or borders in JS */
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    input, select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input[type="range"] {
+      padding: 0;
+      height: 6px;
+      -webkit-appearance: none;
+      background: var(--border);
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+    }
+
+    input[type="color"] {
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: none;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      word-break: break-all;
+      flex-grow: 1;
+      text-align: right;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .seo-content ul {
+      color: var(--text-secondary);
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .seo-content li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { justify-content: space-between; }
+      .result-value { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Crosshair Generator</h1>
+      <p>Design, preview, and export your custom crosshair.</p>
+    </header>
+
+    <div class="calculator-card">
+      <div class="preview-box" id="previewBox">
+        <div class="preview-bg-selector">
+          <button class="bg-dark" onclick="setBg('#333')" title="Dark Background"></button>
+          <button class="bg-game" onclick="setBg('#5b6957')" title="Game Background"></button>
+          <button class="bg-light" onclick="setBg('#e0e0e0')" title="Light Background"></button>
+        </div>
+        <div class="crosshair-container" id="crosshairContainer">
+          <!-- Crosshair parts generated by JS -->
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="chColor">Color</label>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <input type="color" id="chColor" value="#00ff00">
+            <span id="colorVal" style="font-family: var(--font-mono); color: var(--text-secondary);">#00ff00</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="chStyle">Shape Style</label>
+          <select id="chStyle">
+            <option value="cross">Classic Cross</option>
+            <option value="cross-dot">Cross + Dot</option>
+            <option value="dot">Dot Only</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <div class="form-group-row">
+            <label for="chLength">Length</label>
+            <span id="lenVal" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">6</span>
+          </div>
+          <input type="range" id="chLength" min="0" max="50" value="6" step="1">
+        </div>
+
+        <div class="form-group">
+          <div class="form-group-row">
+            <label for="chThickness">Thickness</label>
+            <span id="thickVal" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">2</span>
+          </div>
+          <input type="range" id="chThickness" min="1" max="20" value="2" step="1">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <div class="form-group-row">
+            <label for="chGap">Gap</label>
+            <span id="gapVal" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">3</span>
+          </div>
+          <input type="range" id="chGap" min="0" max="30" value="3" step="1">
+        </div>
+
+        <div class="form-group">
+          <div class="form-group-row">
+            <label for="chOpacity">Opacity</label>
+            <span id="opacityVal" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">1.0</span>
+          </div>
+          <input type="range" id="chOpacity" min="0" max="1" value="1" step="0.1">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <div class="form-group-row">
+            <label for="hasOutline" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="hasOutline" checked>
+              Enable Outline
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group-row">
+            <label for="chOutlineThick">Outline Thickness</label>
+            <span id="outlineVal" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">1</span>
+          </div>
+          <input type="range" id="chOutlineThick" min="1" max="5" value="1" step="1">
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">Export Settings</div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="exportOut" style="font-size: 0.85rem;"></div>
+            <button class="copy-btn" onclick="copyValue('exportOut', this)">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why use a Custom Crosshair?</h2>
+      <p>Your crosshair is arguably the most important element of your HUD in any first-person shooter. It serves as the absolute center of your screen and directly impacts your ability to aim accurately, track targets, and align headshots.</p>
+      <p>Using a custom crosshair ensures that you have maximum visibility against varying backgrounds without obstructing your view of the target. Every player's vision and preference are unique, meaning the default crosshair provided by the game is rarely the optimal choice.</p>
+
+      <h2>Key Crosshair Elements Explained</h2>
+      <ul>
+        <li><strong>Color:</strong> High contrast is crucial. Green, cyan, and magenta are popular choices because they stand out against the typical color palettes of competitive maps (which often feature browns, greys, and yellows).</li>
+        <li><strong>Size (Length & Thickness):</strong> A smaller crosshair is better for precision clicking (e.g., long-range headshots), while a slightly larger or thicker crosshair can aid in fast target acquisition and tracking.</li>
+        <li><strong>Gap:</strong> The gap in the center allows you to see the exact point of impact. A small gap helps frame a target's head at a distance, whereas no gap creates a solid cross or dot.</li>
+        <li><strong>Outline:</strong> Adding a dark outline significantly boosts visibility, ensuring your crosshair doesn't blend into bright environments like skyboxes or brightly lit walls.</li>
+      </ul>
+
+      <h2>Choosing the Right Shape</h2>
+      <p>Different shapes cater to different playstyles:</p>
+      <ul>
+        <li><strong>Classic Cross:</strong> The standard choice. Offers great horizontal and vertical reference lines, making it excellent for crosshair placement and spray control.</li>
+        <li><strong>Dot Only:</strong> Ultimate precision. Perfect for players who rely on flick shots and pinpoint accuracy, though it can sometimes be easily lost in chaotic gunfights.</li>
+        <li><strong>Cross + Dot:</strong> Combines the reference lines of a cross with the exact center point of a dot. It can feel cluttered if made too large, but provides the benefits of both styles when kept compact.</li>
+      </ul>
+    </div>
+
+    <footer>
+      &copy; 2025 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const previewBox = document.getElementById('previewBox');
+    const chContainer = document.getElementById('crosshairContainer');
+
+    // Inputs
+    const colorInput = document.getElementById('chColor');
+    const styleInput = document.getElementById('chStyle');
+    const lengthInput = document.getElementById('chLength');
+    const thickInput = document.getElementById('chThickness');
+    const gapInput = document.getElementById('chGap');
+    const opacityInput = document.getElementById('chOpacity');
+    const outlineCheckbox = document.getElementById('hasOutline');
+    const outlineInput = document.getElementById('chOutlineThick');
+
+    // Value Labels
+    const colorVal = document.getElementById('colorVal');
+    const lenVal = document.getElementById('lenVal');
+    const thickVal = document.getElementById('thickVal');
+    const gapVal = document.getElementById('gapVal');
+    const opacityVal = document.getElementById('opacityVal');
+    const outlineVal = document.getElementById('outlineVal');
+
+    // Output
+    const exportOut = document.getElementById('exportOut');
+
+    function setBg(color) {
+      previewBox.style.backgroundColor = color;
+    }
+
+    // Convert hex color to rgba string
+    function hexToRgba(hex, alpha) {
+      let r = parseInt(hex.slice(1, 3), 16);
+      let g = parseInt(hex.slice(3, 5), 16);
+      let b = parseInt(hex.slice(5, 7), 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    function renderCrosshair() {
+      // Get values
+      const color = colorInput.value;
+      const style = styleInput.value;
+      const len = parseInt(lengthInput.value);
+      const thick = parseInt(thickInput.value);
+      const gap = parseInt(gapInput.value);
+      const opacity = parseFloat(opacityInput.value);
+      const hasOutline = outlineCheckbox.checked;
+      const outThick = parseInt(outlineInput.value);
+
+      // Update labels
+      colorVal.textContent = color;
+      lenVal.textContent = len;
+      thickVal.textContent = thick;
+      gapVal.textContent = gap;
+      opacityVal.textContent = opacity.toFixed(1);
+      outlineVal.textContent = outThick;
+
+      // Toggle outline input state based on checkbox
+      outlineInput.disabled = !hasOutline;
+      if (!hasOutline) {
+         outlineVal.style.color = '#555';
+      } else {
+         outlineVal.style.color = 'var(--text-secondary)';
+      }
+
+      // Clear current crosshair
+      chContainer.innerHTML = '';
+
+      const rgbaColor = hexToRgba(color, opacity);
+      const outlineStyle = hasOutline ? `border: ${outThick}px solid rgba(0,0,0,${opacity});` : '';
+      // We adjust dimensions if outline is present so the visual thickness of the color remains the same
+      // However, typical crosshairs add outline to the outside.
+      // We will use CSS box-shadow for outlines to avoid layout shifts.
+      const boxShadow = hasOutline ? `box-shadow: 0 0 0 ${outThick}px rgba(0,0,0,${opacity});` : '';
+
+      // Generate parts based on style
+      let partsHTML = '';
+
+      if (style === 'cross' || style === 'cross-dot') {
+        // Top
+        partsHTML += `<div class="crosshair-part" style="
+          width: ${thick}px;
+          height: ${len}px;
+          background-color: ${rgbaColor};
+          top: -${gap + len}px;
+          left: -${thick/2}px;
+          ${boxShadow}
+        "></div>`;
+
+        // Bottom
+        partsHTML += `<div class="crosshair-part" style="
+          width: ${thick}px;
+          height: ${len}px;
+          background-color: ${rgbaColor};
+          top: ${gap}px;
+          left: -${thick/2}px;
+          ${boxShadow}
+        "></div>`;
+
+        // Left
+        partsHTML += `<div class="crosshair-part" style="
+          width: ${len}px;
+          height: ${thick}px;
+          background-color: ${rgbaColor};
+          top: -${thick/2}px;
+          left: -${gap + len}px;
+          ${boxShadow}
+        "></div>`;
+
+        // Right
+        partsHTML += `<div class="crosshair-part" style="
+          width: ${len}px;
+          height: ${thick}px;
+          background-color: ${rgbaColor};
+          top: -${thick/2}px;
+          left: ${gap}px;
+          ${boxShadow}
+        "></div>`;
+      }
+
+      if (style === 'dot' || style === 'cross-dot') {
+        // Center Dot
+        partsHTML += `<div class="crosshair-part" style="
+          width: ${thick}px;
+          height: ${thick}px;
+          background-color: ${rgbaColor};
+          top: -${thick/2}px;
+          left: -${thick/2}px;
+          ${boxShadow}
+        "></div>`;
+      }
+
+      chContainer.innerHTML = partsHTML;
+
+      // Update Export String (JSON format)
+      const settings = {
+        style,
+        color,
+        length: len,
+        thickness: thick,
+        gap,
+        opacity,
+        outline: hasOutline,
+        outlineThickness: hasOutline ? outThick : 0
+      };
+
+      // Create a compact string representation
+      const exportString = `CH-${style.toUpperCase()}-${color.substring(1)}-L${len}-T${thick}-G${gap}-O${opacity}-OUT${hasOutline ? outThick : 0}`;
+      exportOut.textContent = exportString;
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    // Attach listeners
+    [colorInput, styleInput, lengthInput, thickInput, gapInput, opacityInput, outlineCheckbox, outlineInput].forEach(el => {
+      el.addEventListener('input', renderCrosshair);
+      el.addEventListener('change', renderCrosshair);
+    });
+
+    // Initial render
+    renderCrosshair();
+  </script>
+</body>
+</html>
