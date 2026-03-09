@@ -1,0 +1,152 @@
+[
+  {
+    "game": "PLAYERUNKNOWN'S BATTLEGROUNDS Mobile",
+    "genre": "Battle Royale",
+    "totalPrizeUSD": 89785122.22,
+    "tournamentsCount": 344,
+    "topTournament": "» Peacekeeper Elite League 2022 Spring",
+    "topPrizeUSD": 4141565.5,
+    "topPlayer": "paraboy",
+    "topEarningsUSD": 1420546
+  },
+  {
+    "game": "PLAYERUNKNOWN’S BATTLEGROUNDS",
+    "genre": "Battle Royale",
+    "totalPrizeUSD": 67037707.91,
+    "tournamentsCount": 642,
+    "topTournament": "» PGI.S 2021 Main Event",
+    "topPrizeUSD": 7068071,
+    "topPlayer": "Loki",
+    "topEarningsUSD": 1245451.79
+  },
+  {
+    "game": "Rocket League",
+    "genre": "Sports",
+    "totalPrizeUSD": 53315530.56,
+    "tournamentsCount": 5262,
+    "topTournament": "» Gamers8 2023 (RL)",
+    "topPrizeUSD": 2110000,
+    "topPlayer": "M0nkey M00n",
+    "topEarningsUSD": 998034.54
+  },
+  {
+    "game": "Rainbow Six Siege",
+    "genre": "FPS",
+    "totalPrizeUSD": 49885252.94,
+    "tournamentsCount": 573,
+    "topTournament": "» Six Invitational 2020",
+    "topPrizeUSD": 3000000,
+    "topPlayer": "Shaiiko",
+    "topEarningsUSD": 790685.2
+  },
+  {
+    "game": "StarCraft II",
+    "genre": "RTS",
+    "totalPrizeUSD": 43451866.17,
+    "tournamentsCount": 7535,
+    "topTournament": "» Esports World Cup 2024 (SC2)",
+    "topPrizeUSD": 1050000,
+    "topPlayer": "Serral",
+    "topEarningsUSD": 1866325.57
+  },
+  {
+    "game": "Counter-Strike 2",
+    "genre": "FPS",
+    "totalPrizeUSD": 40994147.44,
+    "tournamentsCount": 840,
+    "topTournament": "» BLAST.tv Austin Major 2025",
+    "topPrizeUSD": 1250000,
+    "topPlayer": "ropz",
+    "topEarningsUSD": 891050
+  },
+  {
+    "game": "Overwatch",
+    "genre": "FPS",
+    "totalPrizeUSD": 35274412.38,
+    "tournamentsCount": 848,
+    "topTournament": "» Overwatch League - Season 2 Playoffs",
+    "topPrizeUSD": 3500000,
+    "topPlayer": "Striker",
+    "topEarningsUSD": 499876.62
+  },
+  {
+    "game": "VALORANT",
+    "genre": "FPS",
+    "totalPrizeUSD": 34612105.35,
+    "tournamentsCount": 1331,
+    "topTournament": "» VALORANT Champions 2023",
+    "topPrizeUSD": 2250000,
+    "topPlayer": "Chronicle",
+    "topEarningsUSD": 328571.66
+  },
+  {
+    "game": "Apex Legends",
+    "genre": "Battle Royale",
+    "totalPrizeUSD": 31803237.01,
+    "tournamentsCount": 740,
+    "topTournament": "» ALGS Championship 2022",
+    "topPrizeUSD": 2000000,
+    "topPlayer": "ImperialHal",
+    "topEarningsUSD": 1031054.42
+  },
+  {
+    "game": "Hearthstone",
+    "genre": "Card Game",
+    "totalPrizeUSD": 31231683.48,
+    "tournamentsCount": 1174,
+    "topTournament": "» BlizzCon Hearthstone World Championship 2016",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "Thijs",
+    "topEarningsUSD": 523572.99
+  },
+  {
+    "game": "CrossFire",
+    "genre": "FPS",
+    "totalPrizeUSD": 30824357.96,
+    "tournamentsCount": 416,
+    "topTournament": "Esports World Cup 2025 (CF)",
+    "topPrizeUSD": 2000000,
+    "topPlayer": "N9",
+    "topEarningsUSD": 942059.42
+  },
+  {
+    "game": "Mobile Legends: Bang Bang",
+    "genre": "MOBA",
+    "totalPrizeUSD": 21519451.87,
+    "tournamentsCount": 158,
+    "topTournament": "» MLBB Mid Season Cup 2024",
+    "topPrizeUSD": 3050000,
+    "topPlayer": "KarlTzy",
+    "topEarningsUSD": 376284.67
+  },
+  {
+    "game": "Free Fire",
+    "genre": "Battle Royale",
+    "totalPrizeUSD": 20135992.14,
+    "tournamentsCount": 97,
+    "topTournament": "» Free Fire World Series 2021 Singapore",
+    "topPrizeUSD": 2010000,
+    "topPlayer": "Joena",
+    "topEarningsUSD": 462465.47
+  },
+  {
+    "game": "Heroes of the Storm",
+    "genre": "MOBA",
+    "totalPrizeUSD": 18466719.38,
+    "tournamentsCount": 507,
+    "topTournament": "» HGC 2016 - Fall Finals",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "KyoCha",
+    "topEarningsUSD": 465268.99
+  },
+  {
+    "game": "Call of Duty: Warzone",
+    "genre": "Battle Royale",
+    "totalPrizeUSD": 13854809.95,
+    "tournamentsCount": 407,
+    "topTournament": "» Esports World Cup 2024 (CoD:Warzone)",
+    "topPrizeUSD": 1050000,
+    "topPlayer": "Biffle",
+    "topEarningsUSD": 496658.33
+  }
+]
