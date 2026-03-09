@@ -1,0 +1,5402 @@
+[
+  {
+    "gpu": "RTX 4090",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 784,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 514,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 278,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 487,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 322,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 178,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 297,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 198,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 106,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 281,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 184,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 100,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 225,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 139,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 76,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 180,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 118,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 63,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 155,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 103,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 57,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 148,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 100,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 52,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 140,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 92,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 49,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 143,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 89,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 128,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 86,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 111,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 100,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 90,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 31,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 118,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 80,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4090",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 627,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 386,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 214,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 388,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 242,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 131,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 245,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 147,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 226,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 136,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 74,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 163,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 108,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 59,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 134,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 90,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 124,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 115,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 105,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 70,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 104,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 68,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 99,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 81,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 67,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 92,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4080",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 620,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 365,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 207,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 380,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 241,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 126,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 230,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 139,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 74,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 219,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 128,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 69,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 156,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 102,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 54,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 127,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 85,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 116,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 76,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 108,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 70,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 101,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 65,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 101,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 65,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 95,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 61,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 81,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 51,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 41,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 84,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 55,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7900 XTX",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 31,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 474,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 317,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 165,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 291,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 197,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 102,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 184,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 119,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 62,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 164,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 112,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 60,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 132,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 88,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 47,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 110,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 72,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 98,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 62,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 89,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 60,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 84,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 54,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 82,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 55,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 80,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 65,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 60,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 55,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070 Ti",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 426,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 276,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 147,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 256,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 168,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 93,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 156,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 102,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 54,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 147,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 95,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 51,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 118,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 73,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 41,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 95,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 61,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 83,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 80,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 72,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 47,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 69,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 57,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 62,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7800 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 22,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 400,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 262,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 140,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 253,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 164,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 88,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 146,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 100,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 52,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 143,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 88,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 110,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 70,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 91,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 59,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 31,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 80,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 72,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 66,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 43,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 22,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 57,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 49,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 62,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4070",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 394,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 244,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 104,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 235,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 154,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 65,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 143,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 93,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 132,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 90,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 106,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 71,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 85,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 56,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 51,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 72,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 67,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 43,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 65,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 43,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 61,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 41,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 54,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 31,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 57,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3080",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 355,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 240,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 102,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 227,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 145,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 63,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 137,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 87,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 127,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 81,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 99,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 79,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 52,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 22,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 74,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 66,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 63,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 55,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6800 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 332,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 221,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 94,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 204,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 137,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 129,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 83,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 120,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 93,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 76,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 69,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 63,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 55,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 51,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7700 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 301,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 203,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 86,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 186,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 121,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 54,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 117,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 74,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 109,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 69,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 83,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 69,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 61,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 55,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 48,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 43,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 22,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060 Ti",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 280,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 182,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 83,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 184,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 120,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 107,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 72,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 101,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 67,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 78,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 56,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 38,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 53,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 49,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 41,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 43,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3070",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 257,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 169,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 75,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 160,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 105,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 96,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 95,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 62,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 72,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 47,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 59,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 52,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 51,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 31,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 29,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 35,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 6700 XT",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 228,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 133,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 64,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 140,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 81,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 86,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 49,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 77,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 45,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 60,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 50,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 41,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 40,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 31,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 4060",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 206,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 120,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 59,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 133,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 75,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 76,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 47,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 22,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 75,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 41,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 57,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 47,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 42,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 39,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 11,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 36,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 15,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 23,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 19,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RX 7600",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Valorant",
+    "resolution": "1080p",
+    "avgFps": 163,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Valorant",
+    "resolution": "1440p",
+    "avgFps": 96,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Valorant",
+    "resolution": "4K",
+    "avgFps": 46,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "CS2",
+    "resolution": "1080p",
+    "avgFps": 103,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "CS2",
+    "resolution": "1440p",
+    "avgFps": 58,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "CS2",
+    "resolution": "4K",
+    "avgFps": 27,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Fortnite",
+    "resolution": "1080p",
+    "avgFps": 60,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Fortnite",
+    "resolution": "1440p",
+    "avgFps": 34,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Fortnite",
+    "resolution": "4K",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Apex Legends",
+    "resolution": "1080p",
+    "avgFps": 56,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Apex Legends",
+    "resolution": "1440p",
+    "avgFps": 33,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Apex Legends",
+    "resolution": "4K",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "GTA V",
+    "resolution": "1080p",
+    "avgFps": 44,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "GTA V",
+    "resolution": "1440p",
+    "avgFps": 25,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "GTA V",
+    "resolution": "4K",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Call of Duty Warzone",
+    "resolution": "1080p",
+    "avgFps": 37,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Call of Duty Warzone",
+    "resolution": "1440p",
+    "avgFps": 21,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Call of Duty Warzone",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Spider-Man Remastered",
+    "resolution": "1080p",
+    "avgFps": 32,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Spider-Man Remastered",
+    "resolution": "1440p",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Spider-Man Remastered",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "God of War",
+    "resolution": "1080p",
+    "avgFps": 30,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "God of War",
+    "resolution": "1440p",
+    "avgFps": 17,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "God of War",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1080p",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Red Dead Redemption 2",
+    "resolution": "1440p",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Red Dead Redemption 2",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Elden Ring",
+    "resolution": "1080p",
+    "avgFps": 28,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Elden Ring",
+    "resolution": "1440p",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Elden Ring",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Baldur's Gate 3",
+    "resolution": "1080p",
+    "avgFps": 26,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Baldur's Gate 3",
+    "resolution": "1440p",
+    "avgFps": 16,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Baldur's Gate 3",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Hogwarts Legacy",
+    "resolution": "1080p",
+    "avgFps": 22,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Hogwarts Legacy",
+    "resolution": "1440p",
+    "avgFps": 13,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Hogwarts Legacy",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Cyberpunk 2077",
+    "resolution": "1080p",
+    "avgFps": 20,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Cyberpunk 2077",
+    "resolution": "1440p",
+    "avgFps": 12,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Cyberpunk 2077",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Starfield",
+    "resolution": "1080p",
+    "avgFps": 18,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Starfield",
+    "resolution": "1440p",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Starfield",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1080p",
+    "avgFps": 24,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Minecraft (with shaders)",
+    "resolution": "1440p",
+    "avgFps": 14,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  },
+  {
+    "gpu": "RTX 3060",
+    "game": "Minecraft (with shaders)",
+    "resolution": "4K",
+    "avgFps": 10,
+    "settings": "Ultra",
+    "source": "Estimated via Performance Tier Model"
+  }
+]
