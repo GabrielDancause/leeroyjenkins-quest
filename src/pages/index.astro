@@ -1,162 +1,413 @@
 ---
 import BaseHead from '../layouts/BaseHead.astro';
 
-const studies = [
-  {
-    title: "GPU Performance Index 2026",
-    subtitle: "60 GPUs Benchmarked",
-    slug: "/gpu-performance-index",
-    stat: "60",
-    statLabel: "GPUs ranked",
-    desc: "Every current-gen GPU benchmarked and ranked. RTX 4090 to RX 7600 — find where your card sits and what upgrade is worth it.",
-    tag: "ORIGINAL RESEARCH",
-  },
+// Tools (gaming calculators and utilities)
+const tools = [
+  { emoji: "🖱️", name: "DPI & Sensitivity Matcher", slug: "/dpi-calculator", desc: "Match sensitivity across different DPI settings and mice" },
+  { emoji: "👁️", name: "FOV Calculator", slug: "/fov-calculator", desc: "Find ideal field of view based on monitor size and distance" },
+  { emoji: "📐", name: "Crosshair Generator", slug: "/crosshair-generator", desc: "Design crosshairs for Valorant, CS2, Overwatch, and more" },
+  { emoji: "🖥️", name: "Resolution Scaler", slug: "/resolution-scaler", desc: "Render resolution percentages and performance impact estimates" },
+  { emoji: "📊", name: "FPS Calculator", slug: "/fps-calculator", desc: "Estimate FPS for hardware and game settings combinations" },
+  { emoji: "💻", name: "PC Bottleneck Calculator", slug: "/bottleneck-calculator", desc: "Check CPU vs GPU bottleneck with upgrade recommendations" },
+  { emoji: "⏱️", name: "Input Lag Calculator", slug: "/input-lag", desc: "Calculate total system input lag from mouse to display" },
+  { emoji: "🎲", name: "Loot Drop Calculator", slug: "/loot-probability", desc: "Calculate true chances of rare drops with bad luck protection" },
+  { emoji: "🕐", name: "Discord Timestamp Generator", slug: "/discord-timestamp", desc: "Generate Discord timestamp codes from any date and time" },
+  { emoji: "⌨️", name: "Keybind Planner", slug: "/keybind-planner", desc: "Plan keybinds with visual layout and conflict detection" },
+  { emoji: "💥", name: "Damage Calculator", slug: "/damage-calculator", desc: "Calculate DPS, TTK with armor and headshot multipliers" },
+  { emoji: "📈", name: "XP Calculator", slug: "/xp-calculator", desc: "Estimate time to level up with XP rates and boosts" },
+  { emoji: "📡", name: "Stream Bitrate Calculator", slug: "/stream-bitrate", desc: "Find optimal bitrate for resolution, FPS, and platform" },
+  { emoji: "🎯", name: "Aim Stats Calculator", slug: "/aim-trainer-stats", desc: "Calculate aim training metrics and improvement rates" },
+  { emoji: "🖥️", name: "Gaming PC Builder", slug: "/gaming-pc-builder", desc: "Build balanced PC for budget with compatibility checks" },
+  { emoji: "🎨", name: "Color Blind Test", slug: "/color-blind-test", desc: "Test color vision with gaming-specific scenarios" },
+  { emoji: "🎲", name: "Randomizer", slug: "/randomizer", desc: "Random game picker, team generator, map randomizer" },
+  { emoji: "🖥️", name: "Monitor Refresh Rate Test", slug: "/refresh-rate-test", desc: "Verify monitor refresh rate and detect frame skipping" }
 ];
 
-const tools = [
-  { emoji: "🖱️", name: "DPI & Sensitivity Matcher", slug: "/dpi-calculator", desc: "Switching mice? Match your exact sensitivity across any DPI. Supports cm/360 and in/360." },
-  { emoji: "👁️", name: "FOV Calculator", slug: "/fov-calculator", desc: "Find your ideal field of view based on monitor size, distance, and aspect ratio. Horizontal and vertical." },
-  { emoji: "⌨️", name: "Polling Rate vs Input Lag", desc: "1000Hz vs 4000Hz — does it matter? Visualize the actual input lag difference in milliseconds.", soon: true },
-  { emoji: "🖥️", name: "Monitor Response Time Tester", desc: "Estimate motion blur based on your monitor's response time, refresh rate, and pixel persistence.", soon: true },
-  { emoji: "🎯", name: "eDPI Calculator", desc: "Calculate your effective DPI across any game. Compare your sens to pro players.", soon: true },
-  { emoji: "📐", name: "Crosshair Generator", slug: "/crosshair-generator", desc: "Design your crosshair visually. Export settings for Valorant, CS2, Overwatch, and more." },
-  { emoji: "🖥️", name: "Resolution Scaler", slug: "/resolution-scaler", desc: "Render resolution percentages and pixel counts. Performance impact estimates." },
-  { emoji: "📊", name: "FPS Calculator", slug: "/fps-calculator", desc: "Estimate FPS for hardware and settings. GPU, CPU, resolution, quality." },
-  { emoji: "💻", name: "PC Bottleneck Calculator", slug: "/bottleneck-calculator", desc: "CPU vs GPU bottleneck check. Hardware specs, resolution. Upgrade recommendations." },
-  { emoji: "⏱️", name: "Input Lag Calculator", slug: "/input-lag", desc: "Calculate your total system input lag. Mouse, USB, CPU, GPU, and display latency breakdown." },
-  { emoji: "🎲", name: "Loot Drop Calculator", slug: "/loot-probability", desc: "Calculate your true chances of getting that rare drop. Bad luck protection factored in." },
-  { emoji: "🕐", name: "Discord Timestamp Generator", slug: "/discord-timestamp", desc: "Generate Discord timestamp codes from any date and time. All format styles. Copy-paste ready." },
-  { emoji: "⌨️", name: "Keybind Planner", slug: "/keybind-planner", desc: "Plan and optimize your keybinds for any game. Visual keyboard layout with conflict detection." },
-  { emoji: "💥", name: "Damage Calculator", slug: "/damage-calculator", desc: "Calculate DPS, TTK, and damage output. Armor, headshot multipliers, and falloff factored in." },
-  { emoji: "📈", name: "XP Calculator", slug: "/xp-calculator", desc: "Estimate time to level up in any game. XP rates, boosts, and daily caps calculated." },
-  { emoji: "📡", name: "Stream Bitrate Calculator", slug: "/stream-bitrate", desc: "Find the optimal bitrate for your stream. Resolution, FPS, encoder, and platform limits." },
-  { emoji: "🎯", name: "Aim Stats Calculator", slug: "/aim-trainer-stats", desc: "Calculate aim training metrics: accuracy, time-to-kill, clicks per second, and improvement rate." },
-  { emoji: "🖥️", name: "Gaming PC Builder", slug: "/gaming-pc-builder", desc: "Build a balanced gaming PC for your budget. Component recommendations and compatibility checks." },
-  { emoji: "🎨", name: "Color Blind Test", slug: "/color-blind-test", desc: "Test for color vision deficiency. Ishihara-style plates with gaming-specific color scenarios." },
-  { emoji: "🎲", name: "Randomizer", slug: "/randomizer", desc: "Random game picker, team generator, map randomizer. Weighted options and exclusion rules." },
-  { emoji: "📺", name: "Guide: Streaming Setup", slug: "/guide-streaming-setup", desc: "Complete streaming setup guide. OBS, audio, lighting, overlays, and platform optimization." },
-  { emoji: "⌨️", name: "Guide: Mechanical Keyboards", slug: "/guide-mechanical-keyboards", desc: "Mechanical keyboard guide for gamers. Switches, actuation, polling rate, and recommendations." },
-  { emoji: "🖱️", name: "Guide: Mouse Grip Styles", slug: "/guide-mouse-grip", desc: "Find your ideal mouse grip. Palm, claw, fingertip — with mouse shape recommendations." },
-  { emoji: "🖥️", name: "Monitor Refresh Rate Test", slug: "/refresh-rate-test", desc: "Verify monitor refresh rate. Moving bars. Frame skipping detection." },
-  { emoji: "📚", name: "Guide: FPS Optimization", slug: "/guide-fps-optimization", desc: "Complete guide to boosting FPS. Windows settings, GPU drivers, in-game settings, hardware upgrades." },
-  { emoji: "📚", name: "Guide: Monitor Buying", slug: "/guide-monitor-buying", desc: "Panel types (IPS/VA/TN), refresh rate, response time, resolution. Best monitors by budget." },
-  { emoji: "📋", name: "Best Free-to-Play Games", slug: "/list-free-games", desc: "Top F2P games: Valorant, Fortnite, Apex, LoL, Genshin, Path of Exile. Genre, platform, monetization." },
-  { emoji: "🎧", name: "Best Gaming Headsets", slug: "/list-gaming-headsets", desc: "Top gaming headsets ranked. Wireless, wired, budget, and premium. Sound quality, mic, and comfort compared." },
-  { emoji: "🎮", name: "Best Game Engines", slug: "/list-game-engines", desc: "Game engines compared: Unity, Unreal, Godot, and more. Features, pricing, learning curve, and best use cases." },
-  { emoji: "🤖", name: "Best Discord Bots", slug: "/list-discord-bots", desc: "Top Discord bots for gaming servers. Moderation, music, leveling, and utility bots ranked and reviewed." },
-  { emoji: "🖱️", name: "Best Gaming Mice", slug: "/list-gaming-mice", desc: "Top gaming mice by grip style. Weight, sensor, polling rate, DPI range. Budget to premium." },
+// Studies 
+const studies = [
+  { emoji: "💻", name: "GPU Performance Index 2026", slug: "/gpu-performance-index", desc: "60 GPUs benchmarked and ranked from RTX 4090 to RX 7600", stat: "60", statLabel: "GPUs ranked" }
+];
+
+// Guides
+const guides = [
+  { emoji: "📺", name: "Streaming Setup Guide", slug: "/guide-streaming-setup", desc: "Complete streaming setup: OBS, audio, lighting, overlays" },
+  { emoji: "⌨️", name: "Mechanical Keyboards Guide", slug: "/guide-mechanical-keyboards", desc: "Switches, actuation, polling rate, and recommendations" },
+  { emoji: "🖱️", name: "Mouse Grip Styles Guide", slug: "/guide-mouse-grip", desc: "Palm, claw, fingertip grips with mouse recommendations" },
+  { emoji: "📚", name: "FPS Optimization Guide", slug: "/guide-fps-optimization", desc: "Windows settings, drivers, in-game settings, hardware" },
+  { emoji: "📚", name: "Monitor Buying Guide", slug: "/guide-monitor-buying", desc: "Panel types, refresh rate, response time, resolution" }
+];
+
+// Lists
+const lists = [
+  { emoji: "📋", name: "Best Free-to-Play Games", slug: "/list-free-games", desc: "Top F2P games: Valorant, Fortnite, Apex, LoL, Genshin" },
+  { emoji: "🎧", name: "Best Gaming Headsets", slug: "/list-gaming-headsets", desc: "Wireless, wired, budget, premium headsets compared" },
+  { emoji: "🎮", name: "Best Game Engines", slug: "/list-game-engines", desc: "Unity, Unreal, Godot comparison with use cases" },
+  { emoji: "🤖", name: "Best Discord Bots", slug: "/list-discord-bots", desc: "Top Discord bots for gaming servers and communities" },
+  { emoji: "🖱️", name: "Best Gaming Mice", slug: "/list-gaming-mice", desc: "Gaming mice by grip style, weight, sensor, polling rate" }
 ];
 ---
 <html lang="en">
 <head>
-  <BaseHead
-    title="Leeroy Jenkins — Gaming Sensitivity Calculators, Esports Tools & Setup Guides"
-    description="Free gaming tools: DPI sensitivity matcher, FOV calculator, eDPI calculator, polling rate comparison, crosshair generator, and esports setup guides. No signup."
-    ogTitle="Leeroy Jenkins — At Least I Have Chicken"
-    ogDescription="Gaming sensitivity calculators, FOV tools, eDPI calculators, and esports setup guides. Free forever."
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <BaseHead />
+  <title>leeroyjenkins.quest — Gaming Tools & Data</title>
+  <meta name="description" content="Free gaming tools: DPI sensitivity matcher, FOV calculator, eDPI calculator, polling rate comparison, crosshair generator, and esports setup guides." />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #08060e; color: #d8d0e8; }
-    .hero { text-align: center; padding: 100px 24px 80px; background: linear-gradient(180deg, #120e1e 0%, #08060e 100%); position: relative; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(107,33,168,0.1) 0%, transparent 60%); }
+    body { 
+      font-family: 'Inter', -apple-system, sans-serif; 
+      background: #060a12; 
+      color: #c8d0de; 
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero { 
+      text-align: center; 
+      padding: 100px 24px 70px; 
+      background: linear-gradient(180deg, #120e1e 0%, #060a12 100%); 
+      position: relative; 
+    }
+    .hero::before { 
+      content: ''; 
+      position: absolute; 
+      inset: 0; 
+      background: radial-gradient(circle at 50% 40%, rgba(147,51,234,0.08) 0%, transparent 60%); 
+    }
     .hero-content { position: relative; z-index: 1; }
-    .hero h1 { font-size: 3rem; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 12px; background: linear-gradient(135deg, #fff 0%, #9333EA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero .sub { color: #555; font-size: 0.85rem; font-style: italic; margin-bottom: 12px; }
-    .hero p { color: #666; font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
-    .grid { max-width: 900px; margin: 0 auto; padding: 0 24px 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-    .card { background: #100e18; border: 2px solid #221e30; border-radius: 16px; padding: 28px 24px; position: relative; }
-    .card .emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
-    .card h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
-    .card p { font-size: 0.85rem; color: #888; line-height: 1.6; }
-    a.card { text-decoration: none; color: inherit; cursor: pointer; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-    a.card:hover { border-color: #9333EA; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(147,51,234,0.1); }
-    .arrow { color: #9333EA; font-size: 0.85rem; margin-top: 14px; display: inline-block; font-weight: 600; }
-    .badge { position: absolute; top: 14px; right: 14px; background: #221e30; color: #9333EA; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-    .live-badge { background: #1a2a1a; color: #4ade80; }
-    .footer { text-align: center; padding: 40px 24px; font-size: 0.78rem; color: #333; border-top: 1px solid #151020; }
-    .footer a { color: #9333EA; text-decoration: none; }
-    .section-container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-    .section-header { text-align: center; margin-bottom: 28px; padding-top: 10px; }
-    .section-tag { display: inline-block; background: #221e30; color: #9333EA; font-size: 0.7rem; font-weight: 800; padding: 4px 14px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 10px; }
-    .section-title { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 4px; letter-spacing: -0.5px; }
-    .section-sub { color: #555; font-size: 0.9rem; }
-    .studies-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .study-card { background: linear-gradient(135deg, #0e0c14 0%, #150e20 100%); border: 2px solid #221e30; border-radius: 20px; padding: 32px 28px; text-decoration: none; color: inherit; display: block; transition: border-color 0.3s, transform 0.2s; position: relative; overflow: hidden; }
-    .study-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #9333EA, #A855F7); opacity: 0; transition: opacity 0.3s; }
-    .study-card:hover { border-color: #9333EA; transform: translateY(-3px); }
+    .hero .tagline { 
+      color: #9333EA; 
+      font-size: 0.85rem; 
+      font-weight: 700; 
+      letter-spacing: 3px; 
+      text-transform: uppercase; 
+      margin-bottom: 16px; 
+    }
+    .hero h1 { 
+      font-size: 3rem; 
+      font-weight: 900; 
+      letter-spacing: -1.5px; 
+      margin-bottom: 8px; 
+      background: linear-gradient(135deg, #fff 0%, #9333EA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .sub { 
+      color: #5a6a80; 
+      font-size: 0.9rem; 
+      font-style: italic; 
+      margin-bottom: 16px; 
+    }
+    .hero p { 
+      color: #5a6a80; 
+      font-size: 1.05rem; 
+      max-width: 520px; 
+      margin: 0 auto; 
+    }
+
+    /* Sections */
+    .section-container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 60px 24px; 
+    }
+    .section-header { 
+      text-align: center; 
+      margin-bottom: 40px; 
+    }
+    .section-tag { 
+      display: inline-block; 
+      background: rgba(147,51,234,0.1); 
+      color: #9333EA; 
+      font-size: 0.7rem; 
+      font-weight: 800; 
+      padding: 6px 16px; 
+      border-radius: 20px; 
+      letter-spacing: 1px; 
+      margin-bottom: 12px; 
+    }
+    .section-title { 
+      font-size: 2.2rem; 
+      font-weight: 900; 
+      color: #fff; 
+      margin-bottom: 8px; 
+      letter-spacing: -0.8px; 
+    }
+    .section-sub { 
+      color: #5a6a80; 
+      font-size: 1rem; 
+    }
+
+    /* Tools Grid */
+    .tools-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+      gap: 16px; 
+    }
+    .tool-card { 
+      background: #100e18; 
+      border: 1px solid #221e30; 
+      border-radius: 12px; 
+      padding: 20px; 
+      text-decoration: none; 
+      color: inherit; 
+      display: block; 
+      transition: all 0.2s ease; 
+    }
+    .tool-card:hover { 
+      border-color: #9333EA; 
+      transform: translateY(-2px); 
+    }
+    .tool-emoji { 
+      font-size: 1.4rem; 
+      margin-bottom: 8px; 
+      display: block; 
+    }
+    .tool-name { 
+      font-size: 0.95rem; 
+      font-weight: 700; 
+      color: #e0e8f0; 
+      margin-bottom: 6px; 
+    }
+    .tool-desc { 
+      font-size: 0.8rem; 
+      color: #6a7a90; 
+      line-height: 1.4; 
+    }
+
+    /* Studies Grid */
+    .studies-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+      gap: 24px; 
+    }
+    .study-card { 
+      background: linear-gradient(135deg, #0e0c14 0%, #150e20 100%); 
+      border: 1px solid #221e30; 
+      border-radius: 16px; 
+      padding: 28px 24px; 
+      text-decoration: none; 
+      color: inherit; 
+      display: block; 
+      transition: all 0.3s ease; 
+      position: relative; 
+      overflow: hidden; 
+    }
+    .study-card::before { 
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      height: 2px; 
+      background: linear-gradient(90deg, #9333EA, #A855F7); 
+      opacity: 0; 
+      transition: opacity 0.3s; 
+    }
+    .study-card:hover { 
+      border-color: #9333EA; 
+      transform: translateY(-3px); 
+      box-shadow: 0 12px 40px rgba(147,51,234,0.15); 
+    }
     .study-card:hover::before { opacity: 1; }
-    .study-tag-label { display: inline-block; background: rgba(147,51,234,0.12); color: #9333EA; font-size: 0.6rem; font-weight: 800; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.8px; margin-bottom: 14px; }
-    .study-stat { margin-bottom: 14px; }
-    .stat-number { display: block; font-size: 2.4rem; font-weight: 900; color: #9333EA; line-height: 1; letter-spacing: -1px; }
-    .stat-label { display: block; font-size: 0.82rem; color: #666; margin-top: 4px; }
-    .study-title { font-size: 1.12rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .study-subtitle { font-size: 0.8rem; color: #9333EA; margin-bottom: 10px; font-weight: 600; }
-    .study-desc { font-size: 0.85rem; color: #777; line-height: 1.6; margin-bottom: 14px; }
-    .study-cta { color: #9333EA; font-size: 0.85rem; font-weight: 700; }
-    .grid { margin-bottom: 50px; }
-    @media (max-width: 600px) { .hero h1 { font-size: 2.2rem; } .hero { padding: 70px 20px 50px; } .grid { grid-template-columns: 1fr; } .stat-number { font-size: 2rem; } }
+    
+    .study-emoji { 
+      font-size: 1.6rem; 
+      margin-bottom: 12px; 
+      display: block; 
+    }
+    .study-stat { 
+      margin-bottom: 16px; 
+    }
+    .stat-number { 
+      display: block; 
+      font-size: 2rem; 
+      font-weight: 900; 
+      color: #9333EA; 
+      line-height: 1; 
+      letter-spacing: -1px; 
+    }
+    .stat-label { 
+      display: block; 
+      font-size: 0.75rem; 
+      color: #5a6a80; 
+      margin-top: 4px; 
+    }
+    .study-name { 
+      font-size: 1rem; 
+      font-weight: 800; 
+      color: #e0e8f0; 
+      margin-bottom: 8px; 
+      line-height: 1.3; 
+    }
+    .study-desc { 
+      font-size: 0.85rem; 
+      color: #6a7a90; 
+      line-height: 1.4; 
+    }
+
+    /* Guides & Lists Grid */
+    .guides-grid, .lists-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+      gap: 20px; 
+    }
+    .guide-card, .list-card { 
+      background: #100e18; 
+      border: 1px solid #221e30; 
+      border-radius: 14px; 
+      padding: 24px 20px; 
+      text-decoration: none; 
+      color: inherit; 
+      display: block; 
+      transition: all 0.2s ease; 
+    }
+    .guide-card:hover, .list-card:hover { 
+      border-color: #9333EA; 
+      transform: translateY(-2px); 
+    }
+    .guide-emoji, .list-emoji { 
+      font-size: 1.5rem; 
+      margin-bottom: 10px; 
+      display: block; 
+    }
+    .guide-name, .list-name { 
+      font-size: 1rem; 
+      font-weight: 700; 
+      color: #e0e8f0; 
+      margin-bottom: 6px; 
+    }
+    .guide-desc, .list-desc { 
+      font-size: 0.85rem; 
+      color: #6a7a90; 
+      line-height: 1.4; 
+    }
+
+    /* Footer */
+    .footer { 
+      text-align: center; 
+      padding: 50px 24px; 
+      font-size: 0.85rem; 
+      color: #3a4a5a; 
+      border-top: 1px solid #151f2e; 
+      background: #040810; 
+    }
+    .footer a { 
+      color: #9333EA; 
+      text-decoration: none; 
+    }
+    .footer a:hover { 
+      text-decoration: underline; 
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero { padding: 70px 20px 50px; }
+      .section-container { padding: 40px 20px; }
+      .tools-grid, .studies-grid, .guides-grid, .lists-grid { 
+        grid-template-columns: 1fr; 
+      }
+    }
   </style>
 </head>
 <body>
-<div class="hero">
-  <div class="hero-content">
-    <h1>Leeroy Jenkins 🎮</h1>
-    <div class="sub">"At least I have chicken."</div>
-    <p>Gaming research & tools. Benchmarks, sensitivity calculators, and esports utilities.</p>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="tagline">Gaming Tools & Data</div>
+      <h1>leeroyjenkins.quest</h1>
+      <div class="sub">"At least I have chicken."</div>
+      <p>Gaming research & tools. Benchmarks, sensitivity calculators, and esports utilities.</p>
+    </div>
   </div>
-</div>
 
-<div class="section-container">
-  <div class="section-header">
-    <span class="section-tag">🔬 ORIGINAL RESEARCH</span>
-    <h2 class="section-title">Featured Studies</h2>
-    <p class="section-sub">Real benchmark data. No sponsored BS.</p>
-  </div>
-  <div class="studies-grid">
-    {studies.map(s => (
-      <a class="study-card" href={s.slug}>
-        <span class="study-tag-label">{s.tag}</span>
-        <div class="study-stat">
-          <span class="stat-number">{s.stat}</span>
-          <span class="stat-label">{s.statLabel}</span>
-        </div>
-        <h3 class="study-title">{s.title}</h3>
-        <p class="study-subtitle">{s.subtitle}</p>
-        <p class="study-desc">{s.desc}</p>
-        <span class="study-cta">Read the study →</span>
-      </a>
-    ))}
-  </div>
-</div>
-
-<div class="section-container">
-  <div class="section-header">
-    <span class="section-tag">🛠️ TOOLS</span>
-    <h2 class="section-title">Gaming Tools</h2>
-    <p class="section-sub">Free, client-side, no signup.</p>
-  </div>
-  <div class="grid">
-    {tools.map(t => t.slug ? (
-      <a class="card live" href={t.slug}>
-        <span class="badge live-badge">LIVE</span>
-        <span class="emoji">{t.emoji}</span>
-        <h2>{t.name}</h2>
-        <p>{t.desc}</p>
-        <span class="arrow">Try it →</span>
-      </a>
-    ) : (
-      <div class="card">
-        <span class="badge">COMING SOON</span>
-        <span class="emoji">{t.emoji}</span>
-        <h2>{t.name}</h2>
-        <p>{t.desc}</p>
+  <!-- Tools Section -->
+  {tools.length > 0 && (
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">🛠️ TOOLS</span>
+        <h2 class="section-title">Gaming Tools</h2>
+        <p class="section-sub">Free, client-side, no signup.</p>
       </div>
-    ))}
-  </div>
-</div>
+      <div class="tools-grid">
+        {tools.map(tool => (
+          <a class="tool-card" href={tool.slug}>
+            <span class="tool-emoji">{tool.emoji}</span>
+            <h3 class="tool-name">{tool.name}</h3>
+            <p class="tool-desc">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
 
-<div class="footer">© 2026 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property</div>
+  <!-- Studies Section -->
+  {studies.length > 0 && (
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">🔬 RESEARCH</span>
+        <h2 class="section-title">Featured Studies</h2>
+        <p class="section-sub">Real benchmark data. No sponsored BS.</p>
+      </div>
+      <div class="studies-grid">
+        {studies.map(study => (
+          <a class="study-card" href={study.slug}>
+            <span class="study-emoji">{study.emoji}</span>
+            <div class="study-stat">
+              <span class="stat-number">{study.stat}</span>
+              <span class="stat-label">{study.statLabel}</span>
+            </div>
+            <h3 class="study-name">{study.name}</h3>
+            <p class="study-desc">{study.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Guides Section -->
+  {guides.length > 0 && (
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">📚 GUIDES</span>
+        <h2 class="section-title">Gaming Guides</h2>
+        <p class="section-sub">Complete guides for competitive gaming and streaming.</p>
+      </div>
+      <div class="guides-grid">
+        {guides.map(guide => (
+          <a class="guide-card" href={guide.slug}>
+            <span class="guide-emoji">{guide.emoji}</span>
+            <h3 class="guide-name">{guide.name}</h3>
+            <p class="guide-desc">{guide.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Lists Section -->
+  {lists.length > 0 && (
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">📋 LISTS</span>
+        <h2 class="section-title">Curated Lists</h2>
+        <p class="section-sub">Best gaming gear, software, and services ranked.</p>
+      </div>
+      <div class="lists-grid">
+        {lists.map(list => (
+          <a class="list-card" href={list.slug}>
+            <span class="list-emoji">{list.emoji}</span>
+            <h3 class="list-name">{list.name}</h3>
+            <p class="list-desc">{list.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2026 <a href="/">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property
+  </div>
 </body>
 </html>
