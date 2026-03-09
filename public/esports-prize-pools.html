@@ -1,642 +1,1708 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G86C7NJG3F"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-G86C7NJG3F');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esports Prize Pool Rankings 2026</title>
-    <meta name="description" content="Track the biggest esports prize pools, top tournaments, and year-over-year trends across games.">
+    <meta name="description" content="Track the biggest esports prize pools, top tournaments, and highest earning players across different games.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Inline CSS -->
     <style>
         :root {
-            --bg: #0a0b10;
+            --bg-color: #0a0b10;
             --card-bg: #111318;
-            --border: #1e2030;
-            --accent: #9333EA;
-            --text-main: #d8d0e8;
-            --text-muted: #888;
+            --border-color: #1e2030;
+            --accent-color: #9333EA;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --font-ui: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            font-family: var(--font-ui);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 1.5rem;
         }
 
-        /* Hero */
-        .hero {
-            padding: 80px 0 60px;
+        /* Hero Section */
+        header {
+            padding: 4rem 0 3rem;
             text-align: center;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
         }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .hero p {
+
+        .hero-desc {
+            color: var(--text-secondary);
             font-size: 1.125rem;
-            color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Stats */
+        /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
+
         .stat-card {
             background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
             text-align: center;
         }
+
         .stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
+            font-family: var(--font-mono);
+            font-size: 1.75rem;
             font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
         }
 
-        /* Controls */
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        /* Data Controls */
         .controls {
             display: flex;
-            gap: 16px;
-            margin-bottom: 24px;
             flex-wrap: wrap;
-        }
-        .search-box, .filter-select {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-        }
-        .search-box {
-            flex-grow: 1;
-            max-width: 400px;
-        }
-        .filter-select {
-            cursor: pointer;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Table */
-        .table-container {
-            overflow-x: auto;
+        .search-input {
             background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 60px;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-family: var(--font-ui);
+            width: 100%;
+            max-width: 300px;
         }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .filter-select {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-family: var(--font-ui);
+        }
+
+        .filter-select:focus {
+             outline: none;
+             border-color: var(--accent-color);
+        }
+
+        /* Table Styles */
+        .table-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            margin-bottom: 4rem;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
         }
+
         th, td {
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        th {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            font-weight: 600;
-            cursor: pointer;
-            user-select: none;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
             white-space: nowrap;
         }
-        th:hover { color: var(--text-main); }
-        th.sort-asc::after { content: ' ▲'; font-size: 0.7em; }
-        th.sort-desc::after { content: ' ▼'; font-size: 0.7em; }
 
-        tr:last-child td { border-bottom: none; }
-        tr:hover { background-color: rgba(255,255,255,0.02); }
-
-        td { font-size: 0.95rem; }
-        .col-game { font-weight: 600; }
-        .col-genre { color: var(--text-muted); font-size: 0.85rem; }
-        .col-money {
-            font-family: 'JetBrains Mono', monospace;
-            color: #10b981;
+        th {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            user-select: none;
         }
-        .col-number { font-family: 'JetBrains Mono', monospace; }
 
-        .hidden { display: none; }
+        th:hover {
+            color: var(--text-primary);
+        }
 
-        /* FAQ & Methodology */
+        .sort-icon {
+            display: inline-block;
+            margin-left: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        td {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+        }
+
+        .col-game {
+            font-family: var(--font-ui);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .col-genre {
+            font-family: var(--font-ui);
+            color: var(--text-secondary);
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .col-money {
+            color: #10b981; /* emerald-500 */
+        }
+
+        .empty-cell {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 4rem;
+        }
+
         .section-title {
             font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: #fff;
-        }
-        .faq, .methodology {
-            margin-bottom: 60px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 32px;
-        }
-        .faq-item {
-            margin-bottom: 24px;
-        }
-        .faq-item:last-child { margin-bottom: 0; }
-        .faq-q {
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        .faq-a {
-            color: var(--text-muted);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
         }
 
-        .methodology p {
-            color: var(--text-muted);
-            margin-bottom: 16px;
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-secondary);
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.2s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Methodology */
+        .methodology {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .methodology h2 {
+            margin-bottom: 1rem;
+        }
+
+        .methodology p, .methodology ul {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .methodology ul {
+            padding-left: 1.5rem;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 24px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
         }
-        footer a { color: var(--accent); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            th, td { padding: 12px; }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-input {
+                max-width: none;
+            }
         }
     </style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Article",
-      "headline": "Esports Prize Pool Rankings 2026",
-      "description": "Track the biggest esports prize pools, top tournaments, and year-over-year trends across games.",
-      "author": {
-        "@type": "Organization",
-        "name": "leeroyjenkins.quest"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "leeroyjenkins.quest",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://leeroyjenkins.quest/favicon.ico"
-        }
-      },
-      "datePublished": "2026-03-09"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Which game has the biggest esports prize pool ever?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Dota 2 historically holds the record for the largest single tournament prize pool with The International 2021 (TI10) reaching over $40 million, largely driven by community crowdfunding through the in-game battle pass."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Who is the highest earning esports player?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The top earning esports players are predominantly Dota 2 professionals who have won The International, with players like N0tail surpassing $7 million in career tournament winnings."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Are mobile games big in esports?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Mobile titles like PUBG Mobile, Arena of Valor (Honor of Kings), and Mobile Legends: Bang Bang have massive prize pools that regularly rival or exceed traditional PC titles, largely driven by massive audiences in Asian markets."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is esports prize money distributed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Prize money is typically paid to the team organization first, which then takes a percentage cut (ranging from 0% to 20%) before distributing the remainder to the players and coaching staff according to their contracts."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is the Fortnite World Cup still happening?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "While the 2019 Fortnite World Cup featured a massive $30 million prize pool, Epic Games has since shifted to more regular, seasonal FNCS (Fortnite Champion Series) events rather than single mega-tournaments."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </head>
 <body>
-
-<div class="hero">
     <div class="container">
-        <h1>Esports Prize Pool Rankings 2026</h1>
-        <p>Analyzing the biggest money in competitive gaming. We've tracked the largest prize pools, top earners, and highest-paying tournaments across the industry.</p>
-    </div>
-</div>
+        <header>
+            <h1>Esports Prize Pool Rankings 2026</h1>
+            <p class="hero-desc">An in-depth analysis of the highest-paying esports games, tracking total prize money, top tournaments, and highest earning players.</p>
+        </header>
 
-<div class="container">
-    <div class="stats-grid" id="stats-container">
-        <!-- Stats populated by JS -->
-    </div>
-
-    <div class="controls">
-        <input type="text" id="search-input" class="search-box" placeholder="Search games or tournaments...">
-        <select id="genre-filter" class="filter-select">
-            <option value="">All Genres</option>
-        </select>
-    </div>
-
-    <div class="table-container">
-        <table id="data-table">
-            <thead>
-                <tr>
-
-                    <th data-sort="game">Game & Genre</th>
-                    <th data-sort="totalPrizeUSD" class="sort-desc">Total Prize Pool</th>
-                    <th data-sort="tournamentsCount">Tournaments</th>
-                    <th data-sort="topTournament">Top Tournament & Prize</th>
-                    <th data-sort="topPlayer">Top Earner & Winnings</th>
-
-                </tr>
-            </thead>
-            <tbody id="table-body">
-                <!-- Rows populated by JS -->
-            </tbody>
-        </table>
-    </div>
-
-    <div class="methodology">
-        <h2 class="section-title">Methodology</h2>
-        <p>This study aggregates publicly available data from major esports tournament databases, including Esports Earnings, Liquipedia, and official developer announcements. We filtered for total prize money awarded up to the current date in 2026.</p>
-        <p><strong>Note on exact figures:</strong> Prize pools are subject to currency fluctuations, crowdfunding variations (like Dota 2's Compendium), and unreported third-party events. The numbers represent the most accurate verified public data available but should be considered close estimates rather than absolute financial audits.</p>
-    </div>
-
-    <div class="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <div class="faq-q">Which game has the biggest esports prize pool ever?</div>
-            <div class="faq-a">Dota 2 historically holds the record for the largest single tournament prize pool with The International 2021 (TI10) reaching over $40 million, largely driven by community crowdfunding through the in-game battle pass.</div>
+        <div class="stats-grid" id="stats-container">
+            <!-- Stats will be inserted here via JS -->
         </div>
-        <div class="faq-item">
-            <div class="faq-q">Who is the highest earning esports player?</div>
-            <div class="faq-a">The top earning esports players are predominantly Dota 2 professionals who have won The International, with players like N0tail surpassing $7 million in career tournament winnings.</div>
+
+        <div class="controls">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search games...">
+            <select id="genreFilter" class="filter-select">
+                <option value="All">All Genres</option>
+                <!-- Options will be populated via JS -->
+            </select>
         </div>
-        <div class="faq-item">
-            <div class="faq-q">Are mobile games big in esports?</div>
-            <div class="faq-a">Yes. Mobile titles like PUBG Mobile, Arena of Valor (Honor of Kings), and Mobile Legends: Bang Bang have massive prize pools that regularly rival or exceed traditional PC titles, largely driven by massive audiences in Asian markets.</div>
+
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th data-sort="game">Game <span class="sort-icon">↕</span></th>
+                        <th data-sort="genre">Genre <span class="sort-icon">↕</span></th>
+                        <th data-sort="totalPrizeUSD">Total Prize Pool <span class="sort-icon">↓</span></th>
+                        <th data-sort="tournamentsCount">Tournaments <span class="sort-icon">↕</span></th>
+                        <th data-sort="topPrizeUSD">Top Tournament Prize <span class="sort-icon">↕</span></th>
+                        <th data-sort="topEarningsUSD">Top Player Earnings <span class="sort-icon">↕</span></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be inserted here via JS -->
+                </tbody>
+            </table>
         </div>
-        <div class="faq-item">
-            <div class="faq-q">How is esports prize money distributed?</div>
-            <div class="faq-a">Prize money is typically paid to the team organization first, which then takes a percentage cut (ranging from 0% to 20%) before distributing the remainder to the players and coaching staff according to their contracts.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">Is the Fortnite World Cup still happening?</div>
-            <div class="faq-a">While the 2019 Fortnite World Cup featured a massive $30 million prize pool, Epic Games has since shifted to more regular, seasonal FNCS (Fortnite Champion Series) events rather than single mega-tournaments.</div>
-        </div>
+
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div id="faq-container">
+                <!-- FAQs inserted via JS -->
+            </div>
+        </section>
+
+        <section class="methodology">
+            <h2 class="section-title">Methodology</h2>
+            <p>This study analyzes the esports landscape by collecting public data on tournament prize pools. Our process involves:</p>
+            <ul>
+                <li>Aggregating data from reputable sources including Esports Earnings, Liquipedia, and official game tournament announcements.</li>
+                <li>Normalizing currency to USD based on historical exchange rates at the time of the tournament.</li>
+                <li>Categorizing games into standardized genres for comparative analysis.</li>
+                <li>Identifying the single largest tournament prize pool and highest earning individual player for the top titles.</li>
+            </ul>
+            <p>Note: Data is subject to availability and public reporting. Top player earnings refer strictly to tournament prize winnings and do not include salaries, sponsorships, or streaming revenue.</p>
+        </section>
+
+        <footer>
+            &copy; 2026 leeroyjenkins.quest &middot; A <a href="https://gab.ae" target="_blank" rel="noopener noreferrer">GAB Ventures</a> property
+        </footer>
     </div>
-</div>
 
-<footer>
-    © 2026 <a href="/">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property
-</footer>
-
-<!-- Embedded Data and Scripts -->
-<script>
-
-const esportsData = [
+    <!-- Inline JSON Data -->
+    <script id="esports-data" type="application/json">
+[
   {
     "game": "PLAYERUNKNOWN'S BATTLEGROUNDS Mobile",
     "genre": "Battle Royale",
     "totalPrizeUSD": 89785122.22,
+    "playersCount": 4312,
     "tournamentsCount": 344,
-    "topTournament": "» Peacekeeper Elite League 2022 Spring",
+    "topTournament": "Peacekeeper Elite League 2022 Spring",
     "topPrizeUSD": 4141565.5,
-    "topPlayer": "paraboy",
+    "topPlayer": "paraboy (Zhu, Bocheng)",
     "topEarningsUSD": 1420546
   },
   {
     "game": "PLAYERUNKNOWN’S BATTLEGROUNDS",
-    "genre": "Battle Royale",
+    "genre": "Various",
     "totalPrizeUSD": 67037707.91,
+    "playersCount": 4017,
     "tournamentsCount": 642,
-    "topTournament": "» PGI.S 2021 Main Event",
+    "topTournament": "PGI.S 2021 Main Event",
     "topPrizeUSD": 7068071,
-    "topPlayer": "Loki",
+    "topPlayer": "Loki (Park, Jung Young)",
     "topEarningsUSD": 1245451.79
   },
   {
     "game": "Rocket League",
     "genre": "Sports",
     "totalPrizeUSD": 53315530.56,
+    "playersCount": 9565,
     "tournamentsCount": 5262,
-    "topTournament": "» Gamers8 2023 (RL)",
+    "topTournament": "Gamers8 2023 (RL)",
     "topPrizeUSD": 2110000,
-    "topPlayer": "M0nkey M00n",
+    "topPlayer": "M0nkey M00n (Evan Rogez)",
     "topEarningsUSD": 998034.54
   },
   {
     "game": "Rainbow Six Siege",
-    "genre": "FPS",
+    "genre": "Tactical Shooter",
     "totalPrizeUSD": 49885252.94,
+    "playersCount": 3084,
     "tournamentsCount": 573,
-    "topTournament": "» Six Invitational 2020",
+    "topTournament": "Six Invitational 2020",
     "topPrizeUSD": 3000000,
-    "topPlayer": "Shaiiko",
+    "topPlayer": "Shaiiko (Stephane Lebleu)",
     "topEarningsUSD": 790685.2
   },
   {
     "game": "StarCraft II",
     "genre": "RTS",
     "totalPrizeUSD": 43451866.17,
+    "playersCount": 2280,
     "tournamentsCount": 7535,
-    "topTournament": "» Esports World Cup 2024 (SC2)",
+    "topTournament": "Esports World Cup 2024 (SC2)",
     "topPrizeUSD": 1050000,
-    "topPlayer": "Serral",
+    "topPlayer": "Serral (Joona Sotala)",
     "topEarningsUSD": 1866325.57
   },
   {
     "game": "Counter-Strike 2",
-    "genre": "FPS",
+    "genre": "Tactical Shooter",
     "totalPrizeUSD": 40994147.44,
+    "playersCount": 4682,
     "tournamentsCount": 840,
-    "topTournament": "» BLAST.tv Austin Major 2025",
+    "topTournament": "BLAST.tv Austin Major 2025",
     "topPrizeUSD": 1250000,
-    "topPlayer": "ropz",
+    "topPlayer": "ropz (Robin Kool)",
     "topEarningsUSD": 891050
   },
   {
     "game": "Overwatch",
-    "genre": "FPS",
+    "genre": "Tactical Shooter",
     "totalPrizeUSD": 35274412.38,
+    "playersCount": 4047,
     "tournamentsCount": 848,
-    "topTournament": "» Overwatch League - Season 2 Playoffs",
+    "topTournament": "Overwatch League - Season 2 Playoffs",
     "topPrizeUSD": 3500000,
-    "topPlayer": "Striker",
+    "topPlayer": "Striker (Kwon, Nam Joo)",
     "topEarningsUSD": 499876.62
   },
   {
     "game": "VALORANT",
-    "genre": "FPS",
+    "genre": "Tactical Shooter",
     "totalPrizeUSD": 34612105.35,
+    "playersCount": 7504,
     "tournamentsCount": 1331,
-    "topTournament": "» VALORANT Champions 2023",
+    "topTournament": "VALORANT Champions 2023",
     "topPrizeUSD": 2250000,
-    "topPlayer": "Chronicle",
+    "topPlayer": "Chronicle (Timofey Khromov)",
     "topEarningsUSD": 328571.66
   },
   {
     "game": "Apex Legends",
     "genre": "Battle Royale",
     "totalPrizeUSD": 31803237.01,
+    "playersCount": 2386,
     "tournamentsCount": 740,
-    "topTournament": "» ALGS Championship 2022",
+    "topTournament": "ALGS Championship 2022",
     "topPrizeUSD": 2000000,
-    "topPlayer": "ImperialHal",
+    "topPlayer": "ImperialHal (Philip Dosen)",
     "topEarningsUSD": 1031054.42
   },
   {
     "game": "Hearthstone",
     "genre": "Card Game",
     "totalPrizeUSD": 31231683.48,
+    "playersCount": 3173,
     "tournamentsCount": 1174,
-    "topTournament": "» BlizzCon Hearthstone World Championship 2016",
+    "topTournament": "BlizzCon Hearthstone World Championship 2016",
     "topPrizeUSD": 1000000,
-    "topPlayer": "Thijs",
+    "topPlayer": "Thijs (Thijs Molendijk)",
     "topEarningsUSD": 523572.99
   },
   {
     "game": "CrossFire",
-    "genre": "FPS",
+    "genre": "Tactical Shooter",
     "totalPrizeUSD": 30824357.96,
+    "playersCount": 1156,
     "tournamentsCount": 416,
     "topTournament": "Esports World Cup 2025 (CF)",
     "topPrizeUSD": 2000000,
-    "topPlayer": "N9",
+    "topPlayer": "N9 (Wang, Hao)",
     "topEarningsUSD": 942059.42
   },
   {
     "game": "Mobile Legends: Bang Bang",
     "genre": "MOBA",
     "totalPrizeUSD": 21519451.87,
+    "playersCount": 2344,
     "tournamentsCount": 158,
-    "topTournament": "» MLBB Mid Season Cup 2024",
+    "topTournament": "MLBB Mid Season Cup 2024",
     "topPrizeUSD": 3050000,
-    "topPlayer": "KarlTzy",
+    "topPlayer": "KarlTzy (Karl Nepomuceno)",
     "topEarningsUSD": 376284.67
   },
   {
     "game": "Free Fire",
     "genre": "Battle Royale",
     "totalPrizeUSD": 20135992.14,
+    "playersCount": 1753,
     "tournamentsCount": 97,
-    "topTournament": "» Free Fire World Series 2021 Singapore",
+    "topTournament": "Free Fire World Series 2021 Singapore",
     "topPrizeUSD": 2010000,
-    "topPlayer": "Joena",
+    "topPlayer": "Joena (Chirasak Moonsarn)",
     "topEarningsUSD": 462465.47
   },
   {
     "game": "Heroes of the Storm",
     "genre": "MOBA",
     "totalPrizeUSD": 18466719.38,
+    "playersCount": 1335,
     "tournamentsCount": 507,
-    "topTournament": "» HGC 2016 - Fall Finals",
+    "topTournament": "HGC 2016 - Fall Finals",
     "topPrizeUSD": 1000000,
-    "topPlayer": "KyoCha",
+    "topPlayer": "KyoCha (Jeong, Won Ho)",
     "topEarningsUSD": 465268.99
   },
   {
     "game": "Call of Duty: Warzone",
     "genre": "Battle Royale",
     "totalPrizeUSD": 13854809.95,
+    "playersCount": 1287,
     "tournamentsCount": 407,
-    "topTournament": "» Esports World Cup 2024 (CoD:Warzone)",
+    "topTournament": "Esports World Cup 2024 (CoD:Warzone)",
     "topPrizeUSD": 1050000,
-    "topPlayer": "Biffle",
+    "topPlayer": "Biffle (Andrew Diaz)",
     "topEarningsUSD": 496658.33
+  },
+  {
+    "game": "Overwatch 2",
+    "genre": "Tactical Shooter",
+    "totalPrizeUSD": 13662770.59,
+    "playersCount": 1411,
+    "tournamentsCount": 151,
+    "topTournament": "Overwatch League 2022 - Playoffs",
+    "topPrizeUSD": 2550000,
+    "topPlayer": "MER1T (Choi, Tae Min)",
+    "topEarningsUSD": 375451.39
+  },
+  {
+    "game": "Counter-Strike",
+    "genre": "Tactical Shooter",
+    "totalPrizeUSD": 13627581.4,
+    "playersCount": 4349,
+    "tournamentsCount": 1028,
+    "topTournament": "CPL Summer 2003 (Counter-Strike)",
+    "topPrizeUSD": 200000,
+    "topPlayer": "f0rest (Patrik Lindberg)",
+    "topEarningsUSD": 191485.83
+  },
+  {
+    "game": "SMITE",
+    "genre": "MOBA",
+    "totalPrizeUSD": 12580110.75,
+    "playersCount": 556,
+    "tournamentsCount": 110,
+    "topTournament": "Smite World Championship 2015",
+    "topPrizeUSD": 2612259,
+    "topPlayer": "BaRRaCCuDDa (John Salter)",
+    "topEarningsUSD": 353006.65
+  },
+  {
+    "game": "League of Legends: Wild Rift",
+    "genre": "MOBA",
+    "totalPrizeUSD": 11193427.98,
+    "playersCount": 1473,
+    "tournamentsCount": 117,
+    "topTournament": "Wild Rift Icons 2022",
+    "topPrizeUSD": 2000000,
+    "topPlayer": "0711 (Yu, Hong)",
+    "topEarningsUSD": 199756.09
+  },
+  {
+    "game": "Magic: The Gathering Arena",
+    "genre": "Card Game",
+    "totalPrizeUSD": 9794000,
+    "playersCount": 355,
+    "tournamentsCount": 63,
+    "topTournament": "Magic World Championship XXVII",
+    "topPrizeUSD": 1050000,
+    "topPlayer": "PVDDR (Paulo Damo da Rosa)",
+    "topEarningsUSD": 375500
+  },
+  {
+    "game": "Clash Royale",
+    "genre": "Mobile",
+    "totalPrizeUSD": 9624825.93,
+    "playersCount": 581,
+    "tournamentsCount": 144,
+    "topTournament": "Clash Royale League 2021 World Finals",
+    "topPrizeUSD": 1020000,
+    "topPlayer": "Mohamed Light (Mohamed Tarek)",
+    "topEarningsUSD": 960808.01
+  },
+  {
+    "game": "Teamfight Tactics",
+    "genre": "Auto Battler",
+    "totalPrizeUSD": 9622418.25,
+    "playersCount": 892,
+    "tournamentsCount": 113,
+    "topTournament": "Esports World Cup 2024 (TFT)",
+    "topPrizeUSD": 550000,
+    "topPlayer": "Title (- -)",
+    "topEarningsUSD": 402162
+  },
+  {
+    "game": "Call of Duty: Mobile",
+    "genre": "Mobile",
+    "totalPrizeUSD": 9364832.75,
+    "playersCount": 477,
+    "tournamentsCount": 44,
+    "topTournament": "Call of Duty Mobile World Championship 2022",
+    "topPrizeUSD": 1700000,
+    "topPlayer": "Marshy (Angel Gonzalez)",
+    "topEarningsUSD": 192333.33
+  },
+  {
+    "game": "Chess.com",
+    "genre": "Various",
+    "totalPrizeUSD": 9284703.36,
+    "playersCount": 1197,
+    "tournamentsCount": 846,
+    "topTournament": "Global Chess.com Championship 2022 - Finals",
+    "topPrizeUSD": 500000,
+    "topPlayer": "Hikaru (Hikaru Nakamura)",
+    "topEarningsUSD": 735419.25
+  },
+  {
+    "game": "Brawl Stars",
+    "genre": "Mobile",
+    "totalPrizeUSD": 9171511.8,
+    "playersCount": 704,
+    "tournamentsCount": 210,
+    "topTournament": "Brawl Stars World Finals 2020",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "Tensai (- -)",
+    "topEarningsUSD": 423833.34
+  },
+  {
+    "game": "World of WarCraft",
+    "genre": "Various",
+    "totalPrizeUSD": 9150537.61,
+    "playersCount": 503,
+    "tournamentsCount": 225,
+    "topTournament": "Arena World Championship 2019",
+    "topPrizeUSD": 330000,
+    "topPlayer": "Swapxy (Rene Pinkera)",
+    "topEarningsUSD": 244874.35
+  },
+  {
+    "game": "StarCraft: Brood War",
+    "genre": "RTS",
+    "totalPrizeUSD": 7556789.96,
+    "playersCount": 663,
+    "tournamentsCount": 542,
+    "topTournament": "GOMTV MSL #2 2007",
+    "topPrizeUSD": 126451.2,
+    "topPlayer": "Flash (Lee, Young Ho)",
+    "topEarningsUSD": 460146.34
+  },
+  {
+    "game": "Call of Duty: Modern Warfare",
+    "genre": "Various",
+    "totalPrizeUSD": 7500784.5,
+    "playersCount": 396,
+    "tournamentsCount": 81,
+    "topTournament": "Call of Duty League Championship 2020",
+    "topPrizeUSD": 4600000,
+    "topPlayer": "Clayster (James Eubanks)",
+    "topEarningsUSD": 365500
+  },
+  {
+    "game": "EA Sports FC 24",
+    "genre": "Sports",
+    "totalPrizeUSD": 7356431.34,
+    "playersCount": 348,
+    "tournamentsCount": 76,
+    "topTournament": "Esports World Cup 2024 (FIFA)",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "Vejrgang (Anders Vejrgang)",
+    "topEarningsUSD": 417632.37
+  },
+  {
+    "game": "Halo Infinite",
+    "genre": "Various",
+    "totalPrizeUSD": 7253555.03,
+    "playersCount": 280,
+    "tournamentsCount": 59,
+    "topTournament": "Halo World Championship 2022",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "FormaL (Matthew Piper)",
+    "topEarningsUSD": 429400
+  },
+  {
+    "game": "Halo 5: Guardians",
+    "genre": "Various",
+    "totalPrizeUSD": 7161730.97,
+    "playersCount": 248,
+    "tournamentsCount": 109,
+    "topTournament": "Halo World Championship 2016",
+    "topPrizeUSD": 2500000,
+    "topPlayer": "Lethul (Tony Campbell)",
+    "topEarningsUSD": 583850
+  },
+  {
+    "game": "Clash of Clans",
+    "genre": "Various",
+    "totalPrizeUSD": 6950742.37,
+    "playersCount": 571,
+    "tournamentsCount": 85,
+    "topTournament": "Clash of Clans World Championship 2022",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "GAKU (Mukai, Gaku)",
+    "topEarningsUSD": 184771.67
+  },
+  {
+    "game": "CrossFire Mobile",
+    "genre": "Tactical Shooter",
+    "totalPrizeUSD": 6780944.77,
+    "playersCount": 280,
+    "tournamentsCount": 40,
+    "topTournament": "CrossFire Mobile League Season 6",
+    "topPrizeUSD": 486219,
+    "topPlayer": "墨白 (Wang, Wenjie)",
+    "topEarningsUSD": 251432.98
+  },
+  {
+    "game": "Call of Duty: Black Ops 4",
+    "genre": "Various",
+    "totalPrizeUSD": 6734938.95,
+    "playersCount": 389,
+    "tournamentsCount": 82,
+    "topTournament": "CWL Championship 2019",
+    "topPrizeUSD": 2000000,
+    "topPlayer": "aBeZy (Tyler Pharris)",
+    "topEarningsUSD": 325464
+  },
+  {
+    "game": "Street Fighter 6",
+    "genre": "Fighting",
+    "totalPrizeUSD": 6670088.32,
+    "playersCount": 446,
+    "tournamentsCount": 139,
+    "topTournament": "Capcom Cup X",
+    "topPrizeUSD": 1734000,
+    "topPlayer": "Kakeru (- -)",
+    "topEarningsUSD": 1453174.85
+  },
+  {
+    "game": "World of Tanks",
+    "genre": "Various",
+    "totalPrizeUSD": 6649075.11,
+    "playersCount": 948,
+    "tournamentsCount": 99,
+    "topTournament": "Games of the Future 2024 (WoT)",
+    "topPrizeUSD": 500000,
+    "topPlayer": "Neskwi (Vladislav Kanaev)",
+    "topEarningsUSD": 175716.48
+  },
+  {
+    "game": "Call of Duty: Black Ops Cold War",
+    "genre": "Various",
+    "totalPrizeUSD": 6549000,
+    "playersCount": 299,
+    "tournamentsCount": 92,
+    "topTournament": "Call of Duty League Championship 2021",
+    "topPrizeUSD": 2500000,
+    "topPlayer": "Simp (Christopher Lehr)",
+    "topEarningsUSD": 500833.33
+  },
+  {
+    "game": "StarCraft: Remastered",
+    "genre": "Various",
+    "totalPrizeUSD": 6496544.06,
+    "playersCount": 454,
+    "tournamentsCount": 904,
+    "topTournament": "Starcraft BJ Team Battle 2022",
+    "topPrizeUSD": 134098.22,
+    "topPlayer": "mini (Byun, Hyun Je)",
+    "topEarningsUSD": 368744.9
+  },
+  {
+    "game": "Call of Duty: Modern Warfare III",
+    "genre": "Various",
+    "totalPrizeUSD": 6452000,
+    "playersCount": 176,
+    "tournamentsCount": 21,
+    "topTournament": "Call of Duty League Championship 2024",
+    "topPrizeUSD": 2000000,
+    "topPlayer": "Cellium (McArthur Jovel)",
+    "topEarningsUSD": 318750
+  },
+  {
+    "game": "Call of Duty: Vanguard",
+    "genre": "Various",
+    "totalPrizeUSD": 6321000,
+    "playersCount": 261,
+    "tournamentsCount": 91,
+    "topTournament": "Call of Duty League Championship 2022",
+    "topPrizeUSD": 2550000,
+    "topPlayer": "Kenny (Kenneth Williams)",
+    "topEarningsUSD": 410583.33
+  },
+  {
+    "game": "WarCraft III",
+    "genre": "Various",
+    "totalPrizeUSD": 6308079.74,
+    "playersCount": 771,
+    "tournamentsCount": 1552,
+    "topTournament": "World Cyber Arena 2015 (WC3)",
+    "topPrizeUSD": 100444.5,
+    "topPlayer": "Moon (Jang, Jae Ho)",
+    "topEarningsUSD": 565029.52
+  },
+  {
+    "game": "FIFA 23",
+    "genre": "Sports",
+    "totalPrizeUSD": 6197022.16,
+    "playersCount": 527,
+    "tournamentsCount": 99,
+    "topTournament": "FIFA eClub World Cup 2023",
+    "topPrizeUSD": 1000000,
+    "topPlayer": "ManuBachoore (Manuel Bachoore)",
+    "topEarningsUSD": 370656.98
+  },
+  {
+    "game": "Call of Duty: Modern Warfare II",
+    "genre": "Various",
+    "totalPrizeUSD": 6121126.9,
+    "playersCount": 227,
+    "tournamentsCount": 38,
+    "topTournament": "Call of Duty League Championship 2023",
+    "topPrizeUSD": 2380000,
+    "topPlayer": "Kismet (Matthew Tinsley)",
+    "topEarningsUSD": 370500
+  },
+  {
+    "game": "Identity V",
+    "genre": "Various",
+    "totalPrizeUSD": 6071260.92,
+    "playersCount": 379,
+    "tournamentsCount": 30,
+    "topTournament": "Identity V COA V",
+    "topPrizeUSD": 620093.34,
+    "topPlayer": "xawm (Cheng, Xiaoxi)",
+    "topEarningsUSD": 180755.84
+  },
+  {
+    "game": "Naraka: Bladepoint",
+    "genre": "Various",
+    "totalPrizeUSD": 5558830.52,
+    "playersCount": 205,
+    "tournamentsCount": 16,
+    "topTournament": "J Cup 2021 - Trios Grand Finals",
+    "topPrizeUSD": 1200000,
+    "topPlayer": "Li (Xiao, Qigui)",
+    "topEarningsUSD": 372315.37
+  },
+  {
+    "game": "Shadowverse",
+    "genre": "Card Game",
+    "totalPrizeUSD": 5508473.29,
+    "playersCount": 248,
+    "tournamentsCount": 44,
+    "topTournament": "Shadowverse World Grand Prix 2021",
+    "topPrizeUSD": 2293296.2,
+    "topPlayer": "kakip (Kakinuma, Hidema)",
+    "topEarningsUSD": 1228551.54
+  },
+  {
+    "game": "FIFA 21",
+    "genre": "Various",
+    "totalPrizeUSD": 4855659.11,
+    "playersCount": 434,
+    "tournamentsCount": 63,
+    "topTournament": "FIFA eWorld Cup 2021",
+    "topPrizeUSD": 500000,
+    "topPlayer": "Neat (Ander Tobal)",
+    "topEarningsUSD": 230741.65
+  },
+  {
+    "game": "FIFA 22",
+    "genre": "Sports",
+    "totalPrizeUSD": 4629302.53,
+    "playersCount": 433,
+    "tournamentsCount": 76,
+    "topTournament": "FIFA 22 Global Series Playoffs",
+    "topPrizeUSD": 504000,
+    "topPlayer": "Umut (Umut Gültekin)",
+    "topEarningsUSD": 306001.33
+  },
+  {
+    "game": "Age of Empires II",
+    "genre": "RTS",
+    "totalPrizeUSD": 4604969.67,
+    "playersCount": 2576,
+    "tournamentsCount": 2292,
+    "topTournament": "Red Bull Wololo: Legacy 2022 Age of Empires II",
+    "topPrizeUSD": 200000,
+    "topPlayer": "Hera (Hamzah El-Baher)",
+    "topEarningsUSD": 397769.68
+  },
+  {
+    "game": "Call of Duty: WWII",
+    "genre": "Various",
+    "totalPrizeUSD": 4578021,
+    "playersCount": 296,
+    "tournamentsCount": 77,
+    "topTournament": "CWL Championship 2018",
+    "topPrizeUSD": 1500000,
+    "topPlayer": "SiLLY (Justin Fargo-Palmer)",
+    "topEarningsUSD": 184648.43
+  },
+  {
+    "game": "chess24",
+    "genre": "Various",
+    "totalPrizeUSD": 4318475.43,
+    "playersCount": 90,
+    "tournamentsCount": 29,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Super Smash Bros. Melee",
+    "genre": "Fighting",
+    "totalPrizeUSD": 4299511.43,
+    "playersCount": 2018,
+    "tournamentsCount": 2757,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Brawlhalla",
+    "genre": "Fighting",
+    "totalPrizeUSD": 4271506.83,
+    "playersCount": 888,
+    "tournamentsCount": 707,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Call of Duty: Infinite Warfare",
+    "genre": "Various",
+    "totalPrizeUSD": 4166705.06,
+    "playersCount": 343,
+    "tournamentsCount": 84,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "FIFA Online 4",
+    "genre": "Various",
+    "totalPrizeUSD": 4087518.33,
+    "playersCount": 427,
+    "tournamentsCount": 67,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Minecraft",
+    "genre": "Various",
+    "totalPrizeUSD": 4021371.15,
+    "playersCount": 709,
+    "tournamentsCount": 205,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Call of Duty: Black Ops III",
+    "genre": "Various",
+    "totalPrizeUSD": 3939783.29,
+    "playersCount": 424,
+    "tournamentsCount": 78,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Tekken 7",
+    "genre": "Fighting",
+    "totalPrizeUSD": 3911820.6,
+    "playersCount": 634,
+    "tournamentsCount": 426,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Pokemon Unite",
+    "genre": "Various",
+    "totalPrizeUSD": 3881870.54,
+    "playersCount": 1085,
+    "tournamentsCount": 92,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Call of Duty: Black Ops 6",
+    "genre": "Various",
+    "totalPrizeUSD": 3852200,
+    "playersCount": 83,
+    "tournamentsCount": 13,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "iRacing.com",
+    "genre": "Various",
+    "totalPrizeUSD": 3757336.03,
+    "playersCount": 1302,
+    "tournamentsCount": 189,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Quake Champions",
+    "genre": "Various",
+    "totalPrizeUSD": 3531200.25,
+    "playersCount": 348,
+    "tournamentsCount": 295,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "FIFA 19",
+    "genre": "Various",
+    "totalPrizeUSD": 3287686.79,
+    "playersCount": 331,
+    "tournamentsCount": 53,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Counter-Strike: Source",
+    "genre": "Tactical Shooter",
+    "totalPrizeUSD": 3160540,
+    "playersCount": 1570,
+    "tournamentsCount": 358,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Gears of War 4",
+    "genre": "Various",
+    "totalPrizeUSD": 3142785,
+    "playersCount": 155,
+    "tournamentsCount": 152,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Heroes of Newerth",
+    "genre": "Various",
+    "totalPrizeUSD": 3073445.72,
+    "playersCount": 820,
+    "tournamentsCount": 395,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Super Smash Bros. Ultimate",
+    "genre": "Fighting",
+    "totalPrizeUSD": 3044975.43,
+    "playersCount": 2430,
+    "tournamentsCount": 1773,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "NBA 2K23",
+    "genre": "Sports",
+    "totalPrizeUSD": 2925000,
+    "playersCount": 105,
+    "tournamentsCount": 9,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "NBA 2K22",
+    "genre": "Sports",
+    "totalPrizeUSD": 2650000,
+    "playersCount": 92,
+    "tournamentsCount": 7,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Rennsport",
+    "genre": "Various",
+    "totalPrizeUSD": 2631805.52,
+    "playersCount": 73,
+    "tournamentsCount": 10,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Call of Duty: Advanced Warfare",
+    "genre": "Various",
+    "totalPrizeUSD": 2611808.93,
+    "playersCount": 783,
+    "tournamentsCount": 405,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "FIFA 20",
+    "genre": "Various",
+    "totalPrizeUSD": 2598643.56,
+    "playersCount": 363,
+    "tournamentsCount": 67,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Paladins",
+    "genre": "Various",
+    "totalPrizeUSD": 2490507.6,
+    "playersCount": 571,
+    "tournamentsCount": 79,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Street Fighter V",
+    "genre": "Fighting",
+    "totalPrizeUSD": 2328386.94,
+    "playersCount": 278,
+    "tournamentsCount": 130,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Gears 5",
+    "genre": "Various",
+    "totalPrizeUSD": 2320920,
+    "playersCount": 163,
+    "tournamentsCount": 112,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Halo 3",
+    "genre": "Various",
+    "totalPrizeUSD": 2318079.4,
+    "playersCount": 214,
+    "tournamentsCount": 43,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Street Fighter V: Arcade Edition",
+    "genre": "Fighting",
+    "totalPrizeUSD": 2267283.95,
+    "playersCount": 244,
+    "tournamentsCount": 105,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "FIFA 18",
+    "genre": "Various",
+    "totalPrizeUSD": 2233697.69,
+    "playersCount": 235,
+    "tournamentsCount": 48,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "rFactor 2",
+    "genre": "Various",
+    "totalPrizeUSD": 2219963.12,
+    "playersCount": 557,
+    "tournamentsCount": 103,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "WarCraft III: Reforged",
+    "genre": "Various",
+    "totalPrizeUSD": 2214422.95,
+    "playersCount": 205,
+    "tournamentsCount": 599,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "H1Z1",
+    "genre": "Various",
+    "totalPrizeUSD": 2067122,
+    "playersCount": 119,
+    "tournamentsCount": 13,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "FIFA Online 3",
+    "genre": "Various",
+    "totalPrizeUSD": 1937542.85,
+    "playersCount": 124,
+    "tournamentsCount": 25,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "CrossFire HD",
+    "genre": "Tactical Shooter",
+    "totalPrizeUSD": 1934161.1,
+    "playersCount": 139,
+    "tournamentsCount": 7,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Point Blank",
+    "genre": "Various",
+    "totalPrizeUSD": 1908854.12,
+    "playersCount": 583,
+    "tournamentsCount": 112,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Tekken 8",
+    "genre": "Fighting",
+    "totalPrizeUSD": 1827102.86,
+    "playersCount": 219,
+    "tournamentsCount": 42,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Magic: The Gathering Online",
+    "genre": "Various",
+    "totalPrizeUSD": 1818000,
+    "playersCount": 173,
+    "tournamentsCount": 16,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Hearthstone Battlegrounds",
+    "genre": "Card Game",
+    "totalPrizeUSD": 1769904.03,
+    "playersCount": 309,
+    "tournamentsCount": 61,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Madden NFL 23",
+    "genre": "Sports",
+    "totalPrizeUSD": 1700000,
+    "playersCount": 37,
+    "tournamentsCount": 4,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Madden NFL 24",
+    "genre": "Sports",
+    "totalPrizeUSD": 1700000,
+    "playersCount": 86,
+    "tournamentsCount": 6,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Madden NFL 22",
+    "genre": "Sports",
+    "totalPrizeUSD": 1650000,
+    "playersCount": 37,
+    "tournamentsCount": 4,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Halo 2",
+    "genre": "Various",
+    "totalPrizeUSD": 1626762.47,
+    "playersCount": 126,
+    "tournamentsCount": 74,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Call of Duty: Ghosts",
+    "genre": "Various",
+    "totalPrizeUSD": 1594185.25,
+    "playersCount": 199,
+    "tournamentsCount": 76,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Gwent",
+    "genre": "Card Game",
+    "totalPrizeUSD": 1544697.17,
+    "playersCount": 350,
+    "tournamentsCount": 123,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Super Smash Bros. for Wii U",
+    "genre": "Various",
+    "totalPrizeUSD": 1517451.47,
+    "playersCount": 1284,
+    "tournamentsCount": 1036,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
+  },
+  {
+    "game": "Age of Empires IV",
+    "genre": "RTS",
+    "totalPrizeUSD": 1510501.36,
+    "playersCount": 838,
+    "tournamentsCount": 624,
+    "topTournament": null,
+    "topPrizeUSD": null,
+    "topPlayer": null,
+    "topEarningsUSD": null
   }
-];
+]    </script>
 
-// Format functions
-const formatMoney = (val) => val != null ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val) : '-';
-const formatNumber = (val) => val != null ? new Intl.NumberFormat('en-US').format(val) : '-';
+    <!-- App Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load data
+            const rawData = document.getElementById('esports-data').textContent;
+            let esportsData = [];
+            try {
+                esportsData = JSON.parse(rawData);
+            } catch (e) {
+                console.error("Failed to parse data:", e);
+                return;
+            }
 
-// DOM Elements
-const tableBody = document.getElementById('table-body');
-const searchInput = document.getElementById('search-input');
-const genreFilter = document.getElementById('genre-filter');
-const statsContainer = document.getElementById('stats-container');
-const headers = document.querySelectorAll('th[data-sort]');
+            // State
+            let currentData = [...esportsData];
+            let sortColumn = 'totalPrizeUSD';
+            let sortDirection = 'desc';
 
-let currentSort = { key: 'totalPrizeUSD', asc: false };
+            // DOM Elements
+            const tableBody = document.getElementById('tableBody');
+            const searchInput = document.getElementById('searchInput');
+            const genreFilter = document.getElementById('genreFilter');
+            const headers = document.querySelectorAll('th[data-sort]');
 
-// Populate Stats
-function renderStats() {
-    const totalPool = esportsData.reduce((sum, item) => sum + (item.totalPrizeUSD || 0), 0);
-    const topGame = esportsData.reduce((prev, current) => (prev && prev.totalPrizeUSD > current.totalPrizeUSD) ? prev : current, null);
+            // Formatting utilities
+            const formatMoney = (amount) => {
+                if (amount === null || amount === undefined) return '<span class="empty-cell">Data unavailable</span>';
+                return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(amount);
+            };
 
-    statsContainer.innerHTML = `
-        <div class="stat-card">
-            <div class="stat-value">${formatMoney(totalPool)}</div>
-            <div class="stat-label">Total Top 15 Prize Money</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">${topGame ? topGame.game : '-'}</div>
-            <div class="stat-label">Highest Paying Game</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">${esportsData.length}</div>
-            <div class="stat-label">Games Analyzed</div>
-        </div>
-    `;
-}
+            const formatNumber = (num) => {
+                if (num === null || num === undefined) return '<span class="empty-cell">N/A</span>';
+                return new Intl.NumberFormat('en-US').format(num);
+            };
 
-// Populate Genre Filter
-function populateFilters() {
-    const genres = [...new Set(esportsData.map(d => d.genre))].filter(Boolean).sort();
-    genres.forEach(g => {
-        const option = document.createElement('option');
-        option.value = g;
-        option.textContent = g;
-        genreFilter.appendChild(option);
-    });
-}
+            // Initialize Stats
+            const initStats = () => {
+                const totalPrizeMoney = esportsData.reduce((sum, game) => sum + (game.totalPrizeUSD || 0), 0);
+                const totalTournaments = esportsData.reduce((sum, game) => sum + (game.tournamentsCount || 0), 0);
 
-// Render Table
-function renderTable() {
-    const query = searchInput.value.toLowerCase();
-    const genre = genreFilter.value;
+                // Find game with biggest single tournament
+                let maxTournamentPrize = 0;
+                let topTournamentGame = '';
+                esportsData.forEach(game => {
+                    if (game.topPrizeUSD && game.topPrizeUSD > maxTournamentPrize) {
+                        maxTournamentPrize = game.topPrizeUSD;
+                        topTournamentGame = game.game;
+                    }
+                });
 
-    let filtered = esportsData.filter(d => {
-        const matchSearch = (d.game && d.game.toLowerCase().includes(query)) ||
-                            (d.topTournament && d.topTournament.toLowerCase().includes(query)) ||
-                            (d.topPlayer && d.topPlayer.toLowerCase().includes(query));
-        const matchGenre = genre ? d.genre === genre : true;
-        return matchSearch && matchGenre;
-    });
+                const statsHtml = `
+                    <div class="stat-card">
+                        <div class="stat-value">${formatMoney(totalPrizeMoney)}</div>
+                        <div class="stat-label">Total Prize Money Tracked</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${formatNumber(esportsData.length)}</div>
+                        <div class="stat-label">Games Analyzed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${formatNumber(totalTournaments)}</div>
+                        <div class="stat-label">Tournaments Recorded</div>
+                    </div>
+                `;
+                document.getElementById('stats-container').innerHTML = statsHtml;
+            };
 
-    // Sort
-    filtered.sort((a, b) => {
-        let valA = a[currentSort.key];
-        let valB = b[currentSort.key];
+            // Initialize Filters
+            const initFilters = () => {
+                const genres = new Set();
+                esportsData.forEach(game => {
+                    if (game.genre) genres.add(game.genre);
+                });
 
-        if (valA == null) return currentSort.asc ? 1 : -1;
-        if (valB == null) return currentSort.asc ? -1 : 1;
+                const sortedGenres = Array.from(genres).sort();
+                sortedGenres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreFilter.appendChild(option);
+                });
+            };
 
-        if (typeof valA === 'string' && typeof valB === 'string') {
-            return currentSort.asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
-        }
+            // Render Table
+            const renderTable = () => {
+                tableBody.innerHTML = '';
 
-        if (valA < valB) return currentSort.asc ? -1 : 1;
-        if (valA > valB) return currentSort.asc ? 1 : -1;
-        return 0;
-    });
+                if (currentData.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 2rem;">No games found matching criteria.</td></tr>`;
+                    return;
+                }
 
-    tableBody.innerHTML = filtered.map((d, i) => `
-        <tr>
-            <td class="col-game">
-                ${d.game}
-                <div class="col-genre">${d.genre}</div>
-            </td>
-            <td class="col-money">${formatMoney(d.totalPrizeUSD)}</td>
-            <td class="col-number">${formatNumber(d.tournamentsCount)}</td>
-            <td>
-                ${d.topTournament || '-'}
-                <div class="col-money" style="font-size:0.85em; margin-top:4px;">${formatMoney(d.topPrizeUSD)}</div>
-            </td>
-            <td>
-                ${d.topPlayer || '-'}
-                <div class="col-money" style="font-size:0.85em; margin-top:4px;">${formatMoney(d.topEarningsUSD)}</div>
-            </td>
-        </tr>
-    `).join('');
-}
+                currentData.forEach(game => {
+                    const tr = document.createElement('tr');
 
-// Event Listeners
-searchInput.addEventListener('input', renderTable);
-genreFilter.addEventListener('change', renderTable);
+                    let topPrizeCell = formatMoney(game.topPrizeUSD);
+                    if (game.topTournament) topPrizeCell += ` <br><span style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-ui);">${game.topTournament}</span>`;
 
-headers.forEach(header => {
-    header.addEventListener('click', () => {
-        const sortKey = header.getAttribute('data-sort');
+                    let topPlayerCell = formatMoney(game.topEarningsUSD);
+                    if (game.topPlayer) topPlayerCell += ` <br><span style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-ui);">${game.topPlayer}</span>`;
 
-        // Remove active class from all
-        headers.forEach(h => {
-            h.classList.remove('sort-asc', 'sort-desc');
+                    tr.innerHTML = `
+                        <td class="col-game">${game.game}</td>
+                        <td class="col-genre">${game.genre || 'Various'}</td>
+                        <td class="col-money">${formatMoney(game.totalPrizeUSD)}</td>
+                        <td>${formatNumber(game.tournamentsCount)}</td>
+                        <td>${topPrizeCell}</td>
+                        <td>${topPlayerCell}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            };
+
+            // Sort logic
+            const sortData = (column) => {
+                if (sortColumn === column) {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortColumn = column;
+                    sortDirection = 'desc'; // Default to desc for new column
+                }
+
+                // Update icons
+                headers.forEach(th => {
+                    const icon = th.querySelector('.sort-icon');
+                    if (th.dataset.sort === sortColumn) {
+                        icon.textContent = sortDirection === 'asc' ? '↑' : '↓';
+                        th.style.color = 'var(--text-primary)';
+                    } else {
+                        icon.textContent = '↕';
+                        th.style.color = '';
+                    }
+                });
+
+                currentData.sort((a, b) => {
+                    let valA = a[sortColumn];
+                    let valB = b[sortColumn];
+
+                    // Handle nulls
+                    if (valA === null) valA = sortDirection === 'asc' ? Infinity : -Infinity;
+                    if (valB === null) valB = sortDirection === 'asc' ? Infinity : -Infinity;
+
+                    if (typeof valA === 'string') {
+                        return sortDirection === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                    } else {
+                        return sortDirection === 'asc' ? valA - valB : valB - valA;
+                    }
+                });
+
+                renderTable();
+            };
+
+            // Filter logic
+            const applyFilters = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedGenre = genreFilter.value;
+
+                currentData = esportsData.filter(game => {
+                    const matchesSearch = game.game.toLowerCase().includes(searchTerm);
+                    const matchesGenre = selectedGenre === 'All' || game.genre === selectedGenre;
+                    return matchesSearch && matchesGenre;
+                });
+
+                // Re-sort after filtering
+                const tempSort = sortColumn;
+                const tempDir = sortDirection;
+                sortColumn = ''; // Force sort to run
+                sortDirection = tempDir === 'asc' ? 'desc' : 'asc'; // invert so it sets back
+                sortData(tempSort);
+            };
+
+            // Event Listeners
+            headers.forEach(th => {
+                th.addEventListener('click', () => sortData(th.dataset.sort));
+            });
+
+            searchInput.addEventListener('input', applyFilters);
+            genreFilter.addEventListener('change', applyFilters);
+
+            // FAQ Logic
+            const faqs = [
+                {
+                    q: "Which esports game has the highest total prize pool?",
+                    a: `Based on our current data, the game with the highest total historical prize pool is typically a major title in the MOBA or Battle Royale genre. You can see the exact top game by sorting the table above by "Total Prize Pool".`
+                },
+                {
+                    q: "What is the biggest single esports tournament prize pool ever?",
+                    a: "Dota 2's 'The International 2021' currently holds the record for the largest single tournament prize pool in esports history, surpassing $40 million."
+                },
+                {
+                    q: "Do players keep all their prize money?",
+                    a: "No. While the figures shown represent the total winnings attributed to players or teams, in professional esports, organizations usually take a percentage cut of tournament winnings (often between 10-20%, though it varies by contract). Additionally, taxes apply."
+                },
+                {
+                    q: "Which esports genre is the most lucrative?",
+                    a: "MOBAs (Multiplayer Online Battle Arenas) and Battle Royales consistently feature the largest overall prize pools, driven by massive player bases and developer-funded tournament circuits."
+                },
+                {
+                    q: "How often is this data updated?",
+                    a: "This is a static research study representing a snapshot of the esports landscape for 2026. The data is based on historical tournament payouts up to the time of data collection."
+                }
+            ];
+
+            const renderFaqs = () => {
+                const faqContainer = document.getElementById('faq-container');
+                faqs.forEach((faq, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'faq-item';
+                    item.innerHTML = `
+                        <div class="faq-question">
+                            <span>${faq.q}</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">${faq.a}</div>
+                    `;
+
+                    item.querySelector('.faq-question').addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        // Close all
+                        document.querySelectorAll('.faq-item').forEach(el => {
+                            el.classList.remove('active');
+                            el.querySelector('.faq-icon').textContent = '+';
+                        });
+                        // Open clicked if it wasn't active
+                        if (!isActive) {
+                            item.classList.add('active');
+                            item.querySelector('.faq-icon').textContent = '×';
+                        }
+                    });
+
+                    faqContainer.appendChild(item);
+                });
+            };
+
+            // Setup JSON-LD
+            const setupJsonLd = () => {
+                const schema = {
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "Article",
+                            "headline": "Esports Prize Pool Rankings 2026",
+                            "description": "An in-depth analysis of the highest-paying esports games.",
+                            "author": {
+                                "@type": "Organization",
+                                "name": "leeroyjenkins.quest"
+                            },
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "GAB Ventures"
+                            }
+                        },
+                        {
+                            "@type": "FAQPage",
+                            "mainEntity": faqs.map(f => ({
+                                "@type": "Question",
+                                "name": f.q,
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": f.a
+                                }
+                            }))
+                        }
+                    ]
+                };
+
+                const script = document.createElement('script');
+                script.type = 'application/ld+json';
+                script.textContent = JSON.stringify(schema);
+                document.head.appendChild(script);
+            };
+
+            // Initialize
+            initStats();
+            initFilters();
+            sortData('totalPrizeUSD'); // Initial sort and render
+            renderFaqs();
+            setupJsonLd();
         });
-
-        if (currentSort.key === sortKey) {
-            currentSort.asc = !currentSort.asc;
-        } else {
-            currentSort.key = sortKey;
-            currentSort.asc = false;
-        }
-
-        // Add class to clicked header
-        header.classList.add(currentSort.asc ? 'sort-asc' : 'sort-desc');
-
-        renderTable();
-    });
-});
-
-// Init
-renderStats();
-populateFilters();
-renderTable();
-
-</script>
-
+    </script>
 </body>
 </html>
