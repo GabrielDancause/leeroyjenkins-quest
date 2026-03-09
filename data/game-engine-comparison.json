@@ -1,0 +1,122 @@
+[
+  {
+    "engine": "Unity",
+    "license": "Proprietary",
+    "pricingModel": "Revenue threshold / Per-seat",
+    "languages": "C#",
+    "platforms": "Windows, macOS, Linux, iOS, Android, WebGL, Consoles",
+    "renderingAPI": "DirectX, OpenGL, Vulkan, Metal",
+    "githubStars": null,
+    "steamGames": 1542,
+    "itchGames": 290333,
+    "notableGames": "Hollow Knight, Rust, Escape from Tarkov, Genshin Impact"
+  },
+  {
+    "engine": "Unreal Engine",
+    "license": "Proprietary",
+    "pricingModel": "5% royalty over $1M",
+    "languages": "C++, Blueprints",
+    "platforms": "Windows, macOS, Linux, iOS, Android, Consoles",
+    "renderingAPI": "DirectX, Vulkan, Metal",
+    "githubStars": null,
+    "steamGames": 2184,
+    "itchGames": 10777,
+    "notableGames": "Fortnite, Final Fantasy VII Remake, Tekken 8"
+  },
+  {
+    "engine": "Godot",
+    "license": "MIT",
+    "pricingModel": "Free / Open Source",
+    "languages": "GDScript, C#, C++",
+    "platforms": "Windows, macOS, Linux, iOS, Android, Web",
+    "renderingAPI": "Vulkan, OpenGL",
+    "githubStars": 107541,
+    "steamGames": 193,
+    "itchGames": 84878,
+    "notableGames": "Sonic Colors: Ultimate, Brotato, Cassette Beasts"
+  },
+  {
+    "engine": "GameMaker",
+    "license": "Proprietary",
+    "pricingModel": "Free (non-commercial) / Subscription",
+    "languages": "GML",
+    "platforms": "Windows, macOS, Ubuntu, iOS, Android, Web, Consoles",
+    "renderingAPI": "DirectX, OpenGL",
+    "githubStars": null,
+    "steamGames": 301,
+    "itchGames": 24860,
+    "notableGames": "Undertale, Hotline Miami, Stardew Valley"
+  },
+  {
+    "engine": "Construct 3",
+    "license": "Proprietary",
+    "pricingModel": "Subscription",
+    "languages": "Visual Scripting, JavaScript",
+    "platforms": "Web, Windows, macOS, Linux, iOS, Android",
+    "renderingAPI": "WebGL",
+    "githubStars": null,
+    "steamGames": 6477,
+    "itchGames": 1319580,
+    "notableGames": "There Is No Game: Wrong Dimension"
+  },
+  {
+    "engine": "Cocos2d-x",
+    "license": "MIT",
+    "pricingModel": "Free / Open Source",
+    "languages": "C++, Lua, JavaScript",
+    "platforms": "Windows, macOS, Linux, iOS, Android",
+    "renderingAPI": "OpenGL, Metal",
+    "githubStars": 18955,
+    "steamGames": 76,
+    "itchGames": 1319580,
+    "notableGames": "Geometry Dash, Fire Emblem Heroes"
+  },
+  {
+    "engine": "CryEngine",
+    "license": "Proprietary",
+    "pricingModel": "5% royalty",
+    "languages": "C++, C#, Lua",
+    "platforms": "Windows, Linux, Consoles",
+    "renderingAPI": "DirectX, Vulkan",
+    "githubStars": null,
+    "steamGames": 40,
+    "itchGames": 12,
+    "notableGames": "Crysis, Hunt: Showdown, Kingdom Come: Deliverance"
+  },
+  {
+    "engine": "RPG Maker MZ",
+    "license": "Proprietary",
+    "pricingModel": "One-time purchase",
+    "languages": "JavaScript",
+    "platforms": "Windows, macOS, Web, iOS, Android",
+    "renderingAPI": "WebGL",
+    "githubStars": null,
+    "steamGames": 4561,
+    "itchGames": 1319580,
+    "notableGames": "OMORI, To the Moon, Lisa: The Painful"
+  },
+  {
+    "engine": "Defold",
+    "license": "Defold License",
+    "pricingModel": "Free",
+    "languages": "Lua",
+    "platforms": "Windows, macOS, Linux, iOS, Android, Web, Switch",
+    "renderingAPI": "OpenGL, Vulkan, Metal",
+    "githubStars": 5813,
+    "steamGames": 5,
+    "itchGames": 12,
+    "notableGames": "Family Guy: The Quest for Stuff"
+  },
+  {
+    "engine": "Bevy",
+    "license": "MIT/Apache",
+    "pricingModel": "Free / Open Source",
+    "languages": "Rust",
+    "platforms": "Windows, macOS, Linux, Web, iOS, Android",
+    "renderingAPI": "Vulkan, Metal, DirectX, WebGPU",
+    "githubStars": 44949,
+    "steamGames": 54,
+    "itchGames": 1319580,
+    "notableGames": "Tiny Glade (in development)"
+  }
+]

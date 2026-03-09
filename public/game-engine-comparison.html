@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Engine Comparison 2026: Unity vs Unreal vs Godot</title>
+    <meta name="description" content="Feature-by-feature comparison of top game engines including pricing, platform support, languages, community size, and notable games.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0a0b10;
+            --bg-card: #111318;
+            --border: #1e2030;
+            --accent: #9333EA;
+            --text-primary: #d8d0e8;
+            --text-secondary: #888;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: var(--font-mono);
+        }
+
+        /* Interactive Data Table */
+        .table-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .search-input {
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-family: var(--font-ui);
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .filter-select {
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-family: var(--font-ui);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 60px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover {
+            color: var(--text-primary);
+        }
+
+        th.sort-asc::after { content: " ↑"; }
+        th.sort-desc::after { content: " ↓"; }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(147, 51, 234, 0.05);
+        }
+
+        .engine-name {
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .font-mono {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(147, 51, 234, 0.1);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        /* FAQ Section */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Methodology */
+        .methodology {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 60px;
+        }
+
+        .methodology h2 {
+            margin-bottom: 16px;
+        }
+
+        .methodology p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            th, td { padding: 12px; }
+            .table-controls { flex-direction: column; align-items: stretch; }
+            .search-input { max-width: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>Game Engine Comparison 2026</h1>
+        <p>A feature-by-feature comparison of top game engines including pricing, platform support, languages, community size, and notable games. Find the right engine for your next project.</p>
+    </div>
+
+    <!-- Stats Section (Populated via JS) -->
+    <div class="stats-grid" id="stats-grid">
+        <!-- Template injected by JS -->
+    </div>
+
+    <!-- Interactive Data Table -->
+    <h2 class="section-title">Engine Comparison</h2>
+    <div class="table-controls">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search engines, languages, platforms...">
+        <select id="filterSelect" class="filter-select">
+            <option value="all">All Licenses</option>
+            <option value="Proprietary">Proprietary</option>
+            <option value="MIT">MIT / Open Source</option>
+            <option value="Defold License">Defold License</option>
+        </select>
+        <button id="resetSortBtn" class="copy-btn">Reset Sort</button>
+    </div>
+
+    <div class="table-container">
+        <table id="engineTable">
+            <thead>
+                <tr>
+                    <th data-sort="engine">Engine</th>
+                    <th data-sort="license">License</th>
+                    <th data-sort="pricingModel">Pricing</th>
+                    <th data-sort="languages">Languages</th>
+                    <th data-sort="platforms">Platforms</th>
+                    <th data-sort="githubStars">GitHub Stars</th>
+                    <th data-sort="steamGames">Steam Games</th>
+                    <th data-sort="itchGames">itch.io Games</th>
+                    <th data-sort="notableGames">Notable Games</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data injected by JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FAQ Section -->
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+        <div class="faq-item">
+            <h3>Which game engine is best for beginners?</h3>
+            <p>Godot and Construct 3 are often recommended for beginners. Godot's node-based architecture and Python-like GDScript make it easy to learn. Construct 3 offers visual scripting, eliminating the need to write traditional code while teaching core logic concepts.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What is the difference between Unity and Unreal Engine?</h3>
+            <p>Unity uses C# and is highly versatile for 2D, 3D, and mobile development, boasting a massive asset store. Unreal Engine uses C++ and Blueprints (visual scripting), excelling in high-fidelity 3D graphics and large-scale PC/Console games right out of the box.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Are open-source game engines viable for commercial games?</h3>
+            <p>Absolutely. Godot (MIT License) has been used for highly successful commercial games like Sonic Colors: Ultimate and Brotato. Open-source engines mean you own your tools, avoid royalty fees, and can modify the engine source code if needed.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do game engine royalties work?</h3>
+            <p>Proprietary engines often charge based on revenue. For example, Unreal Engine charges a 5% royalty only after a game grosses $1 million USD. Unity recently updated its model to include revenue thresholds and per-seat licensing depending on the tier. Always read the latest EULA.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Which engine is best for 2D games?</h3>
+            <p>GameMaker and Godot are industry favorites for 2D. GameMaker powers hits like Undertale and Hotline Miami with its specialized 2D workflow. Godot features a dedicated 2D rendering engine (unlike engines that fake 2D in a 3D space), making it extremely efficient.</p>
+        </div>
+    </div>
+
+    <!-- Methodology -->
+    <div class="methodology">
+        <h2>Methodology</h2>
+        <p>This study collects data on 10 prominent game engines. Data was gathered from official engine websites, GitHub API (for open-source repositories), Steam search results, and itch.io tags.</p>
+        <p>Metrics like Steam and itch.io game counts are estimates based on platform search results and user-applied tags. Null values indicate data that was unavailable or inapplicable at the time of collection.</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2026 <a href="/">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property
+</div>
+
+<!-- JSON-LD Schemas -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Game Engine Comparison 2026: Unity vs Unreal vs Godot",
+  "description": "Feature-by-feature comparison of top game engines including pricing, platform support, languages, community size, and notable games.",
+  "author": {
+    "@type": "Organization",
+    "name": "leeroyjenkins.quest"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GAB Ventures",
+    "url": "https://gab.ae"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Which game engine is best for beginners?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Godot and Construct 3 are often recommended for beginners. Godot's node-based architecture and Python-like GDScript make it easy to learn. Construct 3 offers visual scripting, eliminating the need to write traditional code while teaching core logic concepts."
+    }
+  }, {
+    "@type": "Question",
+    "name": "What is the difference between Unity and Unreal Engine?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Unity uses C# and is highly versatile for 2D, 3D, and mobile development, boasting a massive asset store. Unreal Engine uses C++ and Blueprints (visual scripting), excelling in high-fidelity 3D graphics and large-scale PC/Console games right out of the box."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Are open-source game engines viable for commercial games?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Absolutely. Godot (MIT License) has been used for highly successful commercial games like Sonic Colors: Ultimate and Brotato. Open-source engines mean you own your tools, avoid royalty fees, and can modify the engine source code if needed."
+    }
+  }, {
+    "@type": "Question",
+    "name": "How do game engine royalties work?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Proprietary engines often charge based on revenue. For example, Unreal Engine charges a 5% royalty only after a game grosses $1 million USD. Unity recently updated its model to include revenue thresholds and per-seat licensing depending on the tier. Always read the latest EULA."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Which engine is best for 2D games?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "GameMaker and Godot are industry favorites for 2D. GameMaker powers hits like Undertale and Hotline Miami with its specialized 2D workflow. Godot features a dedicated 2D rendering engine (unlike engines that fake 2D in a 3D space), making it extremely efficient."
+    }
+  }]
+}
+</script>
+<script>
+    const engineData = [
+  {
+    "engine": "Unity",
+    "license": "Proprietary",
+    "pricingModel": "Revenue threshold / Per-seat",
+    "languages": "C#",
+    "platforms": "Windows, macOS, Linux, iOS, Android, WebGL, Consoles",
+    "renderingAPI": "DirectX, OpenGL, Vulkan, Metal",
+    "githubStars": null,
+    "steamGames": 1542,
+    "itchGames": 290333,
+    "notableGames": "Hollow Knight, Rust, Escape from Tarkov, Genshin Impact"
+  },
+  {
+    "engine": "Unreal Engine",
+    "license": "Proprietary",
+    "pricingModel": "5% royalty over $1M",
+    "languages": "C++, Blueprints",
+    "platforms": "Windows, macOS, Linux, iOS, Android, Consoles",
+    "renderingAPI": "DirectX, Vulkan, Metal",
+    "githubStars": null,
+    "steamGames": 2184,
+    "itchGames": 10777,
+    "notableGames": "Fortnite, Final Fantasy VII Remake, Tekken 8"
+  },
+  {
+    "engine": "Godot",
+    "license": "MIT",
+    "pricingModel": "Free / Open Source",
+    "languages": "GDScript, C#, C++",
+    "platforms": "Windows, macOS, Linux, iOS, Android, Web",
+    "renderingAPI": "Vulkan, OpenGL",
+    "githubStars": 107541,
+    "steamGames": 193,
+    "itchGames": 84878,
+    "notableGames": "Sonic Colors: Ultimate, Brotato, Cassette Beasts"
+  },
+  {
+    "engine": "GameMaker",
+    "license": "Proprietary",
+    "pricingModel": "Free (non-commercial) / Subscription",
+    "languages": "GML",
+    "platforms": "Windows, macOS, Ubuntu, iOS, Android, Web, Consoles",
+    "renderingAPI": "DirectX, OpenGL",
+    "githubStars": null,
+    "steamGames": 301,
+    "itchGames": 24860,
+    "notableGames": "Undertale, Hotline Miami, Stardew Valley"
+  },
+  {
+    "engine": "Construct 3",
+    "license": "Proprietary",
+    "pricingModel": "Subscription",
+    "languages": "Visual Scripting, JavaScript",
+    "platforms": "Web, Windows, macOS, Linux, iOS, Android",
+    "renderingAPI": "WebGL",
+    "githubStars": null,
+    "steamGames": 6477,
+    "itchGames": 1319580,
+    "notableGames": "There Is No Game: Wrong Dimension"
+  },
+  {
+    "engine": "Cocos2d-x",
+    "license": "MIT",
+    "pricingModel": "Free / Open Source",
+    "languages": "C++, Lua, JavaScript",
+    "platforms": "Windows, macOS, Linux, iOS, Android",
+    "renderingAPI": "OpenGL, Metal",
+    "githubStars": 18955,
+    "steamGames": 76,
+    "itchGames": 1319580,
+    "notableGames": "Geometry Dash, Fire Emblem Heroes"
+  },
+  {
+    "engine": "CryEngine",
+    "license": "Proprietary",
+    "pricingModel": "5% royalty",
+    "languages": "C++, C#, Lua",
+    "platforms": "Windows, Linux, Consoles",
+    "renderingAPI": "DirectX, Vulkan",
+    "githubStars": null,
+    "steamGames": 40,
+    "itchGames": 12,
+    "notableGames": "Crysis, Hunt: Showdown, Kingdom Come: Deliverance"
+  },
+  {
+    "engine": "RPG Maker MZ",
+    "license": "Proprietary",
+    "pricingModel": "One-time purchase",
+    "languages": "JavaScript",
+    "platforms": "Windows, macOS, Web, iOS, Android",
+    "renderingAPI": "WebGL",
+    "githubStars": null,
+    "steamGames": 4561,
+    "itchGames": 1319580,
+    "notableGames": "OMORI, To the Moon, Lisa: The Painful"
+  },
+  {
+    "engine": "Defold",
+    "license": "Defold License",
+    "pricingModel": "Free",
+    "languages": "Lua",
+    "platforms": "Windows, macOS, Linux, iOS, Android, Web, Switch",
+    "renderingAPI": "OpenGL, Vulkan, Metal",
+    "githubStars": 5813,
+    "steamGames": 5,
+    "itchGames": 12,
+    "notableGames": "Family Guy: The Quest for Stuff"
+  },
+  {
+    "engine": "Bevy",
+    "license": "MIT/Apache",
+    "pricingModel": "Free / Open Source",
+    "languages": "Rust",
+    "platforms": "Windows, macOS, Linux, Web, iOS, Android",
+    "renderingAPI": "Vulkan, Metal, DirectX, WebGPU",
+    "githubStars": 44949,
+    "steamGames": 54,
+    "itchGames": 1319580,
+    "notableGames": "Tiny Glade (in development)"
+  }
+];
+
+    let currentData = [...engineData];
+    let sortColumn = null;
+    let sortAsc = true;
+
+    const tbody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const filterSelect = document.getElementById('filterSelect');
+    const headers = document.querySelectorAll('th[data-sort]');
+    const statsGrid = document.getElementById('stats-grid');
+    const resetSortBtn = document.getElementById('resetSortBtn');
+
+    function formatNumber(num) {
+        if (num === null || num === undefined) return '<span class="text-secondary">N/A</span>';
+        return new Intl.NumberFormat().format(num);
+    }
+
+    function renderStats() {
+        const totalEngines = engineData.length;
+
+        let mostSteamGames = engineData[0];
+        for (let i = 1; i < engineData.length; i++) {
+            if ((engineData[i].steamGames || 0) > (mostSteamGames.steamGames || 0)) {
+                mostSteamGames = engineData[i];
+            }
+        }
+
+        let mostGithubStars = engineData[0];
+        for (let i = 1; i < engineData.length; i++) {
+            if ((engineData[i].githubStars || 0) > (mostGithubStars.githubStars || 0)) {
+                mostGithubStars = engineData[i];
+            }
+        }
+
+        statsGrid.innerHTML = `
+            <div class="stat-card">
+                <h3>Engines Analyzed</h3>
+                <div class="value">${totalEngines}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Most Steam Games</h3>
+                <div class="value">${mostSteamGames.engine}</div>
+                <div style="font-size: 0.85rem; color: #888; margin-top: 8px;">${formatNumber(mostSteamGames.steamGames)} games</div>
+            </div>
+            <div class="stat-card">
+                <h3>Most GitHub Stars</h3>
+                <div class="value">${mostGithubStars.engine}</div>
+                <div style="font-size: 0.85rem; color: #888; margin-top: 8px;">${formatNumber(mostGithubStars.githubStars)} stars</div>
+            </div>
+        `;
+    }
+
+    function renderTable() {
+        tbody.innerHTML = '';
+
+        if (currentData.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--text-secondary);">No results found.</td></tr>`;
+            return;
+        }
+
+        currentData.forEach(engine => {
+            const tr = document.createElement('tr');
+
+            // Format arrays as badges
+            const languagesHtml = engine.languages.split(',').map(l => `<span class="badge">${l.trim()}</span>`).join('');
+            const platformsHtml = engine.platforms.split(',').map(p => `<span class="badge" style="background: rgba(255,255,255,0.05); color: #ccc; font-weight: 500;">${p.trim()}</span>`).join('');
+
+            tr.innerHTML = `
+                <td><div class="engine-name">${engine.engine}</div></td>
+                <td><span style="color: ${engine.license === 'Proprietary' ? '#ff6b6b' : '#51cf66'}">${engine.license}</span></td>
+                <td style="font-size: 0.9rem;">${engine.pricingModel}</td>
+                <td><div style="display: flex; flex-wrap: wrap;">${languagesHtml}</div></td>
+                <td><div style="display: flex; flex-wrap: wrap;">${platformsHtml}</div></td>
+                <td class="font-mono" style="color: ${engine.githubStars ? 'var(--text-primary)' : 'var(--text-secondary)'}">${formatNumber(engine.githubStars)}</td>
+                <td class="font-mono" style="color: ${engine.steamGames ? 'var(--text-primary)' : 'var(--text-secondary)'}">${formatNumber(engine.steamGames)}</td>
+                <td class="font-mono" style="color: ${engine.itchGames ? 'var(--text-primary)' : 'var(--text-secondary)'}">${formatNumber(engine.itchGames)}</td>
+                <td style="font-size: 0.85rem; color: var(--text-secondary); max-width: 200px;">${engine.notableGames || 'N/A'}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function handleFilterAndSearch() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filterValue = filterSelect.value;
+
+        currentData = engineData.filter(engine => {
+            const matchesSearch =
+                engine.engine.toLowerCase().includes(searchTerm) ||
+                engine.languages.toLowerCase().includes(searchTerm) ||
+                engine.platforms.toLowerCase().includes(searchTerm);
+
+            let matchesFilter = true;
+            if (filterValue !== 'all') {
+                if (filterValue === 'MIT') {
+                     matchesFilter = engine.license.includes('MIT') || engine.license.includes('Apache');
+                } else {
+                     matchesFilter = engine.license === filterValue;
+                }
+            }
+
+            return matchesSearch && matchesFilter;
+        });
+
+        if (sortColumn) {
+            applySort();
+        } else {
+            renderTable();
+        }
+    }
+
+    function applySort() {
+        currentData.sort((a, b) => {
+            let valA = a[sortColumn];
+            let valB = b[sortColumn];
+
+            if (valA === null) valA = -Infinity;
+            if (valB === null) valB = -Infinity;
+
+            if (typeof valA === 'string') {
+                valA = valA.toLowerCase();
+                valB = valB.toLowerCase();
+            }
+
+            if (valA < valB) return sortAsc ? -1 : 1;
+            if (valA > valB) return sortAsc ? 1 : -1;
+            return 0;
+        });
+        renderTable();
+    }
+
+    function handleSort(e) {
+        const column = e.target.getAttribute('data-sort');
+        if (!column) return;
+
+        if (sortColumn === column) {
+            sortAsc = !sortAsc;
+        } else {
+            sortColumn = column;
+            sortAsc = true;
+        }
+
+        headers.forEach(th => {
+            th.classList.remove('sort-asc', 'sort-desc');
+        });
+
+        e.target.classList.add(sortAsc ? 'sort-asc' : 'sort-desc');
+
+        applySort();
+    }
+
+    searchInput.addEventListener('input', handleFilterAndSearch);
+    filterSelect.addEventListener('change', handleFilterAndSearch);
+
+    headers.forEach(th => {
+        th.addEventListener('click', handleSort);
+    });
+
+    resetSortBtn.addEventListener('click', () => {
+        sortColumn = null;
+        headers.forEach(th => th.classList.remove('sort-asc', 'sort-desc'));
+        handleFilterAndSearch();
+    });
+
+    // Initialize
+    renderStats();
+    renderTable();
+</script>
+</body>
+</html>
