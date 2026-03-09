@@ -25,6 +25,8 @@ const tools = [
 
 // Studies 
 const studies = [
+  { title: "Esports Prize Pool Rankings 2026", subtitle: "15 items analyzed", slug: "/esports-prize-pools", stat: "$89.7M", statLabel: "highest total prize pool", desc: "PLAYERUNKNOWN'S BATTLEGROUNDS Mobile has the highest total prize pool among games, reaching over $89.7M. Top player paraboy earned $1.42M. The original PUBG also remains a dominant force with massive tournament payouts.", tag: "ORIGINAL RESEARCH" },
+
   { emoji: "📈", name: "Game FPS by GPU 2026: Performance Data Across Popular Games", slug: "/game-fps-data", desc: "Analyzed performance across 15 GPUs and 15 popular games. The RTX 4090 delivers a blistering 784 FPS in Valorant at 1080p, while the RX 7800 XT hits a respectable 95 FPS in Apex Legends at 1440p.", stat: "675", statLabel: "benchmarks compiled", tag: "ORIGINAL RESEARCH" },
   { emoji: "🎮", name: "Game Engine Comparison 2026: Unity vs Unreal vs Godot", slug: "/game-engine-comparison.html", desc: "Construct 3 leads the pack in Steam presence with over 6,400 titles listed, overshadowing Unity's 1,542 and Unreal's 2,184 games. Godot remains the most popular open-source choice, gathering more than 107,000 stars on GitHub and powering significant recent successes.", stat: "10", statLabel: "engines analyzed", tag: "ORIGINAL RESEARCH" },
   { emoji: "💻", name: "GPU Performance Index 2026", slug: "/gpu-performance-index", desc: "60 GPUs benchmarked and ranked from RTX 4090 to RX 7600", stat: "60", statLabel: "GPUs ranked" }
@@ -354,13 +356,14 @@ const lists = [
       <div class="studies-grid">
         {studies.map(study => (
           <a class="study-card" href={study.slug}>
-            <span class="study-emoji">{study.emoji}</span>
+            {study.emoji && <span class="study-emoji">{study.emoji}</span>}
             <div class="study-stat">
               <span class="stat-number">{study.stat}</span>
               <span class="stat-label">{study.statLabel}</span>
             </div>
             {study.tag && <span class="section-tag" style="margin-top: 12px; margin-bottom: 8px;">{study.tag}</span>}
-            <h3 class="study-name">{study.name}</h3>
+            <h3 class="study-name">{study.title || study.name}</h3>
+            {study.subtitle && <p class="study-sub" style="color: #9333ea; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">{study.subtitle}</p>}
             <p class="study-desc">{study.desc}</p>
           </a>
         ))}
