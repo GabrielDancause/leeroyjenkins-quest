@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game FPS by GPU 2026: Performance Data Across Popular Games</title>
+    <meta name="description" content="Check how many FPS your GPU gets in 15+ popular games at 1080p, 1440p, and 4K. Matrix of average framerates for RTX 4090 down to RTX 3060.">
+
+    <link rel="canonical" href="https://leeroyjenkins.quest/game-fps-data">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0b10;
+            --card-bg: #13141c;
+            --border: #2a2b36;
+            --accent: #9333EA;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --fps-low: #ef4444;
+            --fps-mid: #eab308;
+            --fps-high: #22c55e;
+            --fps-ultra: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .controls {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 600px) {
+            .controls {
+                grid-template-columns: 1fr 1fr;
+            }
+            .controls .view-toggle {
+                grid-column: span 2;
+            }
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        select, button {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        select:focus, button:focus {
+            border-color: var(--accent);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+            background: var(--bg);
+            padding: 6px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .view-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        .view-btn.active {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .resolution-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+
+        .res-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .res-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .fps-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .fps-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .fps-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .fps-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: -4px;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 24px 0 12px;
+            color: #fff;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Game FPS by GPU 2026",
+      "url": "https://leeroyjenkins.quest/game-fps-data",
+      "description": "Interactive matrix of gaming FPS performance across modern GPUs and popular titles.",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Game FPS by GPU 2026: Performance Data Across Popular Games",
+      "author": {
+        "@type": "Organization",
+        "name": "Leeroy Jenkins"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GAB Ventures"
+      },
+      "datePublished": "2026-01-01"
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Game FPS by GPU 2026</h1>
+            <p class="subtitle">Search 600+ benchmark estimates across 15 GPUs and 15 popular games. Select your hardware to see expected framerates.</p>
+        </header>
+
+        <div class="controls">
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="by-gpu">Pick a GPU</button>
+                <button class="view-btn" data-view="by-game">Pick a Game</button>
+            </div>
+
+            <div class="control-group" id="gpu-select-group">
+                <label for="gpu-select">Select GPU</label>
+                <select id="gpu-select"></select>
+            </div>
+
+            <div class="control-group hidden" id="game-select-group">
+                <label for="game-select">Select Game</label>
+                <select id="game-select"></select>
+            </div>
+        </div>
+
+        <div class="resolution-toggle">
+            <button class="res-btn active" data-res="1080p">1080p</button>
+            <button class="res-btn" data-res="1440p">1440p</button>
+            <button class="res-btn" data-res="4K">4K</button>
+        </div>
+
+        <div id="results-container" class="results-grid">
+            <!-- Results injected here -->
+        </div>
+
+        <div class="content-section">
+            <h2>About The Data</h2>
+            <p>Our 2026 FPS matrix compiles benchmark estimates across the most searched GPU and game combinations. We generated these estimates based on established GPU performance tiers, scaling factors for different resolutions, and game engine demands.</p>
+            <p>All estimates assume:</p>
+            <ul>
+                <li>"Ultra" or highest available preset graphics settings (without Ray Tracing unless mandatory).</li>
+                <li>A capable, modern CPU (e.g., Ryzen 7 7800X3D or Core i7-14700K) to avoid bottlenecks at 1080p.</li>
+                <li>No upscaling technologies like DLSS or FSR applied (native rendering).</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">What FPS does RTX 4070 get in Valorant?</div>
+                <div class="faq-a">At 1080p and 1440p, an RTX 4070 can easily hit the 500 FPS cap in Valorant, limited only by your CPU or the game engine itself. Even at 4K resolution, it averages well over 240 FPS, making it ideal for high refresh rate competitive gaming.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Is RTX 4060 good for 1440p gaming?</div>
+                <div class="faq-a">The RTX 4060 is primarily a 1080p card, but it handles 1440p decently in esports titles (e.g., 250+ FPS in CS2). In heavy AAA games like Cyberpunk 2077 or Starfield, 1440p native rendering at Ultra settings will drop below 60 FPS, meaning you'll need to lower settings or use DLSS.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Which GPU is best for Cyberpunk 2077?</div>
+                <div class="faq-a">For 4K Ultra gameplay without relying heavily on upscaling, the RTX 4090 is still the only card that approaches 100 FPS comfortably. For a great 1440p experience, the RTX 4070 Ti or RX 7900 XTX offer excellent performance.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">RTX 4070 vs RX 7800 XT which is faster?</div>
+                <div class="faq-a">In traditional rasterization, the RX 7800 XT generally offers slightly more raw FPS than the standard RTX 4070 in most games. However, Nvidia cards may pull ahead in titles heavily favoring their architecture or when ray tracing is enabled.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">What GPU do I need for 144 FPS?</div>
+                <div class="faq-a">It depends heavily on the game. For esports like Fortnite or Apex Legends, a mid-range card like the RTX 4060 or RX 7600 can hit 144 FPS at 1080p. For AAA single-player games, achieving a stable 144 FPS at Ultra settings requires high-end hardware like an RTX 4080 or better, even at 1080p.</div>
+            </div>
+        </div>
+
+        <footer>
+            © 2026 leeroyjenkins.quest · A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+        </footer>
+    </div>
+
+    <script>
+        // Fetch and initialize data
+        let fpsData = [];
+        let gpus = new Set();
+        let games = new Set();
+
+        let currentView = 'by-gpu'; // 'by-gpu' or 'by-game'
+        let currentRes = '1080p';
+
+        async function loadData() {
+            try {
+                // In a real environment, we'd fetch the JSON.
+                // For this standalone HTML tool, we will try fetching from the data file first
+                const response = await fetch('/data/game-fps-data.json');
+                if (response.ok) {
+                    fpsData = await response.json();
+                } else {
+                    console.error("Failed to load JSON data.");
+                    return;
+                }
+
+                initUI();
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        }
+
+        function initUI() {
+            fpsData.forEach(item => {
+                gpus.add(item.gpu);
+                games.add(item.game);
+            });
+
+            const gpuSelect = document.getElementById('gpu-select');
+            const gameSelect = document.getElementById('game-select');
+
+            // Preserve GPU tier order from data (RTX 4090 first)
+            const orderedGpus = [...gpus];
+            orderedGpus.forEach(gpu => {
+                const opt = document.createElement('option');
+                opt.value = gpu;
+                opt.textContent = gpu;
+                gpuSelect.appendChild(opt);
+            });
+
+            // Sort games alphabetically
+            const orderedGames = [...games].sort();
+            orderedGames.forEach(game => {
+                const opt = document.createElement('option');
+                opt.value = game;
+                opt.textContent = game;
+                gameSelect.appendChild(opt);
+            });
+
+            // Event Listeners
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentView = e.target.dataset.view;
+
+                    if (currentView === 'by-gpu') {
+                        document.getElementById('gpu-select-group').classList.remove('hidden');
+                        document.getElementById('game-select-group').classList.add('hidden');
+                    } else {
+                        document.getElementById('gpu-select-group').classList.add('hidden');
+                        document.getElementById('game-select-group').classList.remove('hidden');
+                    }
+
+                    renderResults();
+                });
+            });
+
+            document.querySelectorAll('.res-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.res-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentRes = e.target.dataset.res;
+                    renderResults();
+                });
+            });
+
+            gpuSelect.addEventListener('change', renderResults);
+            gameSelect.addEventListener('change', renderResults);
+
+            renderResults();
+        }
+
+        function getColor(fps) {
+            if (fps >= 144) return 'var(--fps-ultra)';
+            if (fps >= 60) return 'var(--fps-high)';
+            if (fps >= 30) return 'var(--fps-mid)';
+            return 'var(--fps-low)';
+        }
+
+        function renderResults() {
+            const container = document.getElementById('results-container');
+            container.innerHTML = '';
+
+            let filteredData = [];
+
+            if (currentView === 'by-gpu') {
+                const selectedGpu = document.getElementById('gpu-select').value;
+                filteredData = fpsData.filter(d => d.gpu === selectedGpu && d.resolution === currentRes);
+                // Sort by FPS descending
+                filteredData.sort((a, b) => b.avgFps - a.avgFps);
+            } else {
+                const selectedGame = document.getElementById('game-select').value;
+                filteredData = fpsData.filter(d => d.game === selectedGame && d.resolution === currentRes);
+                // Sort by FPS descending
+                filteredData.sort((a, b) => b.avgFps - a.avgFps);
+            }
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'fps-card';
+
+                const titleText = currentView === 'by-gpu' ? item.game : item.gpu;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="card-title">${titleText}</div>
+                        <div class="card-subtitle">Ultra Settings</div>
+                    </div>
+                    <div style="text-align: right">
+                        <div class="fps-value" style="color: ${getColor(item.avgFps)}">${item.avgFps}</div>
+                        <div class="fps-label">AVG FPS</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
