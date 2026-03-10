@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G86C7NJG3F"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-G86C7NJG3F');</script>
+  <meta charset="UTF-8">
+  <link rel="canonical" href="https://leeroyjenkins.quest/pc-build-calculator" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Build Compatibility & Budget Calculator | Leeroy Jenkins</title>
+  <meta name="description" content="Calculate your optimal PC build budget and check compatibility, bottlenecks, and total power consumption.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PC Build Compatibility & Budget Calculator",
+    "description": "Calculate your optimal PC build budget and check compatibility, bottlenecks, and total power consumption.",
+    "url": "https://leeroyjenkins.quest/pc-build-calculator",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0a0b10;
+      --card-bg: #111318;
+      --border: #1e2030;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .calculator-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+    }
+
+    .results {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .result-item:first-child {
+      padding-top: 0;
+    }
+
+    .result-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-label small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .result-value-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .result-value.highlight {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .warning {
+      color: #ef4444 !important;
+    }
+
+    button.copy-btn {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: background 0.2s;
+    }
+
+    button.copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .seo-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .calculator-card { padding: 24px; }
+      .result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .result-value-group { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+<script src="/nav.js"></script>
+
+  <div class="container">
+    <header>
+      <h1>PC Build Calculator</h1>
+      <p>Select components to calculate compatibility, total cost, and power draw.</p>
+    </header>
+
+    <div class="calculator-card" id="app">
+      <div class="form-group">
+        <label for="cpuSelect">Processor (CPU)</label>
+        <select id="cpuSelect"><option value="">Select a CPU...</option></select>
+      </div>
+
+      <div class="form-group">
+        <label for="gpuSelect">Graphics Card (GPU)</label>
+        <select id="gpuSelect"><option value="">Select a GPU...</option></select>
+      </div>
+
+      <div class="form-group">
+        <label for="ramSelect">Memory (RAM)</label>
+        <select id="ramSelect"><option value="">Select RAM...</option></select>
+      </div>
+
+      <div class="form-group">
+        <label for="storageSelect">Storage (SSD)</label>
+        <select id="storageSelect"><option value="">Select Storage...</option></select>
+      </div>
+
+      <div class="form-group">
+        <label for="psuSelect">Power Supply (PSU)</label>
+        <select id="psuSelect"><option value="">Select PSU...</option></select>
+      </div>
+
+      <div class="results">
+        <div class="result-item">
+          <div class="result-label">
+            Total Build Cost
+            <small>Estimated price of selected parts</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value highlight" id="totalCostOut">$0</div>
+            <button class="copy-btn" onclick="copyValue('totalCostOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-label">
+            Total Power Draw
+            <small>Estimated TDP of selected parts</small>
+          </div>
+          <div class="result-value-group">
+            <div class="result-value" id="totalPowerOut">0W</div>
+            <button class="copy-btn" onclick="copyValue('totalPowerOut', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="result-item" id="psuWarningContainer" style="display:none;">
+          <div class="result-label warning">
+            ⚠️ PSU Warning
+            <small id="psuWarningText">Your PSU might not provide enough wattage.</small>
+          </div>
+        </div>
+
+        <div class="result-item" id="bottleneckWarningContainer" style="display:none;">
+          <div class="result-label warning">
+            ⚠️ Bottleneck Warning
+            <small id="bottleneckWarningText">Severe CPU/GPU bottleneck detected.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why Compatibility Matters</h2>
+      <p>When building a PC, ensuring that all components are compatible and balanced is crucial. An unbalanced build can lead to bottlenecks, where one component limits the performance of others.</p>
+      <h2>Power Consumption</h2>
+      <p>Choosing the right Power Supply Unit (PSU) is very important. Always ensure your PSU provides enough wattage to cover the total power draw of your components with some headroom for efficiency and future upgrades.</p>
+
+      <h2>FAQ</h2>
+      <h3 style="color:var(--text-primary); margin-top:16px;">What is a bottleneck?</h3>
+      <p>A bottleneck occurs when the capacity of a system or component is limited by a single slower component. In gaming PCs, this most commonly happens when a fast GPU is paired with a slow CPU, causing the GPU to wait for the CPU and reducing overall frame rates.</p>
+      <h3 style="color:var(--text-primary); margin-top:16px;">How much PSU wattage do I need?</h3>
+      <p>As a rule of thumb, you should add up the total estimated wattage (TDP) of all components in your build, and choose a power supply that provides at least 25% to 50% more wattage than that number. This ensures efficiency, longevity, and leaves room for minor upgrades.</p>
+    </div>
+
+    <footer>
+      &copy; 2026 <a href="/">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const PARTS_DATA = {
+      cpus: [
+        { id: 'c1', name: 'Intel Core i9-14900K', price: 580, tdp: 253, tier: 5 },
+        { id: 'c2', name: 'Intel Core i7-14700K', price: 399, tdp: 253, tier: 4 },
+        { id: 'c3', name: 'Intel Core i5-14600K', price: 299, tdp: 181, tier: 3 },
+        { id: 'c4', name: 'AMD Ryzen 9 7950X3D', price: 650, tdp: 120, tier: 5 },
+        { id: 'c5', name: 'AMD Ryzen 7 7800X3D', price: 380, tdp: 120, tier: 5 },
+        { id: 'c6', name: 'AMD Ryzen 5 7600X', price: 230, tdp: 105, tier: 3 },
+        { id: 'c7', name: 'Intel Core i3-14100F', price: 110, tdp: 58, tier: 1 },
+        { id: 'c8', name: 'AMD Ryzen 5 5600', price: 130, tdp: 65, tier: 2 },
+        { id: 'c9', name: 'Future CPU Null Price', price: null, tdp: 150, tier: 4 }
+      ],
+      gpus: [
+        { id: 'g1', name: 'NVIDIA RTX 4090', price: 1700, tdp: 450, tier: 5 },
+        { id: 'g2', name: 'NVIDIA RTX 4080 SUPER', price: 999, tdp: 320, tier: 5 },
+        { id: 'g3', name: 'NVIDIA RTX 4070 SUPER', price: 599, tdp: 220, tier: 4 },
+        { id: 'g4', name: 'NVIDIA RTX 4060 Ti', price: 399, tdp: 160, tier: 3 },
+        { id: 'g5', name: 'AMD Radeon RX 7900 XTX', price: 950, tdp: 355, tier: 5 },
+        { id: 'g6', name: 'AMD Radeon RX 7800 XT', price: 499, tdp: 263, tier: 4 },
+        { id: 'g7', name: 'AMD Radeon RX 7600', price: 269, tdp: 165, tier: 2 },
+        { id: 'g8', name: 'NVIDIA RTX 3050', price: 200, tdp: 130, tier: 1 },
+        { id: 'g9', name: 'Intel Arc A770', price: 280, tdp: 225, tier: 3 }
+      ],
+      rams: [
+        { id: 'r1', name: '16GB (2x8GB) DDR4-3200', price: 45, tdp: 10, tier: 2 },
+        { id: 'r2', name: '32GB (2x16GB) DDR4-3600', price: 75, tdp: 15, tier: 3 },
+        { id: 'r3', name: '32GB (2x16GB) DDR5-6000', price: 110, tdp: 15, tier: 4 },
+        { id: 'r4', name: '64GB (2x32GB) DDR5-6400', price: 220, tdp: 20, tier: 5 }
+      ],
+      storages: [
+        { id: 's1', name: '500GB NVMe Gen3', price: 40, tdp: 5, tier: 2 },
+        { id: 's2', name: '1TB NVMe Gen4', price: 80, tdp: 8, tier: 3 },
+        { id: 's3', name: '2TB NVMe Gen4', price: 140, tdp: 10, tier: 4 },
+        { id: 's4', name: '4TB NVMe Gen5', price: 350, tdp: 15, tier: 5 }
+      ],
+      psus: [
+        { id: 'p1', name: '500W 80+ Bronze', price: 50, wattage: 500, tier: 1 },
+        { id: 'p2', name: '650W 80+ Gold', price: 85, wattage: 650, tier: 3 },
+        { id: 'p3', name: '850W 80+ Gold', price: 120, wattage: 850, tier: 4 },
+        { id: 'p4', name: '1000W 80+ Platinum', price: 180, wattage: 1000, tier: 5 },
+        { id: 'p5', name: '1200W 80+ Titanium', price: 250, wattage: 1200, tier: 5 }
+      ]
+    };
+
+    function populateSelects() {
+      const selects = [
+        { id: 'cpuSelect', data: PARTS_DATA.cpus, formatText: (p) => `${p.name} ${p.price ? '($' + p.price + ')' : '(Price N/A)'}` },
+        { id: 'gpuSelect', data: PARTS_DATA.gpus, formatText: (p) => `${p.name} ${p.price ? '($' + p.price + ')' : '(Price N/A)'}` },
+        { id: 'ramSelect', data: PARTS_DATA.rams, formatText: (p) => `${p.name} ${p.price ? '($' + p.price + ')' : '(Price N/A)'}` },
+        { id: 'storageSelect', data: PARTS_DATA.storages, formatText: (p) => `${p.name} ${p.price ? '($' + p.price + ')' : '(Price N/A)'}` },
+        { id: 'psuSelect', data: PARTS_DATA.psus, formatText: (p) => `${p.name} ${p.price ? '($' + p.price + ')' : '(Price N/A)'}` }
+      ];
+
+      selects.forEach(({ id, data, formatText }) => {
+        const select = document.getElementById(id);
+        data.forEach(part => {
+          const option = document.createElement('option');
+          option.value = part.id;
+          option.textContent = formatText(part);
+          select.appendChild(option);
+        });
+      });
+    }
+
+    function calculate() {
+      const getSelectedPart = (selectId, category) => {
+        const id = document.getElementById(selectId).value;
+        return PARTS_DATA[category].find(p => p.id === id) || null;
+      };
+
+      const cpu = getSelectedPart('cpuSelect', 'cpus');
+      const gpu = getSelectedPart('gpuSelect', 'gpus');
+      const ram = getSelectedPart('ramSelect', 'rams');
+      const storage = getSelectedPart('storageSelect', 'storages');
+      const psu = getSelectedPart('psuSelect', 'psus');
+
+      let totalCost = 0;
+      let totalPower = 0;
+      const parts = [cpu, gpu, ram, storage, psu];
+
+      parts.forEach(part => {
+        if (part) {
+          if (part.price !== null) totalCost += part.price;
+          if (part.tdp !== undefined) totalPower += part.tdp;
+        }
+      });
+
+      // Add a baseline 50W for motherboard and fans
+      if (parts.some(p => p !== null)) {
+        totalPower += 50;
+      }
+
+      document.getElementById('totalCostOut').textContent = `$${totalCost}`;
+      document.getElementById('totalPowerOut').textContent = `${totalPower}W`;
+
+      // PSU Warning
+      const psuWarningContainer = document.getElementById('psuWarningContainer');
+      const psuWarningText = document.getElementById('psuWarningText');
+      if (psu && totalPower > 0) {
+        // Recommend PSU wattage to be at least totalPower * 1.25 (80% load max)
+        const recommendedWattage = totalPower * 1.25;
+        if (psu.wattage < recommendedWattage) {
+          psuWarningContainer.style.display = 'flex';
+          psuWarningText.textContent = `Your ${psu.wattage}W PSU may not be enough. We recommend at least ${Math.ceil(recommendedWattage)}W for this build.`;
+        } else {
+          psuWarningContainer.style.display = 'none';
+        }
+      } else {
+        psuWarningContainer.style.display = 'none';
+      }
+
+      // Bottleneck Warning
+      const bottleneckWarningContainer = document.getElementById('bottleneckWarningContainer');
+      const bottleneckWarningText = document.getElementById('bottleneckWarningText');
+
+      if (cpu && gpu) {
+        const tierDiff = cpu.tier - gpu.tier;
+        if (tierDiff <= -2) {
+          bottleneckWarningContainer.style.display = 'flex';
+          bottleneckWarningText.textContent = `${cpu.name} is too weak for ${gpu.name}. Consider upgrading the CPU.`;
+        } else if (tierDiff >= 2) {
+          bottleneckWarningContainer.style.display = 'flex';
+          bottleneckWarningText.textContent = `${cpu.name} is overpowered for ${gpu.name}. Consider upgrading the GPU for better gaming performance.`;
+        } else {
+          bottleneckWarningContainer.style.display = 'none';
+        }
+      } else {
+        bottleneckWarningContainer.style.display = 'none';
+      }
+    }
+
+    function copyValue(elementId, btn) {
+      const text = document.getElementById(elementId).textContent.replace('$', '').replace('W', '');
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    document.querySelectorAll('select').forEach(select => {
+      select.addEventListener('change', calculate);
+    });
+
+    populateSelects();
+  </script>
+</body>
+</html>

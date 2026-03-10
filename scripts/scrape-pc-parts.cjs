@@ -1,0 +1,58 @@
+const fs = require('fs');
+const path = require('path');
+
+// Simulate scraping or querying real parts data
+// In a real scenario, this would make network requests to get updated prices.
+// We use a predefined dataset with realistic 2026 specs and nulls where data might be missing.
+async function generatePartsData() {
+  const parts = {
+    cpus: [
+      { id: 'c1', name: 'Intel Core i9-14900K', price: 580, tdp: 253, tier: 5 },
+      { id: 'c2', name: 'Intel Core i7-14700K', price: 399, tdp: 253, tier: 4 },
+      { id: 'c3', name: 'Intel Core i5-14600K', price: 299, tdp: 181, tier: 3 },
+      { id: 'c4', name: 'AMD Ryzen 9 7950X3D', price: 650, tdp: 120, tier: 5 },
+      { id: 'c5', name: 'AMD Ryzen 7 7800X3D', price: 380, tdp: 120, tier: 5 },
+      { id: 'c6', name: 'AMD Ryzen 5 7600X', price: 230, tdp: 105, tier: 3 },
+      { id: 'c7', name: 'Intel Core i3-14100F', price: 110, tdp: 58, tier: 1 },
+      { id: 'c8', name: 'AMD Ryzen 5 5600', price: 130, tdp: 65, tier: 2 },
+      { id: 'c9', name: 'Future CPU Null Price', price: null, tdp: 150, tier: 4 }
+    ],
+    gpus: [
+      { id: 'g1', name: 'NVIDIA RTX 4090', price: 1700, tdp: 450, tier: 5 },
+      { id: 'g2', name: 'NVIDIA RTX 4080 SUPER', price: 999, tdp: 320, tier: 5 },
+      { id: 'g3', name: 'NVIDIA RTX 4070 SUPER', price: 599, tdp: 220, tier: 4 },
+      { id: 'g4', name: 'NVIDIA RTX 4060 Ti', price: 399, tdp: 160, tier: 3 },
+      { id: 'g5', name: 'AMD Radeon RX 7900 XTX', price: 950, tdp: 355, tier: 5 },
+      { id: 'g6', name: 'AMD Radeon RX 7800 XT', price: 499, tdp: 263, tier: 4 },
+      { id: 'g7', name: 'AMD Radeon RX 7600', price: 269, tdp: 165, tier: 2 },
+      { id: 'g8', name: 'NVIDIA RTX 3050', price: 200, tdp: 130, tier: 1 },
+      { id: 'g9', name: 'Intel Arc A770', price: 280, tdp: 225, tier: 3 }
+    ],
+    rams: [
+      { id: 'r1', name: '16GB (2x8GB) DDR4-3200', price: 45, tdp: 10, tier: 2 },
+      { id: 'r2', name: '32GB (2x16GB) DDR4-3600', price: 75, tdp: 15, tier: 3 },
+      { id: 'r3', name: '32GB (2x16GB) DDR5-6000', price: 110, tdp: 15, tier: 4 },
+      { id: 'r4', name: '64GB (2x32GB) DDR5-6400', price: 220, tdp: 20, tier: 5 }
+    ],
+    storages: [
+      { id: 's1', name: '500GB NVMe Gen3', price: 40, tdp: 5, tier: 2 },
+      { id: 's2', name: '1TB NVMe Gen4', price: 80, tdp: 8, tier: 3 },
+      { id: 's3', name: '2TB NVMe Gen4', price: 140, tdp: 10, tier: 4 },
+      { id: 's4', name: '4TB NVMe Gen5', price: 350, tdp: 15, tier: 5 }
+    ],
+    psus: [
+      { id: 'p1', name: '500W 80+ Bronze', price: 50, wattage: 500, tier: 1 },
+      { id: 'p2', name: '650W 80+ Gold', price: 85, wattage: 650, tier: 3 },
+      { id: 'p3', name: '850W 80+ Gold', price: 120, wattage: 850, tier: 4 },
+      { id: 'p4', name: '1000W 80+ Platinum', price: 180, wattage: 1000, tier: 5 },
+      { id: 'p5', name: '1200W 80+ Titanium', price: 250, wattage: 1200, tier: 5 }
+    ]
+  };
+
+  const outputPath = path.join(__dirname, '../data/pc-parts.json');
+  fs.mkdirSync(path.join(__dirname, '../data'), { recursive: true });
+  fs.writeFileSync(outputPath, JSON.stringify(parts, null, 2));
+  console.log(`Successfully generated parts data at ${outputPath}`);
+}
+
+generatePartsData().catch(console.error);
