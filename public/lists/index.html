@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Lists - leeroyjenkins.quest</title>
+    <meta name="description" content="Curated lists of the best gaming gear, software, and services ranked.">
+    <link rel="canonical" href="https://leeroyjenkins.quest/lists/">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G86C7NJG3F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G86C7NJG3F');
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #060a12;
+            color: #c8d0de;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            background: linear-gradient(180deg, #120e1e 0%, #060a12 100%);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(147,51,234,0.08) 0%, transparent 60%);
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #9333EA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Search Box */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 16px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 30px;
+            border: 1px solid #1e2030;
+            background: #111318;
+            color: #fff;
+            font-size: 1.05rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #9333EA;
+            box-shadow: 0 0 0 3px rgba(147,51,234,0.2);
+        }
+        .search-input::placeholder {
+            color: #5a6a80;
+        }
+        .counter {
+            color: #8a94a6;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Grid */
+        .lists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .list-card {
+            background: #111318;
+            border: 1px solid #1e2030;
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.2s ease;
+        }
+
+        .list-card:hover {
+            border-color: #9333EA;
+            transform: translateY(-2px);
+        }
+
+        .list-emoji {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .list-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #e0e8f0;
+            margin-bottom: 6px;
+        }
+
+        .list-desc {
+            font-size: 0.85rem;
+            color: #6a7a90;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 24px;
+            font-size: 0.85rem;
+            color: #3a4a5a;
+            border-top: 1px solid #151f2e;
+            background: #040810;
+            margin-top: auto;
+        }
+        .footer a {
+            color: #9333EA;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 60px 20px 40px; }
+            .section-container { padding: 30px 20px 60px; }
+            .lists-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <script src="/nav.js"></script>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Gaming Lists</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search lists...">
+            </div>
+            <div class="counter" id="listCounter">5 lists</div>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="lists-grid" id="listsGrid">
+
+            <a class="list-card" href="/list-free-games">
+                <span class="list-emoji">📋</span>
+                <h3 class="list-name">Best Free-to-Play Games</h3>
+                <p class="list-desc">Top F2P games: Valorant, Fortnite, Apex, LoL, Genshin</p>
+            </a>
+
+            <a class="list-card" href="/list-gaming-headsets">
+                <span class="list-emoji">🎧</span>
+                <h3 class="list-name">Best Gaming Headsets</h3>
+                <p class="list-desc">Wireless, wired, budget, premium headsets compared</p>
+            </a>
+
+            <a class="list-card" href="/list-game-engines">
+                <span class="list-emoji">🎮</span>
+                <h3 class="list-name">Best Game Engines</h3>
+                <p class="list-desc">Unity, Unreal, Godot comparison with use cases</p>
+            </a>
+
+            <a class="list-card" href="/list-discord-bots">
+                <span class="list-emoji">🤖</span>
+                <h3 class="list-name">Best Discord Bots</h3>
+                <p class="list-desc">Top Discord bots for gaming servers and communities</p>
+            </a>
+
+            <a class="list-card" href="/list-gaming-mice">
+                <span class="list-emoji">🖱️</span>
+                <h3 class="list-name">Best Gaming Mice</h3>
+                <p class="list-desc">Gaming mice by grip style, weight, sensor, polling rate</p>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 <a href="/">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const listsGrid = document.getElementById('listsGrid');
+        const cards = Array.from(listsGrid.getElementsByClassName('list-card'));
+        const counter = document.getElementById('listCounter');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const name = card.querySelector('.list-name').textContent.toLowerCase();
+                const desc = card.querySelector('.list-desc').textContent.toLowerCase();
+
+                if (name.includes(query) || desc.includes(query)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            counter.textContent = visibleCount === 1 ? '1 list' : visibleCount + ' lists';
+        });
+    </script>
+</body>
+</html>
