@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Tools Directory | leeroyjenkins.quest</title>
+  <meta name="description" content="A complete directory of all gaming tools, calculators, guides, and lists available on leeroyjenkins.quest.">
+  <link rel="canonical" href="https://leeroyjenkins.quest/tools/">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G86C7NJG3F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G86C7NJG3F');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #060a12;
+      color: #d8d0e8;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 40px;
+      background: linear-gradient(180deg, #120e1e 0%, #060a12 100%);
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(147,51,234,0.08) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff 0%, #9333EA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Search Box */
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 16px auto;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: #111318;
+      border: 1px solid #1e2030;
+      color: #d8d0e8;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      border-color: #9333EA;
+      box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+    }
+    .search-input::placeholder {
+      color: #6a7a90;
+    }
+
+    .tool-count {
+      color: #6a7a90;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+
+    /* Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* Cards */
+    .tool-card {
+      background: #111318;
+      border: 1px solid #1e2030;
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+    }
+    .tool-card:hover {
+      border-color: #9333EA;
+      transform: translateY(-2px);
+    }
+    .tool-emoji {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .tool-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e0e8f0;
+      margin-bottom: 8px;
+    }
+    .tool-desc {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+      grid-column: 1 / -1;
+      display: none;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 50px 24px;
+      font-size: 0.85rem;
+      color: #3a4a5a;
+      border-top: 1px solid #1e2030;
+      margin-top: 60px;
+      background: #060a12;
+    }
+    .footer a {
+      color: #9333EA;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <script src="/nav.js"></script>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Gaming Tools</h1>
+
+      <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search tools, guides, lists...">
+      </div>
+
+      <div id="toolCount" class="tool-count">31 tools available</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tools-grid" id="toolsGrid">
+
+        <a class="tool-card" href="/dpi-calculator">
+          <span class="tool-emoji">🖱️</span>
+          <h3 class="tool-name">DPI & Sensitivity Matcher</h3>
+          <p class="tool-desc">Match sensitivity across different DPI settings and mice</p>
+        </a>
+
+        <a class="tool-card" href="/fov-calculator">
+          <span class="tool-emoji">👁️</span>
+          <h3 class="tool-name">FOV Calculator</h3>
+          <p class="tool-desc">Find ideal field of view based on monitor size and distance</p>
+        </a>
+
+        <a class="tool-card" href="/crosshair-generator">
+          <span class="tool-emoji">📐</span>
+          <h3 class="tool-name">Crosshair Generator</h3>
+          <p class="tool-desc">Design crosshairs for Valorant, CS2, Overwatch, and more</p>
+        </a>
+
+        <a class="tool-card" href="/resolution-scaler">
+          <span class="tool-emoji">🖥️</span>
+          <h3 class="tool-name">Resolution Scaler</h3>
+          <p class="tool-desc">Render resolution percentages and performance impact estimates</p>
+        </a>
+
+        <a class="tool-card" href="/fps-calculator">
+          <span class="tool-emoji">📊</span>
+          <h3 class="tool-name">FPS Calculator</h3>
+          <p class="tool-desc">Estimate FPS for hardware and game settings combinations</p>
+        </a>
+
+        <a class="tool-card" href="/bottleneck-calculator">
+          <span class="tool-emoji">💻</span>
+          <h3 class="tool-name">PC Bottleneck Calculator</h3>
+          <p class="tool-desc">Check CPU vs GPU bottleneck with upgrade recommendations</p>
+        </a>
+
+        <a class="tool-card" href="/input-lag">
+          <span class="tool-emoji">⏱️</span>
+          <h3 class="tool-name">Input Lag Calculator</h3>
+          <p class="tool-desc">Calculate total system input lag from mouse to display</p>
+        </a>
+
+        <a class="tool-card" href="/loot-probability">
+          <span class="tool-emoji">🎲</span>
+          <h3 class="tool-name">Loot Drop Calculator</h3>
+          <p class="tool-desc">Calculate true chances of rare drops with bad luck protection</p>
+        </a>
+
+        <a class="tool-card" href="/discord-timestamp">
+          <span class="tool-emoji">🕐</span>
+          <h3 class="tool-name">Discord Timestamp Generator</h3>
+          <p class="tool-desc">Generate Discord timestamp codes from any date and time</p>
+        </a>
+
+        <a class="tool-card" href="/keybind-planner">
+          <span class="tool-emoji">⌨️</span>
+          <h3 class="tool-name">Keybind Planner</h3>
+          <p class="tool-desc">Plan keybinds with visual layout and conflict detection</p>
+        </a>
+
+        <a class="tool-card" href="/damage-calculator">
+          <span class="tool-emoji">💥</span>
+          <h3 class="tool-name">Damage Calculator</h3>
+          <p class="tool-desc">Calculate DPS, TTK with armor and headshot multipliers</p>
+        </a>
+
+        <a class="tool-card" href="/xp-calculator">
+          <span class="tool-emoji">📈</span>
+          <h3 class="tool-name">XP Calculator</h3>
+          <p class="tool-desc">Estimate time to level up with XP rates and boosts</p>
+        </a>
+
+        <a class="tool-card" href="/stream-bitrate">
+          <span class="tool-emoji">📡</span>
+          <h3 class="tool-name">Stream Bitrate Calculator</h3>
+          <p class="tool-desc">Find optimal bitrate for resolution, FPS, and platform</p>
+        </a>
+
+        <a class="tool-card" href="/aim-trainer-stats">
+          <span class="tool-emoji">🎯</span>
+          <h3 class="tool-name">Aim Stats Calculator</h3>
+          <p class="tool-desc">Calculate aim training metrics and improvement rates</p>
+        </a>
+
+        <a class="tool-card" href="/gaming-pc-builder">
+          <span class="tool-emoji">🖥️</span>
+          <h3 class="tool-name">Gaming PC Builder</h3>
+          <p class="tool-desc">Build balanced PC for budget with compatibility checks</p>
+        </a>
+
+        <a class="tool-card" href="/color-blind-test">
+          <span class="tool-emoji">🎨</span>
+          <h3 class="tool-name">Color Blind Test</h3>
+          <p class="tool-desc">Test color vision with gaming-specific scenarios</p>
+        </a>
+
+        <a class="tool-card" href="/randomizer">
+          <span class="tool-emoji">🎲</span>
+          <h3 class="tool-name">Randomizer</h3>
+          <p class="tool-desc">Random game picker, team generator, map randomizer</p>
+        </a>
+
+        <a class="tool-card" href="/refresh-rate-test">
+          <span class="tool-emoji">🖥️</span>
+          <h3 class="tool-name">Monitor Refresh Rate Test</h3>
+          <p class="tool-desc">Verify monitor refresh rate and detect frame skipping</p>
+        </a>
+
+        <a class="tool-card" href="/game-fps-data">
+          <span class="tool-emoji">📈</span>
+          <h3 class="tool-name">Game FPS by GPU 2026: Performance Data Across Popular Games</h3>
+          <p class="tool-desc">Analyzed performance across 15 GPUs and 15 popular games. The RTX 4090 delivers a blistering 784 FPS in Valorant at 1080p, while the RX 7800 XT hits a respectable 95 FPS in Apex Legends at 1440p.</p>
+        </a>
+
+        <a class="tool-card" href="/game-engine-comparison.html">
+          <span class="tool-emoji">🎮</span>
+          <h3 class="tool-name">Game Engine Comparison 2026: Unity vs Unreal vs Godot</h3>
+          <p class="tool-desc">Construct 3 leads the pack in Steam presence with over 6,400 titles listed, overshadowing Unity's 1,542 and Unreal's 2,184 games. Godot remains the most popular open-source choice, gathering more than 107,000 stars on GitHub and powering significant recent successes.</p>
+        </a>
+
+        <a class="tool-card" href="/gpu-performance-index">
+          <span class="tool-emoji">💻</span>
+          <h3 class="tool-name">GPU Performance Index 2026</h3>
+          <p class="tool-desc">60 GPUs benchmarked and ranked from RTX 4090 to RX 7600</p>
+        </a>
+
+        <a class="tool-card" href="/guide-streaming-setup">
+          <span class="tool-emoji">📺</span>
+          <h3 class="tool-name">Streaming Setup Guide</h3>
+          <p class="tool-desc">Complete streaming setup: OBS, audio, lighting, overlays</p>
+        </a>
+
+        <a class="tool-card" href="/guide-mechanical-keyboards">
+          <span class="tool-emoji">⌨️</span>
+          <h3 class="tool-name">Mechanical Keyboards Guide</h3>
+          <p class="tool-desc">Switches, actuation, polling rate, and recommendations</p>
+        </a>
+
+        <a class="tool-card" href="/guide-mouse-grip">
+          <span class="tool-emoji">🖱️</span>
+          <h3 class="tool-name">Mouse Grip Styles Guide</h3>
+          <p class="tool-desc">Palm, claw, fingertip grips with mouse recommendations</p>
+        </a>
+
+        <a class="tool-card" href="/guide-fps-optimization">
+          <span class="tool-emoji">📚</span>
+          <h3 class="tool-name">FPS Optimization Guide</h3>
+          <p class="tool-desc">Windows settings, drivers, in-game settings, hardware</p>
+        </a>
+
+        <a class="tool-card" href="/guide-monitor-buying">
+          <span class="tool-emoji">📚</span>
+          <h3 class="tool-name">Monitor Buying Guide</h3>
+          <p class="tool-desc">Panel types, refresh rate, response time, resolution</p>
+        </a>
+
+        <a class="tool-card" href="/list-free-games">
+          <span class="tool-emoji">📋</span>
+          <h3 class="tool-name">Best Free-to-Play Games</h3>
+          <p class="tool-desc">Top F2P games: Valorant, Fortnite, Apex, LoL, Genshin</p>
+        </a>
+
+        <a class="tool-card" href="/list-gaming-headsets">
+          <span class="tool-emoji">🎧</span>
+          <h3 class="tool-name">Best Gaming Headsets</h3>
+          <p class="tool-desc">Wireless, wired, budget, premium headsets compared</p>
+        </a>
+
+        <a class="tool-card" href="/list-game-engines">
+          <span class="tool-emoji">🎮</span>
+          <h3 class="tool-name">Best Game Engines</h3>
+          <p class="tool-desc">Unity, Unreal, Godot comparison with use cases</p>
+        </a>
+
+        <a class="tool-card" href="/list-discord-bots">
+          <span class="tool-emoji">🤖</span>
+          <h3 class="tool-name">Best Discord Bots</h3>
+          <p class="tool-desc">Top Discord bots for gaming servers and communities</p>
+        </a>
+
+        <a class="tool-card" href="/list-gaming-mice">
+          <span class="tool-emoji">🖱️</span>
+          <h3 class="tool-name">Best Gaming Mice</h3>
+          <p class="tool-desc">Gaming mice by grip style, weight, sensor, polling rate</p>
+        </a>
+
+      <div id="noResults" class="no-results">No tools match your search.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 <a href="/">leeroyjenkins.quest</a> · A <a href="https://gab.ae">GAB Ventures</a> property
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      const cards = document.querySelectorAll('.tool-card');
+      const toolCount = document.getElementById('toolCount');
+      const noResults = document.getElementById('noResults');
+      const totalTools = cards.length;
+
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const name = card.querySelector('.tool-name').textContent.toLowerCase();
+          const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
+
+          if (name.includes(query) || desc.includes(query)) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.style.display = 'block';
+          toolCount.textContent = '0 tools found';
+        } else {
+          noResults.style.display = 'none';
+          if (query === '') {
+            toolCount.textContent = totalTools + ' tools available';
+          } else {
+            toolCount.textContent = visibleCount + ' tools found';
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
