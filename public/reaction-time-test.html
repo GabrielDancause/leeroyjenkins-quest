@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G86C7NJG3F"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-G86C7NJG3F');</script>
+  <meta charset="UTF-8">
+  <link rel="canonical" href="https://leeroyjenkins.quest/reaction-time-test" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reaction Time Test | Leeroy Jenkins</title>
+  <meta name="description" content="Test your reaction time in milliseconds. Compare your response speed to pro gamer averages and track your running average.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Reaction Time Test",
+    "description": "Test your reaction time in milliseconds. Compare your response speed to pro gamer averages and track your running average.",
+    "url": "https://leeroyjenkins.quest/reaction-time-test",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is a good gaming reaction time?",
+    "description": "Learn about typical reaction times, how pro gamers compare, and what factors affect your response speed.",
+    "author": {
+      "@type": "Organization",
+      "name": "Leeroy Jenkins"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GAB Ventures",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leeroyjenkins.quest/favicon.ico"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://leeroyjenkins.quest/reaction-time-test"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0b10;
+      --card-bg: #111318;
+      --border: #1e2030;
+      --accent: #9333EA;
+      --accent-hover: #7e22ce;
+      --text-primary: #d8d0e8;
+      --text-secondary: #888;
+      --font-ui: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --color-wait: #cf2a2a;
+      --color-go: #22c55e;
+      --color-ready: #3b82f6;
+      --color-early: #eab308;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .test-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    /* Test Area */
+    .test-area {
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--color-ready);
+    }
+
+    .test-area.state-waiting { background-color: var(--color-wait); }
+    .test-area.state-go { background-color: var(--color-go); }
+    .test-area.state-early { background-color: var(--color-early); }
+    .test-area.state-result { background-color: var(--card-bg); border: 2px solid var(--border); }
+
+    .test-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      pointer-events: none;
+    }
+
+    .test-message {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      pointer-events: none;
+    }
+
+    .test-submessage {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 8px;
+      pointer-events: none;
+    }
+
+    .test-area.state-result .test-message { color: var(--text-primary); }
+    .test-area.state-result .test-submessage { color: var(--text-secondary); }
+
+    .result-value {
+      font-family: var(--font-mono);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin: 16px 0;
+    }
+
+    .result-unit {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-family: var(--font-ui);
+    }
+
+    /* Stats Board */
+    .stats-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-sub {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    button {
+      background: var(--border);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    button.primary:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Pro Comparison Bar */
+    .comparison-container {
+      margin-top: 32px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+    }
+
+    .comparison-title {
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .scale-bar {
+      height: 24px;
+      background: linear-gradient(90deg, #22c55e 0%, #eab308 50%, #ef4444 100%);
+      border-radius: 12px;
+      position: relative;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+
+    .scale-marker {
+      position: absolute;
+      top: -25px;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .scale-marker::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 8px;
+      background: var(--text-secondary);
+    }
+
+    .user-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 4px;
+      height: 32px;
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      z-index: 10;
+      transition: left 0.5s ease;
+    }
+
+    .user-marker::before {
+      content: 'You';
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .pro-marker {
+      position: absolute;
+      top: 50%;
+      left: 20%; /* ~160ms on a 100-400ms scale */
+      transform: translate(-50%, -50%);
+      width: 2px;
+      height: 32px;
+      background: var(--accent);
+      z-index: 5;
+    }
+
+    .pro-marker::after {
+      content: 'Pro Avg (~160ms)';
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .test-card { padding: 24px 16px; }
+      .test-message { font-size: 1.5rem; }
+      .result-value { font-size: 3rem; }
+      .scale-marker:nth-child(even) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <script src="/nav.js"></script>
+
+  <div class="container">
+    <header>
+      <h1>Reaction Time Test</h1>
+      <p>Measure your reaction speed and compare it to pro gamers.</p>
+    </header>
+
+    <div class="test-card">
+      <div id="testArea" class="test-area state-ready">
+        <div id="testIcon" class="test-icon">⚡</div>
+        <div id="testMessage" class="test-message">Click to start</div>
+        <div id="testSubmessage" class="test-submessage">Wait for red, click on green.</div>
+      </div>
+
+      <div class="stats-board">
+        <div class="stat-card">
+          <div class="stat-label">Last Try</div>
+          <div class="stat-value"><span id="lastScore">--</span> <span style="font-size: 1rem; color: var(--text-secondary);">ms</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Average (5 tries)</div>
+          <div class="stat-value"><span id="avgScore">--</span> <span style="font-size: 1rem; color: var(--text-secondary);">ms</span></div>
+          <div class="stat-sub" id="triesCount">0 / 5 tries</div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="resetBtn" onclick="resetTest()">Reset Stats</button>
+        <button id="copyBtn" onclick="copyResult()">Copy Result</button>
+      </div>
+
+      <div class="comparison-container">
+        <div class="comparison-title">How do you stack up?</div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;" id="encouragementMsg">
+          Complete 5 tries to see your true average and get an evaluation.
+        </p>
+
+        <div class="scale-bar">
+          <div class="scale-marker" style="left: 0%;">100ms</div>
+          <div class="scale-marker" style="left: 25%;">175ms</div>
+          <div class="scale-marker" style="left: 50%;">250ms</div>
+          <div class="scale-marker" style="left: 75%;">325ms</div>
+          <div class="scale-marker" style="left: 100%;">400ms</div>
+
+          <div class="pro-marker"></div>
+          <div id="userMarker" class="user-marker" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content" style="margin-top: 60px;">
+      <h2 style="font-size: 1.5rem; color: #fff; margin-bottom: 16px;">What is a good gaming reaction time?</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">The average human reaction time to a visual stimulus is around 250 milliseconds (ms). However, this can vary wildly based on age, genetics, alertness, and what device you are using to measure it.</p>
+
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">In the context of PC gaming, a "good" reaction time is generally considered to be anywhere under 200ms. Players hitting between 150ms and 170ms are typically performing at the highest tier of human capability when accounting for hardware delay.</p>
+
+      <h2 style="font-size: 1.5rem; color: #fff; margin-bottom: 16px; margin-top: 40px;">How fast do Pro Gamers react?</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">Professional esports athletes, particularly in tactical shooters like Counter-Strike 2 (CS2) and Valorant, often score between 150ms and 160ms on benchmark tests. Some extraordinary individuals can consistently dip into the 130ms or 140ms range, giving them a monumental advantage when holding angles with a sniper rifle like the AWP or Operator.</p>
+
+      <h2 style="font-size: 1.5rem; color: #fff; margin-bottom: 16px; margin-top: 40px;">Why is my reaction time slow? (Hardware factors)</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">If your scores are consistently over 250ms or 300ms, don't panic! It might not be you—it could be your hardware. Several technical factors add <em>Input Lag</em> to your raw human reaction time:</p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 16px;">
+        <li style="margin-bottom: 8px;"><strong>Monitor Refresh Rate (Hz):</strong> A 60Hz monitor displays a new frame every 16.6ms. A 240Hz monitor displays one every 4.1ms. Simply upgrading your monitor can instantly shave 10-15ms off your score.</li>
+        <li style="margin-bottom: 8px;"><strong>Mouse Polling Rate:</strong> A cheap office mouse might only update its position 125 times per second (8ms delay), whereas a gaming mouse polling at 1000Hz updates every 1ms.</li>
+        <li style="margin-bottom: 8px;"><strong>Display Response Time:</strong> Older TVs or cheap monitors can take 20ms to 30ms just to change pixel colors, making everything feel delayed.</li>
+        <li style="margin-bottom: 8px;"><strong>Browser Overhead:</strong> Web browsers inherently add a few milliseconds of latency compared to raw compiled games running fullscreen.</li>
+      </ul>
+    </div>
+
+    <footer>
+      &copy; 2026 <a href="https://leeroyjenkins.quest">leeroyjenkins.quest</a> &middot; A <a href="https://gab.ae" target="_blank" rel="noopener">GAB Ventures</a> property
+    </footer>
+  </div>
+
+  <script>
+    const testArea = document.getElementById('testArea');
+    const testIcon = document.getElementById('testIcon');
+    const testMessage = document.getElementById('testMessage');
+    const testSubmessage = document.getElementById('testSubmessage');
+    const lastScoreEl = document.getElementById('lastScore');
+    const avgScoreEl = document.getElementById('avgScore');
+    const triesCountEl = document.getElementById('triesCount');
+    const copyBtn = document.getElementById('copyBtn');
+    const userMarker = document.getElementById('userMarker');
+    const encouragementMsg = document.getElementById('encouragementMsg');
+
+    // States: ready, waiting, go, result, early
+    let state = 'ready';
+    let timeoutId = null;
+    let startTime = 0;
+
+    let scores = [];
+    const MAX_TRIES = 5;
+
+    function setTestState(newState, icon, message, submessage) {
+      state = newState;
+
+      // Update classes
+      testArea.className = `test-area state-${newState}`;
+
+      // Update content
+      if (newState === 'result') {
+        testIcon.innerHTML = '';
+        testMessage.innerHTML = `<div class="result-value">${message}</div><div class="result-unit">ms</div>`;
+        testSubmessage.innerHTML = submessage;
+      } else {
+        testIcon.textContent = icon;
+        testMessage.textContent = message;
+        testSubmessage.textContent = submessage;
+      }
+    }
+
+    testArea.addEventListener('mousedown', (e) => {
+      // Prevent double firing on touch devices if mousedown triggers
+      e.preventDefault();
+      handleClick();
+    });
+
+    testArea.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleClick();
+    }, {passive: false});
+
+    function handleClick() {
+      if (state === 'ready' || state === 'result' || state === 'early') {
+        // Start the test
+        setTestState('waiting', '⏱️', 'Wait for green...', '');
+
+        // Random time between 1.5s and 4.5s
+        const waitTime = Math.random() * 3000 + 1500;
+
+        timeoutId = setTimeout(() => {
+          setTestState('go', '🟢', 'Click!', '');
+          startTime = performance.now();
+        }, waitTime);
+
+      } else if (state === 'waiting') {
+        // Clicked too early
+        clearTimeout(timeoutId);
+        setTestState('early', '⚠️', 'Too soon!', 'Click to try again.');
+
+      } else if (state === 'go') {
+        // Clicked on time
+        const reactionTime = Math.round(performance.now() - startTime);
+
+        scores.push(reactionTime);
+
+        setTestState('result', '', reactionTime, 'Click to keep going.');
+        updateStats();
+      }
+    }
+
+    function updateStats() {
+      if (scores.length === 0) return;
+
+      const lastScore = scores[scores.length - 1];
+      lastScoreEl.textContent = lastScore;
+
+      let triesText = `${scores.length} / ${MAX_TRIES} tries`;
+      if (scores.length > MAX_TRIES) {
+        triesText = `${MAX_TRIES} / ${MAX_TRIES} tries (Extra: ${scores.length - MAX_TRIES})`;
+      }
+      triesCountEl.textContent = triesText;
+
+      // Calculate average of up to the last MAX_TRIES
+      const recentScores = scores.slice(-MAX_TRIES);
+      const sum = recentScores.reduce((a, b) => a + b, 0);
+      const avg = Math.round(sum / recentScores.length);
+
+      avgScoreEl.textContent = avg;
+
+      updateComparison(avg);
+    }
+
+    function updateComparison(avg) {
+      userMarker.style.display = 'block';
+
+      // Scale: 100ms (0%) to 400ms (100%)
+      const minMs = 100;
+      const maxMs = 400;
+      const range = maxMs - minMs;
+
+      // Calculate percentage, clamped between 0 and 100
+      let percentage = ((avg - minMs) / range) * 100;
+      percentage = Math.max(0, Math.min(100, percentage));
+
+      userMarker.style.left = `${percentage}%`;
+
+      if (scores.length >= MAX_TRIES) {
+        if (avg < 160) {
+          encouragementMsg.innerHTML = "<strong>Unreal!</strong> Your reactions are literally faster than many professional gamers. Are you a robot?";
+          encouragementMsg.style.color = "var(--accent)";
+        } else if (avg < 200) {
+          encouragementMsg.innerHTML = "<strong>Excellent!</strong> You have top-tier reaction times, easily competitive in fast-paced shooters.";
+          encouragementMsg.style.color = "#22c55e";
+        } else if (avg < 250) {
+          encouragementMsg.innerHTML = "<strong>Great!</strong> You're faster than average. Keep practicing to shave off those precious milliseconds.";
+          encouragementMsg.style.color = "#eab308";
+        } else if (avg < 300) {
+          encouragementMsg.innerHTML = "<strong>Good.</strong> You're right around the global average. Make sure your monitor and mouse aren't adding input lag!";
+        } else {
+          encouragementMsg.innerHTML = "Keep practicing! Fatigue, distractions, or a slow monitor could be affecting your score.";
+        }
+      }
+    }
+
+    function resetTest() {
+      scores = [];
+      lastScoreEl.textContent = '--';
+      avgScoreEl.textContent = '--';
+      triesCountEl.textContent = '0 / 5 tries';
+      userMarker.style.display = 'none';
+      encouragementMsg.innerHTML = "Complete 5 tries to see your true average and get an evaluation.";
+      encouragementMsg.style.color = "var(--text-secondary)";
+
+      clearTimeout(timeoutId);
+      setTestState('ready', '⚡', 'Click to start', 'Wait for red, click on green.');
+    }
+
+    function copyResult() {
+      if (scores.length === 0) {
+        alert("Play a few rounds first!");
+        return;
+      }
+
+      const avg = avgScoreEl.textContent;
+      const text = `My average reaction time is ${avg}ms! Try to beat it on leeroyjenkins.quest ⚡`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
